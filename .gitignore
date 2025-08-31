@@ -1,0 +1,15 @@
+*
+
+!*/
+!lib/
+!lib/minilibx-linux/
+!lib/minilibx-linux/**
+
+!*.c
+!*.h
+!Makefile
+!*.cub
+!*.json
+
+.*
+!.gitignore
