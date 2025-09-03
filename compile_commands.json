@@ -562,6 +562,36 @@
       "-Werror",
       "-c",
       "-o",
+      "ft_strndup.o",
+      "ft_strndup.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d/lib/libft",
+    "file": "/home/letto/Desktop/42/cub3d/lib/libft/ft_strndup.c",
+    "output": "/home/letto/Desktop/42/cub3d/lib/libft/ft_strndup.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "get_next_line.o",
+      "get_next_line.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d/lib/libft",
+    "file": "/home/letto/Desktop/42/cub3d/lib/libft/get_next_line.c",
+    "output": "/home/letto/Desktop/42/cub3d/lib/libft/get_next_line.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
       "ft_lstnew_bonus.o",
       "ft_lstnew_bonus.c"
     ],
@@ -1144,12 +1174,9 @@
       "/usr/bin/cc",
       "-g",
       "-Iinc/",
-      "-Iutils/",
+      "-Iinc/modules/",
       "-Ilib/libft/",
       "-Ilib/minilibx-linux/",
-      "-Wall",
-      "-Wextra",
-      "-Werror",
       "-c",
       "-o",
       "obj/src/main.o",
@@ -1158,5 +1185,124 @@
     "directory": "/home/letto/Desktop/42/cub3d",
     "file": "/home/letto/Desktop/42/cub3d/src/main.c",
     "output": "/home/letto/Desktop/42/cub3d/obj/src/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/error/error.o",
+      "src/modules/error/error.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/error/error.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/error/error.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/graphics/init.o",
+      "src/modules/graphics/init.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/graphics/init.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/graphics/init.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/graphics/render.o",
+      "src/modules/graphics/render.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/graphics/render.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/graphics/render.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/events/keyboard.o",
+      "src/modules/events/keyboard.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/events/keyboard.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/events/keyboard.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/events/window.o",
+      "src/modules/events/window.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/events/window.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/events/window.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/parsing/check.o",
+      "src/modules/parsing/check.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/parsing/check.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/parsing/check.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/parsing/validate.o",
+      "src/modules/parsing/validate.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/parsing/validate.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/parsing/validate.o"
   }
 ]

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luminous <luminous@student.42.fr>          +#+  +:+       +#+        */
+/*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 16:42:55 by luminous          #+#    #+#             */
-/*   Updated: 2025/07/16 20:34:17 by luminous         ###   ########.fr       */
+/*   Updated: 2025/09/03 19:58:51 by letto            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,17 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 4096
+# endif
+
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+
+char				*get_next_line(int fd);
 
 void				*ft_memset(void *dest, int c, size_t n);
 void				ft_bzero(void *s, size_t n);
@@ -38,6 +44,7 @@ char				*ft_strrchr(const char *s, int c);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_strcmp(const char *s1, const char *s2);
 char				*ft_strdup(const char *s);
+char				*ft_strndup(const char *string, size_t n);
 int					ft_atoi(const char *str);
 char				*ft_strnstr(const char *s1, const char *s2, size_t len);
 char				*ft_strstr(const char *haystack, const char *needle);

@@ -1,6 +1,9 @@
 #ifndef DEFINES_H
 # define DEFINES_H
 
+# define WIDTH 800
+# define HEIGHT 600
+
 # define ESC 65307
 # define W 119
 # define A 97
