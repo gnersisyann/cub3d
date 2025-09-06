@@ -21,14 +21,23 @@ CFLAGS = -g $(INC_FLAGS) -I$(LIBFT_DIR) -I$(MLX_DIR) #-Wall -Wextra -Werror
 LDFLAGS = -L$(LIBFT_DIR) -L$(MLX_DIR) -lft -lm -lmlx -lXext -lX11
 
 SRC = $(SRC_DIR)main.c \
+      \
       $(SRC_DIR)modules/error/error.c \
+      \
       $(SRC_DIR)modules/graphics/init.c \
       $(SRC_DIR)modules/graphics/render.c \
+      \
       $(SRC_DIR)modules/events/keyboard.c \
       $(SRC_DIR)modules/events/window.c \
-	  $(SRC_DIR)modules/parsing/check.c \
-	  $(SRC_DIR)modules/parsing/validate.c \
-	  $(SRC_DIR)modules/mlx/mlx.c
+      \
+      $(SRC_DIR)modules/validation/validation.c \
+      $(SRC_DIR)modules/validation/parser/parser.c \
+      $(SRC_DIR)modules/validation/parser/modules/content_splitter.c \
+      $(SRC_DIR)modules/validation/parser/modules/file_parser.c \
+      \
+      $(SRC_DIR)modules/validation/argument/check.c \
+      \
+      $(SRC_DIR)modules/mlx/mlx.c
 	  
 
 OBJ_DIR = obj

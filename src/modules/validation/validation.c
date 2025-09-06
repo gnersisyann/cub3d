@@ -11,5 +11,7 @@ void	ft_validate_args(int argc, char **argv)
 
 void	ft_validate_map(char *map_path, t_data *data)
 {
-	// TODO: add validation
+	t_file_content	*content;
+
+	content = parse_cub_file(map_path);
 }
