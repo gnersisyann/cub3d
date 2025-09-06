@@ -11,5 +11,7 @@
 !*.cub
 !*.json
 
+
 .*
+!.clangd
 !.gitignore
