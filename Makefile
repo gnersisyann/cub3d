@@ -27,7 +27,8 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/events/keyboard.c \
       $(SRC_DIR)modules/events/window.c \
 	  $(SRC_DIR)modules/parsing/check.c \
-	  $(SRC_DIR)modules/parsing/validate.c
+	  $(SRC_DIR)modules/parsing/validate.c \
+	  $(SRC_DIR)modules/mlx/mlx.c
 	  
 
 OBJ_DIR = obj

@@ -1,5 +1,7 @@
 #include "error.h"
 #include "graphics.h"
+#include <stdlib.h>
+#include "defines.h"
 
 int	ft_init_mlx(t_data *data)
 {
