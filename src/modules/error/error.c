@@ -1,7 +1,10 @@
 #include "error.h"
+#include "libft.h"
 
-void	ft_error_exit(const char *message, int exit_code)
+void	ft_error_exit(char *message, int exit_code)
 {
-	printf("Error\n%s\n", message);
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd(message, 2);
+	ft_putstr_fd("\n", 2);
 	exit(exit_code);
 }
