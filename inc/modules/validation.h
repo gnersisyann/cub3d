@@ -3,10 +3,15 @@
 
 #include "cub3d.h"
 
+// TODO: fix header
+
 typedef struct s_file_content {
   char **config_lines;
   char **map_lines;
 } t_file_content;
+
+
+void	ft_validate(int argc, char **argv, t_data *data);
 
 void ft_validate_map(char *map_path, t_data *data);
 
