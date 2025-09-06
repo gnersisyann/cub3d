@@ -156,12 +156,38 @@ static char	**extract_config_lines(char **lines, int map_start_index)
 	return (config_lines);
 }
 
+static char	*normalize_map_line(char *line)
+{
+	char	*normalized;
+	int		i;
+	int		len;
+
+	if (!line)
+		return (NULL);
+	len = ft_strlen(line);
+	normalized = (char *)malloc(sizeof(char) * (len + 1));
+	if (!normalized)
+		return (NULL);
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == ' ' || line[i] == '\t')
+			normalized[i] = '0';
+		else
+			normalized[i] = line[i];
+		i++;
+	}
+	normalized[i] = '\0';
+	return (normalized);
+}
+
 static char	**extract_map_lines(char **lines, int map_start_index)
 {
 	char	**map_lines;
 	int		map_count;
 	int		i;
 	int		j;
+	char	*normalized_line;
 
 	map_count = 0;
 	i = map_start_index;
@@ -182,14 +208,15 @@ static char	**extract_map_lines(char **lines, int map_start_index)
 	{
 		if (is_potential_map_line(lines[i]))
 		{
-			map_lines[j] = ft_strdup(lines[i]);
-			if (!map_lines[j])
+			normalized_line = normalize_map_line(lines[i]);
+			if (!normalized_line)
 			{
 				while (j > 0)
 					free(map_lines[--j]);
 				free(map_lines);
 				ft_error_exit("Memory allocation failed", EXIT_FAILURE);
 			}
+			map_lines[j] = normalized_line;
 			j++;
 		}
 		i++;
@@ -210,7 +237,6 @@ t_file_content	*ft_split_file_content(char **lines)
 	content = (t_file_content *)malloc(sizeof(t_file_content));
 	if (!content)
 		ft_error_exit("Memory allocation failed", EXIT_FAILURE);
-	
 	map_start_index = find_map_start_index(lines);
 	if (map_start_index == -2)
 	{
