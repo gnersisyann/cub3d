@@ -31,11 +31,14 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/events/window.c \
       \
       $(SRC_DIR)modules/validation/validation.c \
-      $(SRC_DIR)modules/validation/parser/parser.c \
-      $(SRC_DIR)modules/validation/parser/modules/content_splitter.c \
-      $(SRC_DIR)modules/validation/parser/modules/file_parser.c \
-      \
-      $(SRC_DIR)modules/validation/argument/check.c \
+      $(SRC_DIR)modules/validation/argument/argument.c \
+      $(SRC_DIR)modules/validation/argument/modules/check_argc/check_argc.c \
+      $(SRC_DIR)modules/validation/argument/modules/check_file_exists/check_file_exists.c \
+      $(SRC_DIR)modules/validation/argument/modules/check_file_extension/check_file_extension.c \
+      $(SRC_DIR)modules/validation/map/map.c \
+      $(SRC_DIR)modules/validation/map/modules/parser/parser.c \
+      $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/content_splitter.c \
+      $(SRC_DIR)modules/validation/map/modules/parser/modules/file_parser/file_parser.c \
       \
       $(SRC_DIR)modules/mlx/mlx.c
 	  
