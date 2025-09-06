@@ -40,7 +40,10 @@ static void	get_next_line_reader(ssize_t *bytes_read, int *fd, char **storage,
 		if (*bytes_read <= 0)
 			break ;
 		buffer[*bytes_read] = '\0';
-		temp = ft_strjoin(*storage, buffer);
+		if (*storage == NULL)
+			temp = ft_strdup(buffer);
+		else
+			temp = ft_strjoin(*storage, buffer);
 		free(*storage);
 		*storage = temp;
 		if (ft_strchr(buffer, '\n'))
@@ -50,9 +53,9 @@ static void	get_next_line_reader(ssize_t *bytes_read, int *fd, char **storage,
 
 char	*get_next_line(int fd)
 {
-	ssize_t		bytes_read;
-	char		buffer[BUFFER_SIZE + 1];
-	static char	*storage;
+	ssize_t bytes_read;
+	char buffer[BUFFER_SIZE + 1];
+	static char *storage;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
