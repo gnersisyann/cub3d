@@ -1,0 +1,10 @@
+#ifndef UTILS_H
+# define UTILS_H
+
+#include "validation.h"
+
+void	ft_free_file_content(t_file_content *content);
+
+void	ft_cleanup_data(t_data *data);
+
+#endif

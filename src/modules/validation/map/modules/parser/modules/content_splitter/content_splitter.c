@@ -76,6 +76,24 @@ static int	is_empty_line(char *line)
 	return (1);
 }
 
+static void	validate_all_lines(char **lines)
+{
+	int		i;
+	char	*line;
+
+	i = 0;
+	while (lines[i])
+	{
+		line = lines[i];
+		if (!is_config_identifier(line) && !is_potential_map_line(line)
+			&& !is_empty_line(line))
+		{
+			ft_error_exit("Invalid content found in file", EXIT_FAILURE);
+		}
+		i++;
+	}
+}
+
 static int	validate_no_config_after_map(char **lines, int map_start_index)
 {
 	int	i;
@@ -91,7 +109,8 @@ static int	validate_no_config_after_map(char **lines, int map_start_index)
 		if (is_config_identifier(lines[i]))
 			return (0);
 		if (!is_empty_line(lines[i]))
-			return (0);
+			ft_error_exit("Invalid content found after map start",
+				EXIT_FAILURE);
 		i++;
 	}
 	return (1);
@@ -233,6 +252,7 @@ void	ft_split_file_content(char **lines, t_file_content *content)
 
 	if (!lines || !lines[0])
 		ft_error_exit("Invalid input", EXIT_FAILURE);
+	validate_all_lines(lines);
 	map_start_index = find_map_start_index(lines);
 	if (map_start_index == -2)
 	{

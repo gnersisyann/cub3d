@@ -56,12 +56,13 @@ static void	print_file_content(t_file_content *content) // FOR_TESTING
 	printf("\n📋 =========================\n");
 }
 
-void	ft_validate_map(char *map_path, t_data *data,t_file_content *content)
+void	ft_validate_map(char *map_path, t_data *data, t_file_content *content)
 {
 	parse_cub_file(map_path, content);
+	ft_check_config(content, data);
+	ft_validate_map_structure(content,data);
 
 	print_file_content(content); // FOR TESTING
-									// ft_validate_config(content, data);
-									// ft_validate_map_structure(content, data);
-									// ft_free_file_content(content);
+	// ft_validate_map_structure(content, data);
+	// ft_free_file_content(content);
 }

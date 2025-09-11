@@ -12,6 +12,9 @@ typedef struct s_data {
   char *east_texture;
   int floor_color;
   int ceiling_color;
+  int player_x;
+  int player_y;
+  int player_direction;
 } t_data;
 
 #endif
