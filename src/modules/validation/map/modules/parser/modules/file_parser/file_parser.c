@@ -37,6 +37,7 @@ char	**parse_file(char *filename)
 	line_count = file_line_count(filename);
 	if (line_count == 0)
 		ft_error_exit("File is empty", EXIT_FAILURE);
+
 	result = (char **)malloc(sizeof(char *) * (line_count + 1));
 	if (!result)
 		ft_error_exit("Memory allocation failed", EXIT_FAILURE);

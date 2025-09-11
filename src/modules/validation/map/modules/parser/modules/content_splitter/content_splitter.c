@@ -225,28 +225,22 @@ static char	**extract_map_lines(char **lines, int map_start_index)
 	return (map_lines);
 }
 
-t_file_content	*ft_split_file_content(char **lines)
+void	ft_split_file_content(char **lines, t_file_content *content)
 {
-	t_file_content	*content;
-	int				map_start_index;
-	int				has_config;
-	int				i;
+	int	map_start_index;
+	int	has_config;
+	int	i;
 
 	if (!lines || !lines[0])
 		ft_error_exit("Invalid input", EXIT_FAILURE);
-	content = (t_file_content *)malloc(sizeof(t_file_content));
-	if (!content)
-		ft_error_exit("Memory allocation failed", EXIT_FAILURE);
 	map_start_index = find_map_start_index(lines);
 	if (map_start_index == -2)
 	{
-		free(content);
 		ft_error_exit("Configuration elements found after map start",
 			EXIT_FAILURE);
 	}
 	if (map_start_index == -1)
 	{
-		free(content);
 		ft_error_exit("No map found in file", EXIT_FAILURE);
 	}
 	has_config = 0;
@@ -262,10 +256,8 @@ t_file_content	*ft_split_file_content(char **lines)
 	}
 	if (!has_config)
 	{
-		free(content);
 		ft_error_exit("No configuration elements found", EXIT_FAILURE);
 	}
 	content->config_lines = extract_config_lines(lines, map_start_index);
 	content->map_lines = extract_map_lines(lines, map_start_index);
-	return (content);
 }

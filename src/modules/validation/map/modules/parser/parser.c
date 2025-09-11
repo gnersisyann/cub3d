@@ -2,16 +2,14 @@
 #include "libft.h"
 #include "validation.h"
 
-t_file_content	*parse_cub_file(char *filename)
+void	parse_cub_file(char *filename, t_file_content *content)
 {
-	char			**file_lines;
-	t_file_content	*content;
+	char	**file_lines;
 
 	file_lines = parse_file(filename);
 	if (!file_lines)
 		ft_error_exit("Failed to parse file", EXIT_FAILURE);
 	
-	content = ft_split_file_content(file_lines);
+	ft_split_file_content(file_lines, content);
 	ft_free_array(file_lines);
-	return (content);
 }
