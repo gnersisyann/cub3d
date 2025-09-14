@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/14 19:36:36 by letto             #+#    #+#             */
-/*   Updated: 2025/09/14 19:36:37 by letto            ###   ########.fr       */
+/*   Created: 2025/09/14 19:44:44 by letto             #+#    #+#             */
+/*   Updated: 2025/09/14 19:46:41 by letto            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,269 +15,15 @@
 #include "validation.h"
 #include <stdlib.h>
 
-static int	is_map_character(char c)
-{
-	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
-		|| c == ' ' || c == '\t' || c == '\n');
-}
-
-static int	is_config_identifier(char *line)
-{
-	int	i;
-
-	if (!line)
-		return (0);
-	i = 0;
-	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
-		i++;
-	if (line[i] && line[i + 1])
-	{
-		if ((line[i] == 'N' && line[i + 1] == 'O' && line[i + 2] == ' ')
-			|| (line[i] == 'S' && line[i + 1] == 'O' && line[i + 2] == ' ')
-			|| (line[i] == 'W' && line[i + 1] == 'E' && line[i + 2] == ' ')
-			|| (line[i] == 'E' && line[i + 1] == 'A' && line[i + 2] == ' '))
-			return (1);
-	}
-	if ((line[i] == 'F' || line[i] == 'C') && line[i + 1] == ' ')
-		return (1);
-	return (0);
-}
-
-static int	is_potential_map_line(char *line)
-{
-	int	i;
-	int	has_map_content;
-
-	if (!line)
-		return (0);
-	i = 0;
-	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
-		i++;
-	if (!line[i] || line[i] == '\n')
-		return (0);
-	if (is_config_identifier(line))
-		return (0);
-	has_map_content = 0;
-	while (line[i] && line[i] != '\n')
-	{
-		if (!is_map_character(line[i]))
-			return (0);
-		if (line[i] == '0' || line[i] == '1' || line[i] == 'N' || line[i] == 'S'
-			|| line[i] == 'E' || line[i] == 'W')
-		{
-			has_map_content = 1;
-		}
-		i++;
-	}
-	return (has_map_content);
-}
-
-static int	is_empty_line(char *line)
-{
-	int	i;
-
-	if (!line)
-		return (1);
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-static void	validate_all_lines(char **lines, t_data *data,
-		t_file_content *content)
-{
-	int		i;
-	char	*line;
-
-	i = 0;
-	while (lines[i])
-	{
-		line = lines[i];
-		if (!is_config_identifier(line) && !is_potential_map_line(line)
-			&& !is_empty_line(line))
-		{
-			ft_error_exit_with_cleanup("Invalid content found in file",
-				EXIT_FAILURE, data, content);
-		}
-		i++;
-	}
-}
-
-static int	validate_no_config_after_map(char **lines, int map_start_index,
-		t_data *data, t_file_content *content)
-{
-	int	i;
-
-	i = map_start_index;
-	while (lines[i])
-	{
-		if (is_potential_map_line(lines[i]))
-		{
-			i++;
-			continue ;
-		}
-		if (is_config_identifier(lines[i]))
-			return (0);
-		if (!is_empty_line(lines[i]))
-			ft_error_exit_with_cleanup("Invalid content found after map start",
-				EXIT_FAILURE, data, content);
-		i++;
-	}
-	return (1);
-}
-
-static int	find_map_start_index(char **lines, t_data *data,
-		t_file_content *content)
-{
-	int	i;
-
-	i = 0;
-	while (lines[i])
-	{
-		if (is_potential_map_line(lines[i]))
-		{
-			if (validate_no_config_after_map(lines, i, data, content))
-				return (i);
-			else
-				return (-2);
-		}
-		i++;
-	}
-	return (-1);
-}
-
-static char	**extract_config_lines(char **lines, int map_start_index,
-		t_data *data, t_file_content *content)
-{
-	char	**config_lines;
-	int		config_count;
-	int		i;
-	int		j;
-
-	config_count = 0;
-	i = 0;
-	while (i < map_start_index)
-	{
-		if (is_config_identifier(lines[i]))
-			config_count++;
-		i++;
-	}
-	config_lines = (char **)malloc(sizeof(char *) * (config_count + 1));
-	if (!config_lines)
-		ft_error_exit_with_cleanup("Memory allocation failed", EXIT_FAILURE,
-			data, content);
-	j = 0;
-	i = 0;
-	while (i < map_start_index)
-	{
-		if (is_config_identifier(lines[i]))
-		{
-			config_lines[j] = ft_strdup(lines[i]);
-			if (!config_lines[j])
-			{
-				while (j > 0)
-					free(config_lines[--j]);
-				free(config_lines);
-				ft_error_exit_with_cleanup("Memory allocation failed",
-					EXIT_FAILURE, data, content);
-			}
-			j++;
-		}
-		i++;
-	}
-	config_lines[j] = NULL;
-	return (config_lines);
-}
-
-static char	*normalize_map_line(char *line)
-{
-	char	*normalized;
-	int		i;
-	int		len;
-
-	if (!line)
-		return (NULL);
-	len = ft_strlen(line);
-	normalized = (char *)malloc(sizeof(char) * (len + 1));
-	if (!normalized)
-		return (NULL);
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == ' ' || line[i] == '\t')
-			normalized[i] = '0';
-		else
-			normalized[i] = line[i];
-		i++;
-	}
-	normalized[i] = '\0';
-	return (normalized);
-}
-
-static char	**extract_map_lines(char **lines, int map_start_index, t_data *data,
-		t_file_content *content)
-{
-	char	**map_lines;
-	int		map_count;
-	int		i;
-	int		j;
-	char	*normalized_line;
-
-	map_count = 0;
-	i = map_start_index;
-	while (lines[i])
-	{
-		if (is_potential_map_line(lines[i]))
-			map_count++;
-		i++;
-	}
-	if (map_count == 0)
-		ft_error_exit_with_cleanup("No valid map found in file", EXIT_FAILURE,
-			data, content);
-	map_lines = (char **)malloc(sizeof(char *) * (map_count + 1));
-	if (!map_lines)
-		ft_error_exit_with_cleanup("Memory allocation failed", EXIT_FAILURE,
-			data, content);
-	j = 0;
-	i = map_start_index;
-	while (lines[i])
-	{
-		if (is_potential_map_line(lines[i]))
-		{
-			normalized_line = normalize_map_line(lines[i]);
-			if (!normalized_line)
-			{
-				while (j > 0)
-					free(map_lines[--j]);
-				free(map_lines);
-				ft_error_exit_with_cleanup("Memory allocation failed",
-					EXIT_FAILURE, data, content);
-			}
-			map_lines[j] = normalized_line;
-			j++;
-		}
-		i++;
-	}
-	map_lines[j] = NULL;
-	return (map_lines);
-}
-
-
 void	ft_split_file_content(char **lines, t_file_content *content,
 		t_data *data)
 {
 	int	map_start_index;
 	int	has_config;
-	int	i;
 
 	if (!lines || !lines[0])
 	{
-		ft_free_array(lines); 
+		ft_free_array(lines);
 		ft_error_exit_with_cleanup("Invalid input", EXIT_FAILURE, data,
 			content);
 	}
@@ -285,30 +31,20 @@ void	ft_split_file_content(char **lines, t_file_content *content,
 	map_start_index = find_map_start_index(lines, data, content);
 	if (map_start_index == -2)
 	{
-		ft_free_array(lines); 
+		ft_free_array(lines);
 		ft_error_exit_with_cleanup("Configuration elements found after map start",
 			EXIT_FAILURE, data, content);
 	}
 	if (map_start_index == -1)
 	{
-		ft_free_array(lines); 
+		ft_free_array(lines);
 		ft_error_exit_with_cleanup("No map found in file", EXIT_FAILURE, data,
 			content);
 	}
-	has_config = 0;
-	i = 0;
-	while (i < map_start_index)
-	{
-		if (is_config_identifier(lines[i]))
-		{
-			has_config = 1;
-			break ;
-		}
-		i++;
-	}
+	has_config = check_has_config(lines, map_start_index);
 	if (!has_config)
 	{
-		ft_free_array(lines); 
+		ft_free_array(lines);
 		ft_error_exit_with_cleanup("No configuration elements found",
 			EXIT_FAILURE, data, content);
 	}
@@ -316,7 +52,7 @@ void	ft_split_file_content(char **lines, t_file_content *content,
 			content);
 	if (!content->config_lines)
 	{
-		ft_free_array(lines); 
+		ft_free_array(lines);
 		ft_error_exit_with_cleanup("Memory allocation failed", EXIT_FAILURE,
 			data, content);
 	}
@@ -326,7 +62,7 @@ void	ft_split_file_content(char **lines, t_file_content *content,
 	{
 		ft_free_array(content->config_lines);
 		content->config_lines = NULL;
-		ft_free_array(lines); 
+		ft_free_array(lines);
 		ft_error_exit_with_cleanup("Memory allocation failed", EXIT_FAILURE,
 			data, content);
 	}

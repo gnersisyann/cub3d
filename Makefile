@@ -38,9 +38,18 @@ SRC = $(SRC_DIR)main.c \
  \
       $(SRC_DIR)modules/validation/map/map.c \
       $(SRC_DIR)modules/validation/map/modules/parser/parser.c \
+ \
       $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/content_splitter.c \
-      $(SRC_DIR)modules/validation/map/modules/parser/modules/file_parser/file_parser.c \
+      $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/line_validators.c \
+      $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/content_extractors.c \
+      $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/map_finder.c \
+ \
+	  $(SRC_DIR)modules/validation/map/modules/parser/modules/file_parser/file_parser.c \
+ \
 	  $(SRC_DIR)modules/validation/map/modules/check_map/check_map.c \
+      $(SRC_DIR)modules/validation/map/modules/check_map/map_utils.c \
+      $(SRC_DIR)modules/validation/map/modules/check_map/map_validators.c \
+      $(SRC_DIR)modules/validation/map/modules/check_map/flood_fill.c \
  \
 	  $(SRC_DIR)modules/utils/cleanup.c \
 	  $(SRC_DIR)modules/utils/init.c \
