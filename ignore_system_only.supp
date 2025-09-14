@@ -1,0 +1,36 @@
+{
+   X11_XOpenDisplay
+   Memcheck:Leak
+   ...
+   fun:XOpenDisplay
+}
+
+{
+   MLX_system_init
+   Memcheck:Leak
+   ...
+   fun:mlx_init
+}
+
+{
+   dlopen_system
+   Memcheck:Leak
+   ...
+   fun:dlopen
+   ...
+   obj:/lib*/ld-linux*.so*
+}
+
+{
+   system_libs_only
+   Memcheck:Leak
+   ...
+   obj:/usr/lib*
+}
+
+{
+   system_libs_only2
+   Memcheck:Leak
+   ...
+   obj:/lib64/*
+}

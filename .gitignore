@@ -16,4 +16,5 @@
 
 .*
 !.clangd
+!*.supp
 !.gitignore
