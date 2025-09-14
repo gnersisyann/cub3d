@@ -98,7 +98,7 @@ static void	flood_fill_check(char **map_lines, int x, int y, int map_width,
 		ft_error_exit("Player can escape from map boundaries", EXIT_FAILURE);
 	if (visited[y][x])
 		return ;
-	current = get_map_char_safe(map_lines, x, y, map_width);
+	current = get_map_char_safe(map_lines, x, y, map_height);
 	if (current == '1')
 		return ;
 	if (current != '0' && !is_player_character(current))
