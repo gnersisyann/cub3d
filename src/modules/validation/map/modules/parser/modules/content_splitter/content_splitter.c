@@ -76,7 +76,8 @@ static int	is_empty_line(char *line)
 	return (1);
 }
 
-static void	validate_all_lines(char **lines)
+static void	validate_all_lines(char **lines, t_data *data,
+		t_file_content *content)
 {
 	int		i;
 	char	*line;
@@ -88,13 +89,15 @@ static void	validate_all_lines(char **lines)
 		if (!is_config_identifier(line) && !is_potential_map_line(line)
 			&& !is_empty_line(line))
 		{
-			ft_error_exit("Invalid content found in file", EXIT_FAILURE);
+			ft_error_exit_with_cleanup("Invalid content found in file",
+				EXIT_FAILURE, data, content);
 		}
 		i++;
 	}
 }
 
-static int	validate_no_config_after_map(char **lines, int map_start_index)
+static int	validate_no_config_after_map(char **lines, int map_start_index,
+		t_data *data, t_file_content *content)
 {
 	int	i;
 
@@ -109,14 +112,15 @@ static int	validate_no_config_after_map(char **lines, int map_start_index)
 		if (is_config_identifier(lines[i]))
 			return (0);
 		if (!is_empty_line(lines[i]))
-			ft_error_exit("Invalid content found after map start",
-				EXIT_FAILURE);
+			ft_error_exit_with_cleanup("Invalid content found after map start",
+				EXIT_FAILURE, data, content);
 		i++;
 	}
 	return (1);
 }
 
-static int	find_map_start_index(char **lines)
+static int	find_map_start_index(char **lines, t_data *data,
+		t_file_content *content)
 {
 	int	i;
 
@@ -125,7 +129,7 @@ static int	find_map_start_index(char **lines)
 	{
 		if (is_potential_map_line(lines[i]))
 		{
-			if (validate_no_config_after_map(lines, i))
+			if (validate_no_config_after_map(lines, i, data, content))
 				return (i);
 			else
 				return (-2);
@@ -135,7 +139,8 @@ static int	find_map_start_index(char **lines)
 	return (-1);
 }
 
-static char	**extract_config_lines(char **lines, int map_start_index)
+static char	**extract_config_lines(char **lines, int map_start_index,
+		t_data *data, t_file_content *content)
 {
 	char	**config_lines;
 	int		config_count;
@@ -152,7 +157,8 @@ static char	**extract_config_lines(char **lines, int map_start_index)
 	}
 	config_lines = (char **)malloc(sizeof(char *) * (config_count + 1));
 	if (!config_lines)
-		ft_error_exit("Memory allocation failed", EXIT_FAILURE);
+		ft_error_exit_with_cleanup("Memory allocation failed", EXIT_FAILURE,
+			data, content);
 	j = 0;
 	i = 0;
 	while (i < map_start_index)
@@ -165,7 +171,8 @@ static char	**extract_config_lines(char **lines, int map_start_index)
 				while (j > 0)
 					free(config_lines[--j]);
 				free(config_lines);
-				ft_error_exit("Memory allocation failed", EXIT_FAILURE);
+				ft_error_exit_with_cleanup("Memory allocation failed",
+					EXIT_FAILURE, data, content);
 			}
 			j++;
 		}
@@ -200,7 +207,8 @@ static char	*normalize_map_line(char *line)
 	return (normalized);
 }
 
-static char	**extract_map_lines(char **lines, int map_start_index)
+static char	**extract_map_lines(char **lines, int map_start_index, t_data *data,
+		t_file_content *content)
 {
 	char	**map_lines;
 	int		map_count;
@@ -217,10 +225,12 @@ static char	**extract_map_lines(char **lines, int map_start_index)
 		i++;
 	}
 	if (map_count == 0)
-		ft_error_exit("No valid map found in file", EXIT_FAILURE);
+		ft_error_exit_with_cleanup("No valid map found in file", EXIT_FAILURE,
+			data, content);
 	map_lines = (char **)malloc(sizeof(char *) * (map_count + 1));
 	if (!map_lines)
-		ft_error_exit("Memory allocation failed", EXIT_FAILURE);
+		ft_error_exit_with_cleanup("Memory allocation failed", EXIT_FAILURE,
+			data, content);
 	j = 0;
 	i = map_start_index;
 	while (lines[i])
@@ -233,7 +243,8 @@ static char	**extract_map_lines(char **lines, int map_start_index)
 				while (j > 0)
 					free(map_lines[--j]);
 				free(map_lines);
-				ft_error_exit("Memory allocation failed", EXIT_FAILURE);
+				ft_error_exit_with_cleanup("Memory allocation failed",
+					EXIT_FAILURE, data, content);
 			}
 			map_lines[j] = normalized_line;
 			j++;
@@ -244,24 +255,33 @@ static char	**extract_map_lines(char **lines, int map_start_index)
 	return (map_lines);
 }
 
-void	ft_split_file_content(char **lines, t_file_content *content)
+
+void	ft_split_file_content(char **lines, t_file_content *content,
+		t_data *data)
 {
 	int	map_start_index;
 	int	has_config;
 	int	i;
 
 	if (!lines || !lines[0])
-		ft_error_exit("Invalid input", EXIT_FAILURE);
-	validate_all_lines(lines);
-	map_start_index = find_map_start_index(lines);
+	{
+		ft_free_array(lines); 
+		ft_error_exit_with_cleanup("Invalid input", EXIT_FAILURE, data,
+			content);
+	}
+	validate_all_lines(lines, data, content);
+	map_start_index = find_map_start_index(lines, data, content);
 	if (map_start_index == -2)
 	{
-		ft_error_exit("Configuration elements found after map start",
-			EXIT_FAILURE);
+		ft_free_array(lines); 
+		ft_error_exit_with_cleanup("Configuration elements found after map start",
+			EXIT_FAILURE, data, content);
 	}
 	if (map_start_index == -1)
 	{
-		ft_error_exit("No map found in file", EXIT_FAILURE);
+		ft_free_array(lines); 
+		ft_error_exit_with_cleanup("No map found in file", EXIT_FAILURE, data,
+			content);
 	}
 	has_config = 0;
 	i = 0;
@@ -276,8 +296,26 @@ void	ft_split_file_content(char **lines, t_file_content *content)
 	}
 	if (!has_config)
 	{
-		ft_error_exit("No configuration elements found", EXIT_FAILURE);
+		ft_free_array(lines); 
+		ft_error_exit_with_cleanup("No configuration elements found",
+			EXIT_FAILURE, data, content);
 	}
-	content->config_lines = extract_config_lines(lines, map_start_index);
-	content->map_lines = extract_map_lines(lines, map_start_index);
+	content->config_lines = extract_config_lines(lines, map_start_index, data,
+			content);
+	if (!content->config_lines)
+	{
+		ft_free_array(lines); 
+		ft_error_exit_with_cleanup("Memory allocation failed", EXIT_FAILURE,
+			data, content);
+	}
+	content->map_lines = extract_map_lines(lines, map_start_index, data,
+			content);
+	if (!content->map_lines)
+	{
+		ft_free_array(content->config_lines);
+		content->config_lines = NULL;
+		ft_free_array(lines); 
+		ft_error_exit_with_cleanup("Memory allocation failed", EXIT_FAILURE,
+			data, content);
+	}
 }

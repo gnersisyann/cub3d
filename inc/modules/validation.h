@@ -22,10 +22,11 @@ void		ft_check_file_exists(char *filename);
 void		ft_check_argc(int argc);
 
 // File parsing
-void		parse_cub_file(char *filename, t_file_content *content);
-char		**parse_file(char *filename);
-void		ft_split_file_content(char **lines, t_file_content *content);
-
+void		parse_cub_file(char *filename, t_file_content *content,
+				t_data *data);
+char		**parse_file(char *filename, t_data *data, t_file_content *content);
+void		ft_split_file_content(char **lines, t_file_content *content,
+				t_data *data);
 // Map validation
 void		ft_check_config(t_file_content *content, t_data *data);
 void		ft_validate_map_structure(t_file_content *content, t_data *data);

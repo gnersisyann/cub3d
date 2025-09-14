@@ -1,10 +1,23 @@
 #include "error.h"
-#include "libft.h"
+#include "utils.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 void	ft_error_exit(char *message, int exit_code)
 {
-	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd(message, 2);
-	ft_putstr_fd("\n", 2);
+	printf("Error\n%s\n", message);
+	exit(exit_code);
+}
+
+void	ft_error_exit_with_cleanup(char *message, int exit_code, t_data *data,
+		struct s_file_content *content)
+{
+	printf("Error\n%s\n", message);
+
+	if (data)
+		ft_cleanup_data_partial(data);
+	if (content)
+		ft_free_file_content((t_file_content *)content);
+
 	exit(exit_code);
 }
