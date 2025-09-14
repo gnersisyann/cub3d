@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validation.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/14 19:11:07 by letto             #+#    #+#             */
+/*   Updated: 2025/09/14 19:29:15 by letto            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef VALIDATION_H
 # define VALIDATION_H
 
@@ -30,5 +42,17 @@ void		ft_split_file_content(char **lines, t_file_content *content,
 // Map validation
 void		ft_check_config(t_file_content *content, t_data *data);
 void		ft_validate_map_structure(t_file_content *content, t_data *data);
+
+/* config_validators.c */
+int			validate_texture_path(char *path);
+int			validate_color_component(char *component);
+int			validate_color_line(char *line);
+int			validate_all_configs(t_data *data);
+
+/* config_parsers.c */
+void		parse_texture_line(char *line, char **texture_path, t_data *data,
+				t_file_content *content);
+void		parse_color_line(char *line, int *color, t_data *data,
+				t_file_content *content);
 
 #endif
