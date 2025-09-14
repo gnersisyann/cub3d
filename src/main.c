@@ -6,15 +6,13 @@
 
 int	main(int argc, char **argv)
 {
-	t_data data = {};
-	t_file_content content = {};
+	t_data			data;
+	t_file_content	content;
 
+	init_structures(&content, &data);
 	ft_validate(argc, argv, &data, &content);
-
 	ft_init_graphics(&data);
 	ft_render_next_frame(&data);
-
 	ft_mlx_loop(data.mlx);
-
 	ft_cleanup_data(&data);
 }
