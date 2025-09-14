@@ -43,6 +43,8 @@ SRC = $(SRC_DIR)main.c \
 	  $(SRC_DIR)modules/validation/map/modules/check_config/check_config.c \
 	  $(SRC_DIR)modules/validation/map/modules/check_map/check_map.c \
       \
+	  $(SRC_DIR)modules/utils/cleanup.c \
+	  \
       $(SRC_DIR)modules/mlx/mlx.c
 	  
 

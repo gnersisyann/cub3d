@@ -189,6 +189,35 @@ static void	validate_map_size(char **map_lines)
 		ft_error_exit("Map is too small", EXIT_FAILURE);
 }
 
+static char	**ft_duplicate_map(char **map_lines, int height)
+{
+	char	**new_map;
+	int		i;
+	int		len;
+
+	new_map = (char **)malloc(sizeof(char *) * (height + 1));
+	if (!new_map)
+		return (NULL);
+	i = 0;
+	while (i < height)
+	{
+		new_map[i] = ft_strdup(map_lines[i]);
+		if (!new_map[i])
+		{
+			while (i > 0)
+				free(new_map[--i]);
+			free(new_map);
+			return (NULL);
+		}
+		len = ft_strlen(new_map[i]);
+		if (len > 0 && new_map[i][len - 1] == '\n')
+			new_map[i][len - 1] = '\0';
+		i++;
+	}
+	new_map[height] = NULL;
+	return (new_map);
+}
+
 void	ft_validate_map_structure(t_file_content *content, t_data *data)
 {
 	if (!content || !content->map_lines)
@@ -200,8 +229,12 @@ void	ft_validate_map_structure(t_file_content *content, t_data *data)
 	int player_count, player_x, player_y;
 	find_player_position(content->map_lines, &player_count, &player_x,
 		&player_y);
-	data->player_x = player_x;
-	data->player_y = player_y;
-	data->player_direction = get_map_char_safe(content->map_lines, player_x,
-			player_y, get_map_width(content->map_lines));
+	data->player_x = (double)player_x + 0.5;
+	data->player_y = (double)player_y + 0.5;
+	data->player_direction = content->map_lines[player_y][player_x]; // Упростил
+	data->map_width = get_map_width(content->map_lines);
+	data->map_height = get_map_height(content->map_lines);
+	data->map = ft_duplicate_map(content->map_lines, data->map_height);
+	if (!data->map)
+		ft_error_exit("Failed to duplicate map", EXIT_FAILURE);
 }
