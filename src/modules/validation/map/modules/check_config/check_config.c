@@ -114,7 +114,6 @@ void	ft_check_config(t_file_content *content, t_data *data)
 			i++;
 			continue ;
 		}
-		// TODO: fix case, when writing unnecessary symbols after config before map
 		if (ft_strncmp(line, "NO ", 3) == 0) 
 			parse_texture_line(line, &data->north_texture);
 		else if (ft_strncmp(line, "SO ", 3) == 0)
