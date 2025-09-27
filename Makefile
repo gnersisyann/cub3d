@@ -43,6 +43,7 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/line_validators.c \
       $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/content_extractors.c \
       $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/map_finder.c \
+      $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/map_continuity.c \
  \
 	  $(SRC_DIR)modules/validation/map/modules/parser/modules/file_parser/file_parser.c \
  \

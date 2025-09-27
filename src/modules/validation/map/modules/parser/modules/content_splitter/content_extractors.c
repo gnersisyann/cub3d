@@ -94,10 +94,9 @@ char	**extract_map_lines(char **lines, int map_start_index, t_data *data,
 
 	map_count = 0;
 	i = map_start_index;
-	while (lines[i])
+	while (lines[i] && is_potential_map_line(lines[i]))
 	{
-		if (is_potential_map_line(lines[i]))
-			map_count++;
+		map_count++;
 		i++;
 	}
 	if (map_count == 0)
@@ -109,22 +108,19 @@ char	**extract_map_lines(char **lines, int map_start_index, t_data *data,
 			data, content);
 	j = 0;
 	i = map_start_index;
-	while (lines[i])
+	while (lines[i] && is_potential_map_line(lines[i]) && j < map_count)
 	{
-		if (is_potential_map_line(lines[i]))
+		normalized_line = normalize_map_line(lines[i]);
+		if (!normalized_line)
 		{
-			normalized_line = normalize_map_line(lines[i]);
-			if (!normalized_line)
-			{
-				while (j > 0)
-					free(map_lines[--j]);
-				free(map_lines);
-				ft_error_exit_with_cleanup("Memory allocation failed",
-					EXIT_FAILURE, data, content);
-			}
-			map_lines[j] = normalized_line;
-			j++;
+			while (j > 0)
+				free(map_lines[--j]);
+			free(map_lines);
+			ft_error_exit_with_cleanup("Memory allocation failed", EXIT_FAILURE,
+				data, content);
 		}
+		map_lines[j] = normalized_line;
+		j++;
 		i++;
 	}
 	map_lines[j] = NULL;

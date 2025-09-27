@@ -27,18 +27,21 @@ static void	init_config_data(t_data *data)
 static void	process_config_line(char *line, t_data *data,
 		t_file_content *content)
 {
-	if (ft_strncmp(line, "NO ", 3) == 0)
-		parse_texture_line(line, &data->north_texture, data, content);
-	else if (ft_strncmp(line, "SO ", 3) == 0)
-		parse_texture_line(line, &data->south_texture, data, content);
-	else if (ft_strncmp(line, "WE ", 3) == 0)
-		parse_texture_line(line, &data->west_texture, data, content);
-	else if (ft_strncmp(line, "EA ", 3) == 0)
-		parse_texture_line(line, &data->east_texture, data, content);
-	else if (ft_strncmp(line, "F ", 2) == 0)
-		parse_color_line(line, &data->floor_color, data, content);
-	else if (ft_strncmp(line, "C ", 2) == 0)
-		parse_color_line(line, &data->ceiling_color, data, content);
+	char	*trimmed_line;
+
+	trimmed_line = ft_skip_whitespace(line);
+	if (ft_strncmp(trimmed_line, "NO ", 3) == 0)
+		parse_texture_line(trimmed_line, &data->north_texture, data, content);
+	else if (ft_strncmp(trimmed_line, "SO ", 3) == 0)
+		parse_texture_line(trimmed_line, &data->south_texture, data, content);
+	else if (ft_strncmp(trimmed_line, "WE ", 3) == 0)
+		parse_texture_line(trimmed_line, &data->west_texture, data, content);
+	else if (ft_strncmp(trimmed_line, "EA ", 3) == 0)
+		parse_texture_line(trimmed_line, &data->east_texture, data, content);
+	else if (ft_strncmp(trimmed_line, "F ", 2) == 0)
+		parse_color_line(trimmed_line, &data->floor_color, data, content);
+	else if (ft_strncmp(trimmed_line, "C ", 2) == 0)
+		parse_color_line(trimmed_line, &data->ceiling_color, data, content);
 	else
 		ft_error_exit_with_cleanup("Unknown configuration identifier",
 			EXIT_FAILURE, data, content);

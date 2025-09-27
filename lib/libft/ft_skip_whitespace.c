@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   ft_skip_whitespace.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/14 19:23:17 by letto             #+#    #+#             */
-/*   Updated: 2025/09/14 19:23:18 by letto            ###   ########.fr       */
+/*   Created: 2025/09/27 16:50:22 by ganersis          #+#    #+#             */
+/*   Updated: 2025/09/27 16:50:23 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "validation.h"
+#include "libft.h"
 
-void	ft_validate_map(char *map_path, t_data *data, t_file_content *content)
+char	*ft_skip_whitespace(char *str)
 {
-	parse_cub_file(map_path, content, data);
-	ft_check_config(content, data);
-	ft_validate_map_structure(content, data);
+    if (!str)
+        return (NULL);
+    while (*str && (*str == ' ' || *str == '\t'))
+        str++;
+    return (str);
 }

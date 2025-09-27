@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "error.h"
-#include "libft.h"
-#include "utils.h"
 #include "validation.h"
 #include <stdlib.h>
 

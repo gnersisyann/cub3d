@@ -18,3 +18,5 @@
 !.clangd
 !*.supp
 !.gitignore
+!bad.sh
+!good.sh

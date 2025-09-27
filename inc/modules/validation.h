@@ -11,87 +11,82 @@
 /* ************************************************************************** */
 
 #ifndef VALIDATION_H
-# define VALIDATION_H
+#define VALIDATION_H
 
-# include "cub3d.h"
+#include "cub3d.h"
 
-typedef struct s_file_content
-{
-	char	**config_lines;
-	char	**map_lines;
-}			t_file_content;
+typedef struct s_file_content {
+  char **config_lines;
+  char **map_lines;
+} t_file_content;
 
-void		ft_validate(int argc, char **argv, t_data *data,
-				t_file_content *content);
+void ft_validate(int argc, char **argv, t_data *data, t_file_content *content);
 
-void		ft_validate_map(char *map_path, t_data *data,
-				t_file_content *content);
+void ft_validate_map(char *map_path, t_data *data, t_file_content *content);
 
 // Argument validation
-void		ft_validate_arguments(int argc, char **argv);
-void		ft_check_file_extension(char *filename, char *extension, int type);
-void		ft_check_file_exists(char *filename);
-void		ft_check_argc(int argc);
+void ft_validate_arguments(int argc, char **argv);
+void ft_check_file_extension(char *filename, char *extension, int type);
+void ft_check_file_exists(char *filename);
+void ft_check_argc(int argc);
 
 // File parsing
-void		parse_cub_file(char *filename, t_file_content *content,
-				t_data *data);
-char		**parse_file(char *filename, t_data *data, t_file_content *content);
-void		ft_split_file_content(char **lines, t_file_content *content,
-				t_data *data);
+void parse_cub_file(char *filename, t_file_content *content, t_data *data);
+char **parse_file(char *filename, t_data *data, t_file_content *content);
+void ft_split_file_content(char **lines, t_file_content *content, t_data *data);
+
 // Map validation
-void		ft_check_config(t_file_content *content, t_data *data);
-void		ft_validate_map_structure(t_file_content *content, t_data *data);
+void ft_check_config(t_file_content *content, t_data *data);
+void ft_validate_map_structure(t_file_content *content, t_data *data);
+int validate_map_continuity(char **lines, int map_start_index, t_data *data,
+                            t_file_content *content);
 
 /* config_validators.c */
-int			validate_texture_path(char *path);
-int			validate_color_component(char *component);
-int			validate_color_line(char *line);
-int			validate_all_configs(t_data *data);
+int validate_texture_path(char *path);
+int validate_color_component(char *component);
+int validate_color_line(char *line);
+int validate_all_configs(t_data *data);
 
 /* config_parsers.c */
-void		parse_texture_line(char *line, char **texture_path, t_data *data,
-				t_file_content *content);
-void		parse_color_line(char *line, int *color, t_data *data,
-				t_file_content *content);
+void parse_texture_line(char *line, char **texture_path, t_data *data,
+                        t_file_content *content);
+void parse_color_line(char *line, int *color, t_data *data,
+                      t_file_content *content);
 
 /* line_validators.c */
-int			is_config_identifier(char *line);
-int			is_potential_map_line(char *line);
-int			is_empty_line(char *line);
+int is_config_identifier(char *line);
+int is_potential_map_line(char *line);
+int is_empty_line(char *line);
 
 /* content_extractors.c */
-char		**extract_config_lines(char **lines, int map_start_index,
-				t_data *data, t_file_content *content);
-char		**extract_map_lines(char **lines, int map_start_index, t_data *data,
-				t_file_content *content);
+char **extract_config_lines(char **lines, int map_start_index, t_data *data,
+                            t_file_content *content);
+char **extract_map_lines(char **lines, int map_start_index, t_data *data,
+                         t_file_content *content);
 
 /* map_finder.c */
-void		validate_all_lines(char **lines, t_data *data,
-				t_file_content *content);
-int			find_map_start_index(char **lines, t_data *data,
-				t_file_content *content);
-int			check_has_config(char **lines, int map_start_index);
+void validate_all_lines(char **lines, t_data *data, t_file_content *content);
+int find_map_start_index(char **lines, t_data *data, t_file_content *content);
+int check_has_config(char **lines, int map_start_index);
 
 /* map_utils.c */
-int			is_player_character(char c);
-void		find_player_position(char **map_lines, int *player_count,
-				int *player_x, int *player_y);
-int			get_map_width(char **map_lines);
-int			get_map_height(char **map_lines);
+int is_player_character(char c);
+void find_player_position(char **map_lines, int *player_count, int *player_x,
+                          int *player_y);
+int get_map_width(char **map_lines);
+int get_map_height(char **map_lines);
 
 /* map_validators.c */
-void		validate_player_count(char **map_lines, t_data *data,
-				t_file_content *content);
-void		validate_map_characters(char **map_lines, t_data *data,
-				t_file_content *content);
-void		validate_map_size(char **map_lines, t_data *data,
-				t_file_content *content);
-char		**ft_duplicate_map(char **map_lines, int height);
+void validate_player_count(char **map_lines, t_data *data,
+                           t_file_content *content);
+void validate_map_characters(char **map_lines, t_data *data,
+                             t_file_content *content);
+void validate_map_size(char **map_lines, t_data *data, t_file_content *content);
+char **ft_duplicate_map(char **map_lines, int height);
 
 /* flood_fill.c */
-char		get_map_char_safe(char **map_lines, int x, int y, int map_height);
-void		validate_map_closure(char **map_lines, t_data *data,
-				t_file_content *content);
+char get_map_char_safe(char **map_lines, int x, int y, int map_height);
+void validate_map_closure(char **map_lines, t_data *data,
+                          t_file_content *content);
 
 #endif
