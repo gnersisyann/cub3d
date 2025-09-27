@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 17:36:28 by ganersis          #+#    #+#             */
-/*   Updated: 2025/09/27 17:41:13 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/09/27 18:11:11 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	move_backward(t_data *data)
 		data->player_y = new_y;
 }
 
-void	move_left(t_data *data)
+void	move_right(t_data *data)
 {
 	double	new_x;
 	double	new_y;
@@ -53,7 +53,7 @@ void	move_left(t_data *data)
 		data->player_y = new_y;
 }
 
-void	move_right(t_data *data)
+void	move_left(t_data *data)
 {
 	double	new_x;
 	double	new_y;

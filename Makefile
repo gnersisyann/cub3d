@@ -61,6 +61,7 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/content_extractors.c \
       $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/map_finder.c \
       $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/map_continuity.c \
+      $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/utils.c \
  \
       $(SRC_DIR)modules/validation/map/modules/parser/modules/file_parser/file_parser.c \
  \
@@ -68,6 +69,7 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/map_utils.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/map_validators.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/flood_fill.c \
+      $(SRC_DIR)modules/validation/map/modules/check_map/utils.c \
  \
       $(SRC_DIR)modules/utils/cleanup.c \
       $(SRC_DIR)modules/utils/init.c \
@@ -107,8 +109,5 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
-
-valgrind:
-	valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all --track-fds=yes --suppressions=ignore_readline.supp ./cub3D
 
 .PHONY: all clean fclean re

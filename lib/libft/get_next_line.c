@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/27 18:09:47 by ganersis          #+#    #+#             */
+/*   Updated: 2025/09/27 18:09:48 by ganersis         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include <fcntl.h>
 #include <stdio.h>
@@ -53,9 +65,9 @@ static void	get_next_line_reader(ssize_t *bytes_read, int *fd, char **storage,
 
 char	*get_next_line(int fd)
 {
-	ssize_t bytes_read;
-	char buffer[BUFFER_SIZE + 1];
-	static char *storage;
+	ssize_t		bytes_read;
+	char		buffer[BUFFER_SIZE + 1];
+	static char	*storage;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
