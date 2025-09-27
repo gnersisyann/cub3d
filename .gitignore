@@ -19,3 +19,4 @@
 !*.supp
 !.gitignore
 !bad.sh
+!good.sh
