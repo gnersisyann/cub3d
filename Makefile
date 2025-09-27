@@ -20,6 +20,15 @@ CFLAGS = -g $(INC_FLAGS) -I$(LIBFT_DIR) -I$(MLX_DIR) #-Wall -Wextra -Werror
 
 LDFLAGS = -L$(LIBFT_DIR) -L$(MLX_DIR) -lft -lm -lmlx -lXext -lX11
 
+HEADERS = $(INC_DIR)cub3d.h \
+          $(INC_DIR)defines.h \
+          $(INC_DIR)modules/graphics.h \
+          $(INC_DIR)modules/events.h \
+          $(INC_DIR)modules/error.h \
+          $(INC_DIR)modules/mlx_cub.h \
+          $(INC_DIR)modules/utils.h \
+          $(INC_DIR)modules/validation.h
+
 SRC = $(SRC_DIR)main.c \
  \
       $(SRC_DIR)modules/error/error.c \
@@ -73,10 +82,10 @@ OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(MLX) $(OBJ) $(INC_DIR) $(MAKEFILE)
+$(NAME): $(LIBFT) $(MLX) $(OBJ) $(HEADERS) $(MAKEFILE)
 	$(CC) $(CFLAGS) $(OBJ) $(LDFLAGS) -o $@
 
-$(OBJ_DIR)/%.o: %.c
+$(OBJ_DIR)/%.o: %.c $(HEADERS)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 

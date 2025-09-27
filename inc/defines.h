@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:11:12 by letto             #+#    #+#             */
-/*   Updated: 2025/09/27 17:04:20 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/09/27 17:33:31 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 #define WIDTH 800
 #define HEIGHT 600
-#define MOVE_SPEED 0.05
-#define ROT_SPEED 0.05
+#define MOVE_SPEED 0.015
+#define ROT_SPEED 0.01
 
 # define ESC 65307
 # define W 119
