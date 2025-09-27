@@ -18,3 +18,4 @@
 !.clangd
 !*.supp
 !.gitignore
+!bad.sh
