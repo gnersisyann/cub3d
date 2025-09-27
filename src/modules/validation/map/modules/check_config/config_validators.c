@@ -30,19 +30,23 @@ int	validate_texture_path(char *path)
 
 int	validate_color_component(char *component)
 {
-	int	value;
-	int	i;
+	int		value;
+	int		i;
+	char	*trimmed;
 
 	if (!component)
 		return (0);
+	trimmed = ft_trim_whitespace(component);
+	if (!trimmed || !*trimmed)
+		return (0);
 	i = 0;
-	while (component[i])
+	while (trimmed[i])
 	{
-		if (!ft_isdigit(component[i]))
+		if (!ft_isdigit(trimmed[i]))
 			return (0);
 		i++;
 	}
-	value = ft_atoi(component);
+	value = ft_atoi(trimmed);
 	return (value >= 0 && value <= 255);
 }
 
