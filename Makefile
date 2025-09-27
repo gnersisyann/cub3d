@@ -26,6 +26,13 @@ SRC = $(SRC_DIR)main.c \
  \
       $(SRC_DIR)modules/graphics/init.c \
       $(SRC_DIR)modules/graphics/render.c \
+      $(SRC_DIR)modules/graphics/modules/player/player_init.c \
+      $(SRC_DIR)modules/graphics/modules/player/movement.c \
+      $(SRC_DIR)modules/graphics/modules/raycast/raycast.c \
+      $(SRC_DIR)modules/graphics/modules/raycast/ray_init.c \
+      $(SRC_DIR)modules/graphics/modules/raycast/dda.c \
+      $(SRC_DIR)modules/graphics/modules/raycast/wall_render.c \
+      $(SRC_DIR)modules/graphics/modules/utils/utils.c \
  \
       $(SRC_DIR)modules/events/keyboard.c \
       $(SRC_DIR)modules/events/window.c \
@@ -45,15 +52,15 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/map_finder.c \
       $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/map_continuity.c \
  \
-	  $(SRC_DIR)modules/validation/map/modules/parser/modules/file_parser/file_parser.c \
+      $(SRC_DIR)modules/validation/map/modules/parser/modules/file_parser/file_parser.c \
  \
-	  $(SRC_DIR)modules/validation/map/modules/check_map/check_map.c \
+      $(SRC_DIR)modules/validation/map/modules/check_map/check_map.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/map_utils.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/map_validators.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/flood_fill.c \
  \
-	  $(SRC_DIR)modules/utils/cleanup.c \
-	  $(SRC_DIR)modules/utils/init.c \
+      $(SRC_DIR)modules/utils/cleanup.c \
+      $(SRC_DIR)modules/utils/init.c \
  \
       $(SRC_DIR)modules/validation/map/modules/check_config/check_config.c \
       $(SRC_DIR)modules/validation/map/modules/check_config/config_validators.c \

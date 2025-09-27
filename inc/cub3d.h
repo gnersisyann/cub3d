@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:11:09 by letto             #+#    #+#             */
-/*   Updated: 2025/09/14 19:11:10 by letto            ###   ########.fr       */
+/*   Updated: 2025/09/27 17:02:13 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,25 @@ typedef struct s_data
 	int		map_height;
 	char	player_direction;
 }			t_data;
+
+typedef struct s_ray
+{
+    double	ray_dir_x;
+    double	ray_dir_y;
+    int		map_x;
+    int		map_y;
+    double	side_dist_x;
+    double	side_dist_y;
+    double	delta_dist_x;
+    double	delta_dist_y;
+    double	perp_wall_dist;
+    int		step_x;
+    int		step_y;
+    int		hit;
+    int		side;
+    int		line_height;
+    int		draw_start;
+    int		draw_end;
+}	t_ray;
 
 #endif
