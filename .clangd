@@ -1,0 +1,12 @@
+CompileFlags:
+  Add: 
+    - -I/home/ganersis/Desktop/cub/inc
+    - -I/home/ganersis/Desktop/cub/inc/modules
+    - -I/home/ganersis/Desktop/cub/lib/libft
+    - -I/home/ganersis/Desktop/cub/lib/minilibx-linux
+    - -Wall
+    - -Wextra
+    - -Werror
+    - -std=c99
+  Remove:
+    - -W*

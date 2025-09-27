@@ -1281,12 +1281,12 @@
       "-Ilib/minilibx-linux/",
       "-c",
       "-o",
-      "obj/src/modules/parsing/check.o",
-      "src/modules/parsing/check.c"
+      "obj/src/modules/validation/validation.o",
+      "src/modules/validation/validation.c"
     ],
     "directory": "/home/letto/Desktop/42/cub3d",
-    "file": "/home/letto/Desktop/42/cub3d/src/modules/parsing/check.c",
-    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/parsing/check.o"
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/validation/validation.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/validation/validation.o"
   },
   {
     "arguments": [
@@ -1298,11 +1298,249 @@
       "-Ilib/minilibx-linux/",
       "-c",
       "-o",
-      "obj/src/modules/parsing/validate.o",
-      "src/modules/parsing/validate.c"
+      "obj/src/modules/validation/argument/argument.o",
+      "src/modules/validation/argument/argument.c"
     ],
     "directory": "/home/letto/Desktop/42/cub3d",
-    "file": "/home/letto/Desktop/42/cub3d/src/modules/parsing/validate.c",
-    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/parsing/validate.o"
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/validation/argument/argument.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/validation/argument/argument.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/validation/argument/modules/check_argc/check_argc.o",
+      "src/modules/validation/argument/modules/check_argc/check_argc.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/validation/argument/modules/check_argc/check_argc.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/validation/argument/modules/check_argc/check_argc.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/validation/argument/modules/check_file_exists/check_file_exists.o",
+      "src/modules/validation/argument/modules/check_file_exists/check_file_exists.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/validation/argument/modules/check_file_exists/check_file_exists.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/validation/argument/modules/check_file_exists/check_file_exists.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/validation/argument/modules/check_file_extension/check_file_extension.o",
+      "src/modules/validation/argument/modules/check_file_extension/check_file_extension.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/validation/argument/modules/check_file_extension/check_file_extension.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/validation/argument/modules/check_file_extension/check_file_extension.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/validation/map/map.o",
+      "src/modules/validation/map/map.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/validation/map/map.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/validation/map/map.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/validation/map/modules/parser/parser.o",
+      "src/modules/validation/map/modules/parser/parser.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/validation/map/modules/parser/parser.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/validation/map/modules/parser/parser.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/validation/map/modules/parser/modules/content_splitter/content_splitter.o",
+      "src/modules/validation/map/modules/parser/modules/content_splitter/content_splitter.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/validation/map/modules/parser/modules/content_splitter/content_splitter.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/validation/map/modules/parser/modules/content_splitter/content_splitter.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/validation/map/modules/parser/modules/file_parser/file_parser.o",
+      "src/modules/validation/map/modules/parser/modules/file_parser/file_parser.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/validation/map/modules/parser/modules/file_parser/file_parser.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/validation/map/modules/parser/modules/file_parser/file_parser.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/validation/map/modules/check_map/check_map.o",
+      "src/modules/validation/map/modules/check_map/check_map.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/validation/map/modules/check_map/check_map.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/validation/map/modules/check_map/check_map.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/utils/cleanup.o",
+      "src/modules/utils/cleanup.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/utils/cleanup.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/utils/cleanup.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/utils/init.o",
+      "src/modules/utils/init.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/utils/init.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/utils/init.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/validation/map/modules/check_config/check_config.o",
+      "src/modules/validation/map/modules/check_config/check_config.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/validation/map/modules/check_config/check_config.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/validation/map/modules/check_config/check_config.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/validation/map/modules/check_config/config_validators.o",
+      "src/modules/validation/map/modules/check_config/config_validators.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/validation/map/modules/check_config/config_validators.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/validation/map/modules/check_config/config_validators.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/validation/map/modules/check_config/config_parsers.o",
+      "src/modules/validation/map/modules/check_config/config_parsers.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/validation/map/modules/check_config/config_parsers.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/validation/map/modules/check_config/config_parsers.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Iinc/",
+      "-Iinc/modules/",
+      "-Ilib/libft/",
+      "-Ilib/minilibx-linux/",
+      "-c",
+      "-o",
+      "obj/src/modules/mlx/mlx.o",
+      "src/modules/mlx/mlx.c"
+    ],
+    "directory": "/home/letto/Desktop/42/cub3d",
+    "file": "/home/letto/Desktop/42/cub3d/src/modules/mlx/mlx.c",
+    "output": "/home/letto/Desktop/42/cub3d/obj/src/modules/mlx/mlx.o"
   }
 ]

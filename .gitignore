@@ -9,7 +9,12 @@
 !*.h
 !Makefile
 !*.cub
+!*.xpm
 !*.json
+!vg
+
 
 .*
+!.clangd
+!*.supp
 !.gitignore
