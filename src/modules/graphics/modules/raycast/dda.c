@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dda.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/27 17:41:42 by ganersis          #+#    #+#             */
+/*   Updated: 2025/09/27 17:41:42 by ganersis         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 #include "defines.h"
 #include "graphics.h"
@@ -5,29 +17,27 @@
 
 void	perform_dda(t_ray *ray, t_data *data)
 {
-    while (ray->hit == 0)
-    {
-        if (ray->side_dist_x < ray->side_dist_y)
-        {
-            ray->side_dist_x += ray->delta_dist_x;
-            ray->map_x += ray->step_x;
-            ray->side = 0;
-        }
-        else
-        {
-            ray->side_dist_y += ray->delta_dist_y;
-            ray->map_y += ray->step_y;
-            ray->side = 1;
-        }
-        
-        if (ray->map_x < 0 || ray->map_y < 0 || 
-            ray->map_y >= data->map_height || 
-            ray->map_x >= (int)ft_strlen(data->map[ray->map_y]) ||
-            data->map[ray->map_y][ray->map_x] == '1')
-        {
-            ray->hit = 1;
-        }
-    }
+	while (ray->hit == 0)
+	{
+		if (ray->side_dist_x < ray->side_dist_y)
+		{
+			ray->side_dist_x += ray->delta_dist_x;
+			ray->map_x += ray->step_x;
+			ray->side = 0;
+		}
+		else
+		{
+			ray->side_dist_y += ray->delta_dist_y;
+			ray->map_y += ray->step_y;
+			ray->side = 1;
+		}
+		if (ray->map_x < 0 || ray->map_y < 0 || ray->map_y >= data->map_height
+			|| ray->map_x >= (int)ft_strlen(data->map[ray->map_y])
+			|| data->map[ray->map_y][ray->map_x] == '1')
+		{
+			ray->hit = 1;
+		}
+	}
 }
 
 void	calculate_wall_distance(t_ray *ray, t_data *data)

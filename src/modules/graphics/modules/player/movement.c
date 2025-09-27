@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   movement.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/27 17:36:28 by ganersis          #+#    #+#             */
+/*   Updated: 2025/09/27 17:41:13 by ganersis         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 #include "defines.h"
 #include "graphics.h"
-#include <math.h>
 
 void	move_forward(t_data *data)
 {
@@ -53,34 +64,4 @@ void	move_right(t_data *data)
 		data->player_x = new_x;
 	if (data->map[(int)new_y][(int)data->player_x] != '1')
 		data->player_y = new_y;
-}
-
-void	rotate_right(t_data *data)
-{
-	double	old_dir_x;
-	double	old_plane_x;
-
-	old_dir_x = data->dir_x;
-	data->dir_x = data->dir_x * cos(ROT_SPEED) - data->dir_y * sin(ROT_SPEED);
-	data->dir_y = old_dir_x * sin(ROT_SPEED) + data->dir_y * cos(ROT_SPEED);
-	old_plane_x = data->plane_x;
-	data->plane_x = data->plane_x * cos(ROT_SPEED) - data->plane_y
-		* sin(ROT_SPEED);
-	data->plane_y = old_plane_x * sin(ROT_SPEED) + data->plane_y
-		* cos(ROT_SPEED);
-}
-
-void	rotate_left(t_data *data)
-{
-	double	old_dir_x;
-	double	old_plane_x;
-
-	old_dir_x = data->dir_x;
-	data->dir_x = data->dir_x * cos(-ROT_SPEED) - data->dir_y * sin(-ROT_SPEED);
-	data->dir_y = old_dir_x * sin(-ROT_SPEED) + data->dir_y * cos(-ROT_SPEED);
-	old_plane_x = data->plane_x;
-	data->plane_x = data->plane_x * cos(-ROT_SPEED) - data->plane_y
-		* sin(-ROT_SPEED);
-	data->plane_y = old_plane_x * sin(-ROT_SPEED) + data->plane_y
-		* cos(-ROT_SPEED);
 }

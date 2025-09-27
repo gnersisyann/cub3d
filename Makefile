@@ -37,6 +37,7 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/graphics/render.c \
       $(SRC_DIR)modules/graphics/modules/player/player_init.c \
       $(SRC_DIR)modules/graphics/modules/player/movement.c \
+      $(SRC_DIR)modules/graphics/modules/player/rotation.c \
       $(SRC_DIR)modules/graphics/modules/raycast/raycast.c \
       $(SRC_DIR)modules/graphics/modules/raycast/ray_init.c \
       $(SRC_DIR)modules/graphics/modules/raycast/dda.c \

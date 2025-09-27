@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/27 17:42:03 by ganersis          #+#    #+#             */
+/*   Updated: 2025/09/27 17:42:03 by ganersis         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 #include "defines.h"
 #include "graphics.h"
@@ -16,16 +28,16 @@ void	put_pixel(t_data *data, int x, int y, int color)
 
 void	clear_screen(t_data *data)
 {
-    int	total_pixels;
-    int	i;
+	int	total_pixels;
+	int	i;
 
-    total_pixels = WIDTH * HEIGHT;
-    i = 0;
-    while (i < total_pixels)
-    {
-        ((unsigned int*)data->addr)[i] = 0;
-        i++;
-    }
+	total_pixels = WIDTH * HEIGHT;
+	i = 0;
+	while (i < total_pixels)
+	{
+		((unsigned int *)data->addr)[i] = 0;
+		i++;
+	}
 }
 
 void	draw_ceiling_and_floor(t_data *data)

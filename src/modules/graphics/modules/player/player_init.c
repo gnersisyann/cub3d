@@ -1,5 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player_init.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/27 17:37:40 by ganersis          #+#    #+#             */
+/*   Updated: 2025/09/27 17:41:04 by ganersis         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 #include "graphics.h"
+
+static void	init_player_direction_helper(t_data *data)
+{
+	if (data->player_direction == 'W')
+	{
+		data->dir_x = -1;
+		data->dir_y = 0;
+		data->plane_x = 0;
+		data->plane_y = -0.66;
+	}
+	else if (data->player_direction == 'E')
+	{
+		data->dir_x = 1;
+		data->dir_y = 0;
+		data->plane_x = 0;
+		data->plane_y = 0.66;
+	}
+}
 
 void	init_player_direction(t_data *data)
 {
@@ -17,20 +47,8 @@ void	init_player_direction(t_data *data)
 		data->plane_x = -0.66;
 		data->plane_y = 0;
 	}
-	else if (data->player_direction == 'W')
-	{
-		data->dir_x = -1;
-		data->dir_y = 0;
-		data->plane_x = 0;
-		data->plane_y = -0.66;
-	}
-	else if (data->player_direction == 'E')
-	{
-		data->dir_x = 1;
-		data->dir_y = 0;
-		data->plane_x = 0;
-		data->plane_y = 0.66;
-	}
+	else
+		init_player_direction_helper(data);
 }
 
 void	init_player_position(t_data *data)
