@@ -41,6 +41,7 @@ void	ft_split_file_content(char **lines, t_file_content *content,
 		ft_error_exit_with_cleanup("No map found in file", EXIT_FAILURE, data,
 			content);
 	}
+	validate_map_continuity(lines, map_start_index, data, content);
 	has_config = check_has_config(lines, map_start_index);
 	if (!has_config)
 	{
