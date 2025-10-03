@@ -33,6 +33,10 @@ static void	set_null(t_data *data)
 	data->south_texture = NULL;
 	data->west_texture = NULL;
 	data->east_texture = NULL;
+	data->north_img = NULL;
+	data->south_img = NULL;
+	data->west_img = NULL;
+	data->east_img = NULL;
 	data->map_path = NULL;
 	data->map = NULL;
 	data->mlx = NULL;
@@ -58,6 +62,14 @@ void	ft_cleanup_data(t_data *data)
 		ft_free_array(data->map);
 	if (data->img && data->mlx)
 		mlx_destroy_image(data->mlx, data->img);
+	if (data->north_img && data->mlx)
+		mlx_destroy_image(data->mlx, data->north_img);
+	if (data->south_img && data->mlx)
+		mlx_destroy_image(data->mlx, data->south_img);
+	if (data->west_img && data->mlx)
+		mlx_destroy_image(data->mlx, data->west_img);
+	if (data->east_img && data->mlx)
+		mlx_destroy_image(data->mlx, data->east_img);
 	if (data->win && data->mlx)
 		mlx_destroy_window(data->mlx, data->win);
 	if (data->mlx)

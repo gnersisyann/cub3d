@@ -13,6 +13,7 @@
 #include "error.h"
 #include "libft.h"
 #include "validation.h"
+#include <stdio.h>
 
 static void	init_config_data(t_data *data)
 {

@@ -20,5 +20,7 @@ int		ft_init_mlx(t_data *data);
 int		ft_create_window(t_data *data, int width, int height, char *title);
 void	ft_init_graphics(t_data *data);
 int		ft_render_next_frame(t_data *data);
+int		ft_load_textures(t_data *data);
+int		game_loop(t_data *data);
 
 #endif

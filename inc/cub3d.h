@@ -28,6 +28,19 @@ typedef struct s_data
 	char	*south_texture;
 	char	*west_texture;
 	char	*east_texture;
+	void	*north_img;
+	void	*south_img;
+	void	*west_img;
+	void	*east_img;
+	char	*north_data;
+	char	*south_data;
+	char	*west_data;
+	char	*east_data;
+	int		tex_width;
+	int		tex_height;
+	int		tex_bpp;
+	int		tex_line_len;
+	int		tex_endian;
 	int		floor_color;
 	int		ceiling_color;
 	double	player_x;
@@ -40,6 +53,15 @@ typedef struct s_data
 	int		map_width;
 	int		map_height;
 	char	player_direction;
+
+	// Key states for continuous movement
+	int		key_w;
+	int		key_s;
+	int		key_a;
+	int		key_d;
+	int		key_left;
+	int		key_right;
+	int		needs_redraw;
 }			t_data;
 
 #endif

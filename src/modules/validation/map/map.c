@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "validation.h"
+#include <stdio.h>
 
 void	ft_validate_map(char *map_path, t_data *data, t_file_content *content)
 {

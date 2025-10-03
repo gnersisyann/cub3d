@@ -13,6 +13,7 @@
 #include "error.h"
 #include "validation.h"
 #include "stdlib.h"
+#include <stdio.h>
 
 static void	set_player_data(t_file_content *content, t_data *data)
 {
@@ -25,6 +26,36 @@ static void	set_player_data(t_file_content *content, t_data *data)
     data->player_x = (double)player_x + 0.5;
     data->player_y = (double)player_y + 0.5;
     data->player_direction = content->map_lines[player_y][player_x];
+
+    // Set direction vectors based on player direction
+    if (data->player_direction == 'N')
+    {
+        data->dir_x = 0.0;
+        data->dir_y = -1.0;
+        data->plane_x = 0.66;
+        data->plane_y = 0.0;
+    }
+    else if (data->player_direction == 'S')
+    {
+        data->dir_x = 0.0;
+        data->dir_y = 1.0;
+        data->plane_x = -0.66;
+        data->plane_y = 0.0;
+    }
+    else if (data->player_direction == 'E')
+    {
+        data->dir_x = 1.0;
+        data->dir_y = 0.0;
+        data->plane_x = 0.0;
+        data->plane_y = 0.66;
+    }
+    else if (data->player_direction == 'W')
+    {
+        data->dir_x = -1.0;
+        data->dir_y = 0.0;
+        data->plane_x = 0.0;
+        data->plane_y = -0.66;
+    }
 }
 
 static void	set_map_dimensions(t_file_content *content, t_data *data)

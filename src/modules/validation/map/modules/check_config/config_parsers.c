@@ -13,6 +13,7 @@
 #include "error.h"
 #include "libft.h"
 #include "validation.h"
+#include <stdio.h>
 
 static char	*extract_path_from_line(char *line)
 {
@@ -48,11 +49,13 @@ static int	create_color_value(char **components)
 	int	red;
 	int	green;
 	int	blue;
+	int	result;
 
 	red = ft_atoi(components[0]);
 	green = ft_atoi(components[1]);
 	blue = ft_atoi(components[2]);
-	return ((red << 16) | (green << 8) | blue);
+	result = ((red << 16) | (green << 8) | blue);
+	return (result);
 }
 
 void	parse_color_line(char *line, int *color, t_data *data,

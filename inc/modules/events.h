@@ -16,6 +16,8 @@
 # include "cub3d.h"
 
 int	ft_exit(t_data *data);
-int	ft_key_hook(int keycode, t_data *data);
+int	ft_key_press(int keycode, t_data *data);
+int	ft_key_release(int keycode, t_data *data);
+void	process_movement(t_data *data);
 
 #endif

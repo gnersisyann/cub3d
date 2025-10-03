@@ -15,16 +15,18 @@
 #include "mlx_cub.h"
 #include "utils.h"
 #include "validation.h"
+#include <stdio.h>
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	t_data			data;
-	t_file_content	content;
+	t_data data;
+	t_file_content content;
 
 	init_structures(&content, &data);
 	ft_validate(argc, argv, &data, &content);
 	ft_init_graphics(&data);
 	ft_render_next_frame(&data);
+	mlx_loop_hook(data.mlx, game_loop, &data);
 	ft_mlx_loop(data.mlx);
 	ft_cleanup_data(&data);
 }
