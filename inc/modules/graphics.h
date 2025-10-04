@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:10:57 by letto             #+#    #+#             */
-/*   Updated: 2025/09/27 17:30:24 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/10/04 17:00:24 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,24 @@ void	cast_rays(t_data *data);
 void	cast_single_ray(t_data *data, int x, double ray_dir_x, double ray_dir_y);
 void	init_ray(t_ray *ray, t_data *data, double ray_dir_x, double ray_dir_y);
 void	calculate_step_and_side_dist(t_ray *ray, t_data *data);
-void	perform_dda(t_ray *ray, t_data *data);
+void	perform_dda(t_data *data, t_ray *ray);
 void	calculate_wall_distance(t_ray *ray, t_data *data);
-void	draw_wall_stripe(t_data *data, t_ray *ray, int x);
+
+// Textures
+int		load_textures(t_data *data);
+int		get_texture_pixel(t_texture *texture, int x, int y);
+void	calculate_texture_coords(t_data *data, t_ray *ray, int *tex_x, 
+            double *step);
+void	draw_texture_column(t_data *data, t_ray *ray, int x, int tex_x);
+
+// Render
+void	render_wall_column(t_data *data, t_ray *ray, int x);
+void	render_textured_wall(t_data *data, t_ray *ray, int x);
+void	render_floor_ceiling(t_data *data, int x, int draw_end);
+void	determine_texture(t_ray *ray);
 
 // Utils
-void	put_pixel(t_data *data, int x, int y, int color);
 void	clear_screen(t_data *data);
-void	draw_ceiling_and_floor(t_data *data);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif

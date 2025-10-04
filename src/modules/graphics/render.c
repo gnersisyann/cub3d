@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:12:07 by letto             #+#    #+#             */
-/*   Updated: 2025/09/27 17:36:11 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/10/04 16:49:50 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 int	ft_render_next_frame(t_data *data)
 {
 	clear_screen(data);
-	draw_ceiling_and_floor(data);
 	cast_rays(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);

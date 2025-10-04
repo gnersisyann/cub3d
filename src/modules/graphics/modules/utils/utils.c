@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 17:42:03 by ganersis          #+#    #+#             */
-/*   Updated: 2025/09/27 17:42:03 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/10/04 16:57:45 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "defines.h"
 #include "graphics.h"
 
-void	put_pixel(t_data *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -37,33 +37,5 @@ void	clear_screen(t_data *data)
 	{
 		((unsigned int *)data->addr)[i] = 0;
 		i++;
-	}
-}
-
-void	draw_ceiling_and_floor(t_data *data)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < HEIGHT / 2)
-	{
-		x = 0;
-		while (x < WIDTH)
-		{
-			put_pixel(data, x, y, data->ceiling_color);
-			x++;
-		}
-		y++;
-	}
-	while (y < HEIGHT)
-	{
-		x = 0;
-		while (x < WIDTH)
-		{
-			put_pixel(data, x, y, data->floor_color);
-			x++;
-		}
-		y++;
 	}
 }

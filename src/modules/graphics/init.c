@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:12:12 by letto             #+#    #+#             */
-/*   Updated: 2025/09/27 17:36:03 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/10/04 16:44:26 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	ft_init_graphics(t_data *data)
 			&data->line_length, &data->endian);
 	if (!data->addr)
 		ft_error_exit("Failed to get image address", EXIT_FAILURE);
+	if (!load_textures(data))
+		ft_error_exit("Failed to load textures", EXIT_FAILURE);
 	init_player_position(data);
 	setup_hooks(data);
 }
