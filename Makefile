@@ -20,12 +20,29 @@ CFLAGS = -g $(INC_FLAGS) -I$(LIBFT_DIR) -I$(MLX_DIR) #-Wall -Wextra -Werror
 
 LDFLAGS = -L$(LIBFT_DIR) -L$(MLX_DIR) -lft -lm -lmlx -lXext -lX11
 
+HEADERS = $(INC_DIR)cub3d.h \
+          $(INC_DIR)defines.h \
+          $(INC_DIR)modules/graphics.h \
+          $(INC_DIR)modules/events.h \
+          $(INC_DIR)modules/error.h \
+          $(INC_DIR)modules/mlx_cub.h \
+          $(INC_DIR)modules/utils.h \
+          $(INC_DIR)modules/validation.h
+
 SRC = $(SRC_DIR)main.c \
  \
       $(SRC_DIR)modules/error/error.c \
  \
       $(SRC_DIR)modules/graphics/init.c \
       $(SRC_DIR)modules/graphics/render.c \
+      $(SRC_DIR)modules/graphics/modules/player/player_init.c \
+      $(SRC_DIR)modules/graphics/modules/player/movement.c \
+      $(SRC_DIR)modules/graphics/modules/player/rotation.c \
+      $(SRC_DIR)modules/graphics/modules/raycast/raycast.c \
+      $(SRC_DIR)modules/graphics/modules/raycast/ray_init.c \
+      $(SRC_DIR)modules/graphics/modules/raycast/dda.c \
+      $(SRC_DIR)modules/graphics/modules/raycast/wall_render.c \
+      $(SRC_DIR)modules/graphics/modules/utils/utils.c \
  \
       $(SRC_DIR)modules/events/keyboard.c \
       $(SRC_DIR)modules/events/window.c \
@@ -44,16 +61,18 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/content_extractors.c \
       $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/map_finder.c \
       $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/map_continuity.c \
+      $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/utils.c \
  \
-	  $(SRC_DIR)modules/validation/map/modules/parser/modules/file_parser/file_parser.c \
+      $(SRC_DIR)modules/validation/map/modules/parser/modules/file_parser/file_parser.c \
  \
-	  $(SRC_DIR)modules/validation/map/modules/check_map/check_map.c \
+      $(SRC_DIR)modules/validation/map/modules/check_map/check_map.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/map_utils.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/map_validators.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/flood_fill.c \
+      $(SRC_DIR)modules/validation/map/modules/check_map/utils.c \
  \
-	  $(SRC_DIR)modules/utils/cleanup.c \
-	  $(SRC_DIR)modules/utils/init.c \
+      $(SRC_DIR)modules/utils/cleanup.c \
+      $(SRC_DIR)modules/utils/init.c \
  \
       $(SRC_DIR)modules/validation/map/modules/check_config/check_config.c \
       $(SRC_DIR)modules/validation/map/modules/check_config/config_validators.c \
@@ -66,10 +85,10 @@ OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(MLX) $(OBJ) $(INC_DIR) $(MAKEFILE)
+$(NAME): $(LIBFT) $(MLX) $(OBJ) $(HEADERS) $(MAKEFILE)
 	$(CC) $(CFLAGS) $(OBJ) $(LDFLAGS) -o $@
 
-$(OBJ_DIR)/%.o: %.c
+$(OBJ_DIR)/%.o: %.c $(HEADERS)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -90,8 +109,5 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
-
-valgrind:
-	valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all --track-fds=yes --suppressions=ignore_readline.supp ./cub3D
 
 .PHONY: all clean fclean re

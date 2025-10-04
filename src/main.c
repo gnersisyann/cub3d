@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:11:26 by letto             #+#    #+#             */
-/*   Updated: 2025/09/14 19:11:26 by letto            ###   ########.fr       */
+/*   Updated: 2025/09/27 17:35:01 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	main(int argc, char **argv)
 	init_structures(&content, &data);
 	ft_validate(argc, argv, &data, &content);
 	ft_init_graphics(&data);
-	ft_render_next_frame(&data);
 	ft_mlx_loop(data.mlx);
 	ft_cleanup_data(&data);
 }

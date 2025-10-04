@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_finder.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:44:35 by letto             #+#    #+#             */
-/*   Updated: 2025/09/14 19:44:36 by letto            ###   ########.fr       */
+/*   Updated: 2025/09/27 17:56:30 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,6 @@ void	validate_all_lines(char **lines, t_data *data, t_file_content *content)
 		}
 		i++;
 	}
-}
-
-static int	validate_no_config_after_map(char **lines, int map_start_index,
-		t_data *data, t_file_content *content)
-{
-	int	i;
-
-	i = map_start_index;
-	while (lines[i])
-	{
-		if (is_potential_map_line(lines[i]))
-		{
-			i++;
-			continue ;
-		}
-		if (is_config_identifier(lines[i]))
-			return (0);
-		if (!is_empty_line(lines[i]))
-			ft_error_exit_with_cleanup("Invalid content found after map start",
-				EXIT_FAILURE, data, content);
-		i++;
-	}
-	return (1);
 }
 
 int	find_map_start_index(char **lines, t_data *data, t_file_content *content)
@@ -87,4 +64,11 @@ int	check_has_config(char **lines, int map_start_index)
 		i++;
 	}
 	return (0);
+}
+
+void	cleanup_map_lines(char **map_lines, int j)
+{
+	while (j > 0)
+		free(map_lines[--j]);
+	free(map_lines);
 }

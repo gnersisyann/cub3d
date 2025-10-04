@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:11:07 by letto             #+#    #+#             */
-/*   Updated: 2025/09/14 19:53:02 by letto            ###   ########.fr       */
+/*   Updated: 2025/09/27 18:08:56 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,35 @@ typedef struct s_file_content {
   char **config_lines;
   char **map_lines;
 } t_file_content;
+
+typedef struct s_continuity_context {
+  char **lines;
+  t_data *data;
+  t_file_content *content;
+} t_continuity_context;
+
+typedef struct s_extraction_context {
+  char **lines;
+  int map_start_index;
+  t_data *data;
+  t_file_content *content;
+} t_extraction_context;
+
+typedef struct s_line_fill_context {
+  char **lines;
+  char **target_lines;
+  int start_index;
+  int count;
+} t_line_fill_context;
+
+typedef struct s_flood_context {
+  char **map_lines;
+  int map_width;
+  int map_height;
+  int **visited;
+  t_data *data;
+  t_file_content *content;
+} t_flood_context;
 
 void ft_validate(int argc, char **argv, t_data *data, t_file_content *content);
 
@@ -59,10 +88,8 @@ int is_potential_map_line(char *line);
 int is_empty_line(char *line);
 
 /* content_extractors.c */
-char **extract_config_lines(char **lines, int map_start_index, t_data *data,
-                            t_file_content *content);
-char **extract_map_lines(char **lines, int map_start_index, t_data *data,
-                         t_file_content *content);
+char **extract_config_lines(t_extraction_context *ctx);
+char **extract_map_lines(t_extraction_context *ctx);
 
 /* map_finder.c */
 void validate_all_lines(char **lines, t_data *data, t_file_content *content);
@@ -88,5 +115,19 @@ char **ft_duplicate_map(char **map_lines, int height);
 char get_map_char_safe(char **map_lines, int x, int y, int map_height);
 void validate_map_closure(char **map_lines, t_data *data,
                           t_file_content *content);
+void flood_fill_recursive(t_flood_context *ctx, int x, int y);
+void init_flood_context(t_flood_context *ctx, char **map_lines, t_data *data,
+                        t_file_content *content);
+int **allocate_visited_array(int map_width, int map_height, t_data *data,
+                             t_file_content *content);
+
+/* utils */
+int count_config_lines(char **lines, int map_start_index);
+void cleanup_config_lines(char **config_lines, int j);
+void fill_config_lines(t_line_fill_context *ctx, t_extraction_context *ext_ctx);
+int validate_no_config_after_map(char **lines, int map_start_index,
+                                 t_data *data, t_file_content *content);
+void cleanup_map_lines(char **map_lines, int j);
+void check_boundary_conditions(t_flood_context *ctx, int x, int y);
 
 #endif
