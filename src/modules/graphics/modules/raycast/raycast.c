@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 17:41:38 by ganersis          #+#    #+#             */
-/*   Updated: 2025/09/27 17:41:39 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/10/04 16:51:27 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ void	cast_single_ray(t_data *data, int x, double ray_dir_x, double ray_dir_y)
 
 	init_ray(&ray, data, ray_dir_x, ray_dir_y);
 	calculate_step_and_side_dist(&ray, data);
-	perform_dda(&ray, data);
-	calculate_wall_distance(&ray, data);
-	draw_wall_stripe(data, &ray, x);
+	perform_dda(data, &ray);
+	render_wall_column(data, &ray, x);
 }
 
 void	cast_rays(t_data *data)
