@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:11:09 by letto             #+#    #+#             */
-/*   Updated: 2025/10/04 16:40:18 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/10/04 17:54:41 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ typedef struct s_data
     int		map_height;
     char	player_direction;
     int		keys[65536];
+    int     last_mouse_x;
+    int     last_mouse_y;
+    double  pitch;
+    int     mouse_captured;
 }			t_data;
 
 typedef struct s_ray

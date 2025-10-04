@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:12:12 by letto             #+#    #+#             */
-/*   Updated: 2025/10/04 16:44:26 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/10/04 17:53:01 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	setup_hooks(t_data *data)
 	mlx_hook(data->win, 2, 1L << 0, ft_key_press, data);
 	mlx_hook(data->win, 3, 1L << 1, ft_key_release, data);
 	mlx_hook(data->win, 17, 1L << 2, ft_exit, data);
+	mlx_hook(data->win, 6, 1L << 6, mouse_move, data);
 	mlx_loop_hook(data->mlx, ft_game_loop, data);
 }
 
@@ -58,6 +59,7 @@ void	ft_init_graphics(t_data *data)
 		ft_error_exit("Failed to get image address", EXIT_FAILURE);
 	if (!load_textures(data))
 		ft_error_exit("Failed to load textures", EXIT_FAILURE);
+	init_mouse(data);
 	init_player_position(data);
 	setup_hooks(data);
 }

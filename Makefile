@@ -47,6 +47,7 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/graphics/modules/textures/load.c \
  \
       $(SRC_DIR)modules/events/keyboard.c \
+      $(SRC_DIR)modules/events/mouse.c \
       $(SRC_DIR)modules/events/window.c \
  \
       $(SRC_DIR)modules/validation/validation.c \

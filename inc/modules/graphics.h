@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:10:57 by letto             #+#    #+#             */
-/*   Updated: 2025/10/04 17:00:24 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/10/04 17:52:52 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ void	move_left(t_data *data);
 void	move_right(t_data *data);
 void	rotate_left(t_data *data);
 void	rotate_right(t_data *data);
+int     mouse_move(int x, int y, t_data *data);
+void    toggle_mouse_capture(t_data *data);
+void    init_mouse(t_data *data);
 
 // Raycast functions
 void	cast_rays(t_data *data);
