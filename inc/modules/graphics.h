@@ -18,7 +18,7 @@
 // Render functions
 int		ft_render_next_frame(t_data *data);
 
-// Init functions  
+// Init functions
 int		ft_init_mlx(t_data *data);
 int		ft_create_window(t_data *data, int width, int height, char *title);
 void	ft_init_graphics(t_data *data);
@@ -56,7 +56,7 @@ void	calculate_wall_distance(t_ray *ray, t_data *data);
 // Textures
 int		load_textures(t_data *data);
 int		get_texture_pixel(t_texture *texture, int x, int y);
-void	calculate_texture_coords(t_data *data, t_ray *ray, int *tex_x, 
+void	calculate_texture_coords(t_data *data, t_ray *ray, int *tex_x,
             double *step);
 void	draw_texture_column(t_data *data, t_ray *ray, int x, int tex_x);
 
@@ -65,6 +65,16 @@ void	render_wall_column(t_data *data, t_ray *ray, int x);
 void	render_textured_wall(t_data *data, t_ray *ray, int x);
 void	render_floor_ceiling(t_data *data, int x, int draw_end);
 void	determine_texture(t_ray *ray);
+
+// Minimap
+void	init_minimap(t_data *data);
+void	draw_minimap(t_data *data);
+void	draw_miniview(t_data *data);
+int		get_minimap_color(t_data *data, int map_x, int map_y);
+void	init_raw_data(t_pixel *px, t_data *data);
+void	put_pixel_with_struct(t_pixel *px);
+void	put_pixel_raw(t_pixel *px);
+void	draw_player_marker(t_data *data, int dst_off_x, int dst_off_y);
 
 // Utils
 void	clear_screen(t_data *data);

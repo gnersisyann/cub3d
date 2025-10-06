@@ -17,6 +17,8 @@ int	ft_render_next_frame(t_data *data)
 {
 	clear_screen(data);
 	cast_rays(data);
+	draw_minimap(data);
+	draw_miniview(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);
 }

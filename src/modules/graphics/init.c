@@ -63,5 +63,6 @@ void	ft_init_graphics(t_data *data)
 		ft_error_exit("Failed to load textures", EXIT_FAILURE);
 	init_mouse(data);
 	init_player_position(data);
+	init_minimap(data);
 	setup_hooks(data);
 }
