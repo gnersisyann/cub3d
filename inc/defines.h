@@ -18,8 +18,10 @@
 #define MOVE_SPEED 0.05
 #define ROT_SPEED 0.04
 
-#define MOUSE_SENSITIVITY 0.0005
+#define MOUSE_SENSITIVITY 0.0001
 #define M_PI 3.14159265359
+
+# define MOUSE_WRAP 40
 
 # define ESC 65307
 # define W 119

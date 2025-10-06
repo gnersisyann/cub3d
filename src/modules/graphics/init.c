@@ -40,6 +40,8 @@ void	setup_hooks(t_data *data)
 	mlx_hook(data->win, 3, 1L << 1, ft_key_release, data);
 	mlx_hook(data->win, 17, 1L << 2, ft_exit, data);
 	mlx_hook(data->win, 6, 1L << 6, mouse_move, data);
+	// es takiny hly irar het kjogenq hero ur enq dnum mi hat to skzbnakan ste lini
+	mlx_mouse_hide(data->mlx, data->win);
 	mlx_loop_hook(data->mlx, ft_game_loop, data);
 }
 
