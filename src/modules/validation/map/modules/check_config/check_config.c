@@ -31,21 +31,24 @@ static void	init_config_data(t_data *data)
 static void	process_config_line(char *line, t_data *data,
 		t_file_content *content)
 {
-	char	*trimmed_line;
+	char				*trimmed_line;
+	t_texture_context	ctx;
 
+	ctx.data = data;
+	ctx.content = content;
 	trimmed_line = ft_skip_whitespace(line);
 	if (ft_strncmp(trimmed_line, "NO ", 3) == 0)
 		parse_animated_texture_line(trimmed_line, &data->north_textures,
-			&data->north_texture_count, data, content);
+			&data->north_texture_count, &ctx);
 	else if (ft_strncmp(trimmed_line, "SO ", 3) == 0)
 		parse_animated_texture_line(trimmed_line, &data->south_textures,
-			&data->south_texture_count, data, content);
+			&data->south_texture_count, &ctx);
 	else if (ft_strncmp(trimmed_line, "WE ", 3) == 0)
 		parse_animated_texture_line(trimmed_line, &data->west_textures,
-			&data->west_texture_count, data, content);
+			&data->west_texture_count, &ctx);
 	else if (ft_strncmp(trimmed_line, "EA ", 3) == 0)
 		parse_animated_texture_line(trimmed_line, &data->east_textures,
-			&data->east_texture_count, data, content);
+			&data->east_texture_count, &ctx);
 	else if (ft_strncmp(trimmed_line, "F ", 2) == 0)
 		parse_color_line(trimmed_line, &data->floor_color, data, content);
 	else if (ft_strncmp(trimmed_line, "C ", 2) == 0)

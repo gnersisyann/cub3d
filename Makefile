@@ -76,6 +76,7 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/validation/map/modules/check_config/check_config.c \
       $(SRC_DIR)modules/validation/map/modules/check_config/config_validators.c \
       $(SRC_DIR)modules/validation/map/modules/check_config/config_parsers.c \
+      $(SRC_DIR)modules/validation/map/modules/check_config/animated_texture_parser.c \
       $(SRC_DIR)modules/mlx/mlx.c \
 
 OBJ_DIR = obj

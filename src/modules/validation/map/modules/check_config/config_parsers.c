@@ -82,37 +82,3 @@ void	parse_color_line(char *line, int *color, t_data *data,
 	ft_free_array(components);
 	free(color_start);
 }
-
-void	parse_animated_texture_line(char *line, char ***texture_paths,
-		int *texture_count, t_data *data, t_file_content *content)
-{
-	char	*new_path;
-	char	**new_array;
-	int		i;
-
-	new_path = extract_path_from_line(line);
-	if (!new_path)
-		ft_error_exit_with_cleanup("Missing texture path", EXIT_FAILURE, data,
-			content);
-	if (!validate_texture_path(new_path))
-	{
-		free(new_path);
-		ft_error_exit_with_cleanup("Invalid texture path", EXIT_FAILURE, data,
-			content);
-	}
-	new_array = malloc(sizeof(char *) * (*texture_count + 1));
-	if (!new_array)
-	{
-		free(new_path);
-		ft_error_exit_with_cleanup("Memory allocation failed", EXIT_FAILURE,
-			data, content);
-	}
-	i = -1;
-	while (++i < *texture_count)
-		new_array[i] = (*texture_paths)[i];
-	new_array[*texture_count] = new_path;
-	if (*texture_paths)
-		free(*texture_paths);
-	*texture_paths = new_array;
-	(*texture_count)++;
-}

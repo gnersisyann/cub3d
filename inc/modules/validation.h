@@ -20,6 +20,12 @@ typedef struct s_file_content {
   char **map_lines;
 } t_file_content;
 
+typedef struct s_texture_context
+{
+	t_data			*data;
+	t_file_content	*content;
+}	t_texture_context;
+
 typedef struct s_continuity_context {
   char **lines;
   t_data *data;
@@ -80,7 +86,7 @@ int validate_all_configs(t_data *data);
 void parse_texture_line(char *line, char **texture_path, t_data *data,
                         t_file_content *content);
 void parse_animated_texture_line(char *line, char ***texture_paths,
-                        int *texture_count, t_data *data, t_file_content *content);
+                        int *texture_count, t_texture_context *ctx);
 void parse_color_line(char *line, int *color, t_data *data,
                       t_file_content *content);
 
