@@ -11,9 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "mlx.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 int	load_single_texture(t_data *data, t_texture *texture, char *path)
 {

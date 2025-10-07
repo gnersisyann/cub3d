@@ -11,10 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "graphics.h"
-#include "mlx_cub.h"
-#include "utils.h"
-#include "validation.h"
 
 int	main(int argc, char **argv)
 {

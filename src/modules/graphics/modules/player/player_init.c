@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "graphics.h"
 
 static void	init_player_direction_helper(t_data *data)
 {

@@ -11,9 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "defines.h"
-#include "graphics.h"
-#include <math.h>
 
 void	render_floor_ceiling(t_data *data, int x, int draw_end)
 {

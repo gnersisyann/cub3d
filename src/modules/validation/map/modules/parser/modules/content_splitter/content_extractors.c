@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "libft.h"
-#include "validation.h"
-#include <stdlib.h>
+#include "cub3d.h"
 
 char	**extract_config_lines(t_extraction_context *ctx)
 {

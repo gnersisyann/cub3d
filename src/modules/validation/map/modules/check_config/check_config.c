@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "libft.h"
-#include "validation.h"
+#include "cub3d.h"
 
 static void	init_config_data(t_data *data)
 {

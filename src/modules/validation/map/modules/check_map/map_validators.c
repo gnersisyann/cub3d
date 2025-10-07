@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "libft.h"
-#include "validation.h"
+#include "cub3d.h"
 
 void	validate_player_count(char **map_lines, t_data *data,
 		t_file_content *content)

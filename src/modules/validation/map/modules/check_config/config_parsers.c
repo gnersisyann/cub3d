@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "libft.h"
-#include "validation.h"
+#include "cub3d.h"
 
 static char	*extract_path_from_line(char *line)
 {

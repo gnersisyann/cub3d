@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "libft.h"
-#include "validation.h"
+#include "cub3d.h"
 
 void	parse_cub_file(char *filename, t_file_content *content, t_data *data)
 {

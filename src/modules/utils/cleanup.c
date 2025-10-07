@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "utils.h"
-#include <mlx.h>
-#include <stdlib.h>
+#include "cub3d.h"
 
 void	ft_free_file_content(t_file_content *content)
 {
@@ -25,77 +22,6 @@ void	ft_free_file_content(t_file_content *content)
 		ft_free_array(content->map_lines);
 	content->config_lines = NULL;
 	content->map_lines = NULL;
-}
-
-static void	cleanup_texture_arrays(t_data *data)
-{
-	int	i;
-
-	if (data->north_textures)
-	{
-		i = 0;
-		while (i < data->north_texture_count)
-		{
-			if (data->north_textures[i])
-				free(data->north_textures[i]);
-			i++;
-		}
-		free(data->north_textures);
-		data->north_textures = NULL;
-	}
-	if (data->south_textures)
-	{
-		i = 0;
-		while (i < data->south_texture_count)
-		{
-			if (data->south_textures[i])
-				free(data->south_textures[i]);
-			i++;
-		}
-		free(data->south_textures);
-		data->south_textures = NULL;
-	}
-	if (data->west_textures)
-	{
-		i = 0;
-		while (i < data->west_texture_count)
-		{
-			if (data->west_textures[i])
-				free(data->west_textures[i]);
-			i++;
-		}
-		free(data->west_textures);
-		data->west_textures = NULL;
-	}
-	if (data->east_textures)
-	{
-		i = 0;
-		while (i < data->east_texture_count)
-		{
-			if (data->east_textures[i])
-				free(data->east_textures[i]);
-			i++;
-		}
-		free(data->east_textures);
-		data->east_textures = NULL;
-	}
-}
-
-static void	set_null(t_data *data)
-{
-	data->map_path = NULL;
-	data->map = NULL;
-	data->mlx = NULL;
-	data->win = NULL;
-	data->img = NULL;
-	data->north_textures = NULL;
-	data->south_textures = NULL;
-	data->west_textures = NULL;
-	data->east_textures = NULL;
-	data->north_texture_count = 0;
-	data->south_texture_count = 0;
-	data->west_texture_count = 0;
-	data->east_texture_count = 0;
 }
 
 void	ft_cleanup_data(t_data *data)

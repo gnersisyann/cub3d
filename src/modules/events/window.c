@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "events.h"
-#include "mlx.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "cub3d.h"
 
 int	ft_exit(t_data *data)
 {

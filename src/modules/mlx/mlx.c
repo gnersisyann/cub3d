@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "mlx.h"
-#include "mlx_cub.h"
-#include <stdlib.h>
+#include "cub3d.h"
 
 void	ft_mlx_loop(void *mlx)
 {

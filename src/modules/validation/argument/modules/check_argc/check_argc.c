@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "validation.h"
-#include <stdlib.h>
+#include "cub3d.h"
 
 void	ft_check_argc(int argc)
 {

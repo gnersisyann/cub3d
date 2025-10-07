@@ -47,6 +47,8 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/graphics/modules/textures/load.c \
       $(SRC_DIR)modules/graphics/modules/minimap/minimap.c \
       $(SRC_DIR)modules/graphics/modules/minimap/miniutils.c \
+      $(SRC_DIR)modules/graphics/modules/minimap/light.c \
+      $(SRC_DIR)modules/graphics/modules/minimap/helper.c \
  \
       $(SRC_DIR)modules/events/keyboard.c \
       $(SRC_DIR)modules/events/mouse.c \
@@ -72,6 +74,7 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/flood_fill.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/utils.c \
       $(SRC_DIR)modules/utils/cleanup.c \
+      $(SRC_DIR)modules/utils/cleanup_textures.c \
       $(SRC_DIR)modules/utils/init.c \
       $(SRC_DIR)modules/validation/map/modules/check_config/check_config.c \
       $(SRC_DIR)modules/validation/map/modules/check_config/config_validators.c \

@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "libft.h"
-#include "validation.h"
-#include <string.h>
+#include "cub3d.h"
 
 void	ft_check_file_extension(char *filename, char *extension, int type)
 {

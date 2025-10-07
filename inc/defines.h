@@ -13,13 +13,13 @@
 #ifndef DEFINES_H
 # define DEFINES_H
 
-#define WIDTH 1440
-#define HEIGHT 900
-#define MOVE_SPEED 0.05
-#define ROT_SPEED 0.04
+# define WIDTH 1440
+# define HEIGHT 900
+# define MOVE_SPEED 0.05
+# define ROT_SPEED 0.04
 
-#define MOUSE_SENSITIVITY 0.0001
-#define M_PI 3.14159265359
+# define MOUSE_SENSITIVITY 0.0001
+# define M_PI 3.14159265359
 
 # define MOUSE_WRAP 40
 

@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "validation.h"
-#include "stdlib.h"
-#include "error.h"
+#include "cub3d.h"
 
 void	check_boundary_conditions(t_flood_context *ctx, int x, int y)
 {

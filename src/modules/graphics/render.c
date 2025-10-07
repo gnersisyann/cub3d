@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "graphics.h"
-#include "mlx.h"
+#include "cub3d.h"
 
 int	ft_render_next_frame(t_data *data)
 {

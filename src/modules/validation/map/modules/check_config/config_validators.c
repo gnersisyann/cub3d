@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "validation.h"
-#include <fcntl.h>
+#include "cub3d.h"
 
 int	validate_texture_path(char *path)
 {
