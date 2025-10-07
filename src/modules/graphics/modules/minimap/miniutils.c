@@ -1,6 +1,7 @@
 #include "cub3d.h"
 #include "defines.h"
 #include "graphics.h"
+#include "libft.h"
 #include "mlx.h"
 #include <math.h>
 
@@ -89,11 +90,15 @@ void	draw_player_marker(t_data *data, int dst_off_x, int dst_off_y)
 int	get_minimap_color(t_data *data, int map_x, int map_y)
 {
 	char	c;
+	int		line_len;
 
 	if (map_y < 0 || map_y >= data->map_height || map_x < 0
 		|| map_x >= data->map_width)
 		return (0xFF000000);
 	if (!data->map[map_y])
+		return (0xFF000000);
+	line_len = ft_strlen(data->map[map_y]);
+	if (map_x >= line_len)
 		return (0xFF000000);
 	c = data->map[map_y][map_x];
 	if (c == '1')

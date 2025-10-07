@@ -55,6 +55,10 @@ void	calculate_wall_distance(t_ray *ray, t_data *data);
 
 // Textures
 int		load_textures(t_data *data);
+int		load_animated_texture(t_data *data, t_animated_texture *anim_tex,
+			char **texture_paths, int texture_count);
+void	update_texture_animations(t_data *data, double delta_time);
+t_texture	*get_current_texture_frame(t_data *data, int texture_num);
 int		get_texture_pixel(t_texture *texture, int x, int y);
 void	calculate_texture_coords(t_data *data, t_ray *ray, int *tex_x,
             double *step);

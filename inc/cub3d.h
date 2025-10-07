@@ -24,6 +24,15 @@ typedef struct s_texture
 	int		height;
 }			t_texture;
 
+typedef struct s_animated_texture
+{
+	t_texture	*frames;
+	int			frame_count;
+	int			current_frame;
+	double		animation_speed;
+	double		animation_timer;
+}			t_animated_texture;
+
 typedef struct s_minimap
 {
 	void	*img;
@@ -72,11 +81,16 @@ typedef struct s_data
 	int			endian;
 	int			map_fd;
 	char		*map_path;
-	char		*north_texture;
-	char		*south_texture;
-	char		*west_texture;
-	char		*east_texture;
+	char		**north_textures;
+	char		**south_textures;
+	char		**west_textures;
+	char		**east_textures;
+	int			north_texture_count;
+	int			south_texture_count;
+	int			west_texture_count;
+	int			east_texture_count;
 	t_texture	textures[4];
+	t_animated_texture	animated_textures[4];
 	int			floor_color;
 	int			ceiling_color;
 	double		player_x;

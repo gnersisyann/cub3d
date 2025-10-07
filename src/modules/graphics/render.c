@@ -15,6 +15,7 @@
 
 int	ft_render_next_frame(t_data *data)
 {
+	update_texture_animations(data, 0.016);
 	clear_screen(data);
 	cast_rays(data);
 	draw_minimap(data);
