@@ -54,6 +54,10 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/events/mouse.c \
       $(SRC_DIR)modules/events/window.c \
  \
+      $(SRC_DIR)modules/doors/door_manager.c \
+      $(SRC_DIR)modules/doors/door_parser.c \
+      $(SRC_DIR)modules/doors/door_animation.c \
+ \
       $(SRC_DIR)modules/validation/validation.c \
       $(SRC_DIR)modules/validation/argument/argument.c \
       $(SRC_DIR)modules/validation/argument/modules/check_argc/check_argc.c \

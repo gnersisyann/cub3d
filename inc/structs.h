@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:13:59 by ganersis          #+#    #+#             */
-/*   Updated: 2025/10/18 18:31:12 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/10/18 18:50:45 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,31 @@ typedef struct s_norm
 	int	dst_off_y;
 }			t_norm;
 
+typedef enum e_door_state
+{
+    DOOR_CLOSED,
+    DOOR_OPENING,
+    DOOR_OPEN,
+    DOOR_CLOSING
+}	t_door_state;
+
+typedef struct s_door
+{
+    int				x;
+    int				y;
+    t_door_state	state;
+    float			animation_progress;
+    float			animation_speed;
+    int				key_required;
+}	t_door;
+
+typedef struct s_door_manager
+{
+    t_door	*doors;
+    int		door_count;
+    int		max_doors;
+}	t_door_manager;
+
 typedef struct s_data
 {
 	void				*mlx;
@@ -135,8 +160,8 @@ typedef struct s_data
 	int					south_texture_count;
 	int					west_texture_count;
 	int					east_texture_count;
-	t_texture			textures[4];
-	t_animated_texture	animated_textures[4];
+	t_texture			textures[6];
+	t_animated_texture	animated_textures[6];
 	int					floor_color;
 	int					ceiling_color;
 	double				player_x;
@@ -159,6 +184,9 @@ typedef struct s_data
     char    			**door_open_textures;
     int     			door_closed_texture_count;
     int     			door_open_texture_count;
+	t_door_manager		door_manager;
+    t_door				*nearest_door;
+    float				interaction_range;
 }			t_data;
 
 typedef struct s_ray

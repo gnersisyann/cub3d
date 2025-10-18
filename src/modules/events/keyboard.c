@@ -6,16 +6,22 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:11:57 by letto             #+#    #+#             */
-/*   Updated: 2025/09/27 17:35:21 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/10/18 18:51:49 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "door.h"
 
 int	ft_key_press(int keycode, t_data *data)
 {
 	if (keycode == ESC)
 		ft_exit(data);
+	if (keycode == 101)
+    {
+        if (can_interact_with_door(data, data->player_x, data->player_y))
+            interact_with_door(data->nearest_door);
+    }
 	else if (keycode < 65536)
 		data->keys[keycode] = 1;
 	return (0);
