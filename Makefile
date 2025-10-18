@@ -66,6 +66,8 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/content_extractors.c \
       $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/map_finder.c \
       $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/map_continuity.c \
+      $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/duplicate_checker.c \
+      $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/required_checker.c \
       $(SRC_DIR)modules/validation/map/modules/parser/modules/content_splitter/utils.c \
       $(SRC_DIR)modules/validation/map/modules/parser/modules/file_parser/file_parser.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/check_map.c \

@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:11:07 by letto             #+#    #+#             */
-/*   Updated: 2025/09/27 18:08:56 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/10/18 15:03:50 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ void	parse_cub_file(char *filename, t_file_content *content, t_data *data);
 char	**parse_file(char *filename, t_data *data, t_file_content *content);
 void	ft_split_file_content(char **lines, t_file_content *content,
 			t_data *data);
+void	validate_no_duplicates(char **config_lines, t_data *data,
+			t_file_content *content);
+void	validate_texture_duplicates(char **config_lines, t_data *data,
+			t_file_content *content);
 
 // Map validation
 void	ft_check_config(t_file_content *content, t_data *data);

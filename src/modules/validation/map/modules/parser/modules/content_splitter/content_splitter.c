@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 17:49:03 by ganersis          #+#    #+#             */
-/*   Updated: 2025/09/27 17:50:43 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/10/18 14:51:49 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ static void	extract_content_parts(t_extraction_context *ctx)
 		ft_error_exit_with_cleanup("Memory allocation failed", EXIT_FAILURE,
 			ctx->data, ctx->content);
 	}
+	validate_no_duplicates(ctx->content->config_lines, \
+ctx->data, ctx->content);
 	ctx->content->map_lines = extract_map_lines(ctx);
 	if (!ctx->content->map_lines)
 	{

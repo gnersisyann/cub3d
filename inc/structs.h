@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:13:59 by ganersis          #+#    #+#             */
-/*   Updated: 2025/10/18 14:15:42 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/10/18 15:04:47 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,5 +190,12 @@ typedef struct s_coords
 	int		color;
 	t_pixel	pixel;
 }	t_coords;
+
+typedef struct s_dup_ctx
+{
+	char			**config_lines;
+	t_data			*data;
+	t_file_content	*content;
+}					t_dup_ctx;
 
 #endif
