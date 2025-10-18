@@ -1,7 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   structs.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/18 14:13:59 by ganersis          #+#    #+#             */
+/*   Updated: 2025/10/18 14:15:42 by ganersis         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCTS_H
 # define STRUCTS_H
-
-typedef struct s_data	t_data;
 
 typedef struct s_file_content
 {
@@ -11,14 +21,14 @@ typedef struct s_file_content
 
 typedef struct s_texture_context
 {
-	t_data			*data;
-	t_file_content	*content;
+	struct s_data			*data;
+	t_file_content			*content;
 }	t_texture_context;
 
 typedef struct s_continuity_context
 {
 	char			**lines;
-	t_data			*data;
+	struct s_data	*data;
 	t_file_content	*content;
 }	t_continuity_context;
 
@@ -26,7 +36,7 @@ typedef struct s_extraction_context
 {
 	char			**lines;
 	int				map_start_index;
-	t_data			*data;
+	struct s_data	*data;
 	t_file_content	*content;
 }	t_extraction_context;
 
@@ -44,7 +54,7 @@ typedef struct s_flood_context
 	int				map_width;
 	int				map_height;
 	int				**visited;
-	t_data			*data;
+	struct s_data	*data;
 	t_file_content	*content;
 }	t_flood_context;
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minimap_helpers.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/18 14:30:15 by ganersis          #+#    #+#             */
+/*   Updated: 2025/10/18 14:30:15 by ganersis         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	process_miniview_pixel(t_data *data, t_coords *coords)
@@ -5,7 +17,7 @@ void	process_miniview_pixel(t_data *data, t_coords *coords)
 	coords->src = data->minimap.addr + coords->src_y * data->minimap.len
 		+ coords->src_x * (data->minimap.bpp / 8);
 	coords->color = *(int *)coords->src;
-	if (coords->color != 0xFF000000)
+	if (coords->color != (int)0xFF000000)
 	{
 		coords->pixel.x = coords->screen_x;
 		coords->pixel.y = coords->screen_y;
