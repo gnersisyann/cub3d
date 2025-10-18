@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_config.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:28:49 by letto             #+#    #+#             */
-/*   Updated: 2025/09/14 19:29:24 by letto            ###   ########.fr       */
+/*   Updated: 2025/10/18 18:31:36 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,14 @@ static void	init_config_data(t_data *data)
 	data->south_textures = NULL;
 	data->west_textures = NULL;
 	data->east_textures = NULL;
+	data->door_closed_textures = NULL;
+	data->door_open_textures = NULL;
 	data->north_texture_count = 0;
 	data->south_texture_count = 0;
 	data->west_texture_count = 0;
 	data->east_texture_count = 0;
+	data->door_closed_texture_count = 0;
+	data->door_open_texture_count = 0;
 	data->floor_color = -1;
 	data->ceiling_color = -1;
 }
@@ -47,6 +51,12 @@ static void	process_config_line(char *line, t_data *data,
 	else if (ft_strncmp(trimmed_line, "EA ", 3) == 0)
 		parse_animated_texture_line(trimmed_line, &data->east_textures,
 			&data->east_texture_count, &ctx);
+	else if (ft_strncmp(trimmed_line, "DOC ", 4) == 0)
+		parse_animated_texture_line(trimmed_line, &data->door_closed_textures,
+			&data->door_closed_texture_count, &ctx);
+	else if (ft_strncmp(trimmed_line, "DOO ", 4) == 0)
+		parse_animated_texture_line(trimmed_line, &data->door_open_textures,
+			&data->door_open_texture_count, &ctx);
 	else if (ft_strncmp(trimmed_line, "F ", 2) == 0)
 		parse_color_line(trimmed_line, &data->floor_color, data, content);
 	else if (ft_strncmp(trimmed_line, "C ", 2) == 0)

@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:13:59 by ganersis          #+#    #+#             */
-/*   Updated: 2025/10/18 15:04:47 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/10/18 18:31:12 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,10 @@ typedef struct s_data
 	double				pitch;
 	int					mouse_captured;
 	t_minimap			minimap;
+	char    			**door_closed_textures;
+    char    			**door_open_textures;
+    int     			door_closed_texture_count;
+    int     			door_open_texture_count;
 }			t_data;
 
 typedef struct s_ray

@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 00:00:00 by ganersis          #+#    #+#             */
-/*   Updated: 2025/10/18 15:14:22 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/10/18 18:26:40 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,10 @@ static int	is_texture_line(char *line)
 					|| line[i + 2] == '\t')) || (line[i] == 'E' && line[i
 					+ 1] == 'A' && (line[i + 2] == ' ' || line[i + 2] == '\t')))
 			return (1);
+		if (line[i + 2] && (line[i] == 'D' && line[i + 1] == 'O'
+            && ((line[i + 2] == 'C' && (line[i + 3] == ' ' || line[i + 3] == '\t'))
+            || (line[i + 2] == 'O' && (line[i + 3] == ' ' || line[i + 3] == '\t')))))
+            return (1);
 	}
 	return (0);
 }
