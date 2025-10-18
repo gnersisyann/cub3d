@@ -1,9 +1,4 @@
 #include "cub3d.h"
-#include "defines.h"
-#include "graphics.h"
-#include "mlx.h"
-#include <math.h>
-#include <stdlib.h>
 
 void	init_mouse(t_data *data)
 {

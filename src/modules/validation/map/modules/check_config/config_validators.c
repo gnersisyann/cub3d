@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "validation.h"
-#include <fcntl.h>
+#include "cub3d.h"
 
 int	validate_texture_path(char *path)
 {
@@ -72,8 +70,10 @@ int	validate_color_line(char *line)
 
 int	validate_all_configs(t_data *data)
 {
-	if (!data->north_texture || !data->south_texture || !data->west_texture
-		|| !data->east_texture)
+	if (!data->north_textures || data->north_texture_count == 0
+		|| !data->south_textures || data->south_texture_count == 0
+		|| !data->west_textures || data->west_texture_count == 0
+		|| !data->east_textures || data->east_texture_count == 0)
 		return (0);
 	if (data->floor_color == -1 || data->ceiling_color == -1)
 		return (0);

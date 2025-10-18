@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "validation.h"
-#include "libft.h"
-#include "error.h"
+#include "cub3d.h"
 
 int	count_config_lines(char **lines, int map_start_index)
 {

@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "defines.h"
-#include "graphics.h"
 
 void	move_forward(t_data *data)
 {

@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "utils.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "cub3d.h"
 
 void	ft_error_exit(char *message, int exit_code)
 {

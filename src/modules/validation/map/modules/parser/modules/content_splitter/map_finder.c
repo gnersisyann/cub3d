@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "validation.h"
-#include <stdlib.h>
+#include "cub3d.h"
 
 void	validate_all_lines(char **lines, t_data *data, t_file_content *content)
 {

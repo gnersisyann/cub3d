@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
-#include "validation.h"
+#include "cub3d.h"
 
 void	ft_validate(int argc, char **argv, t_data *data,
 		t_file_content *content)

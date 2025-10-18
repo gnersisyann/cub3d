@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "graphics.h"
 
 void	determine_texture(t_ray *ray)
 {

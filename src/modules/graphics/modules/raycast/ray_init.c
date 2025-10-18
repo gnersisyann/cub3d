@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "graphics.h"
-#include <math.h>
 
 void	init_ray(t_ray *ray, t_data *data, double ray_dir_x, double ray_dir_y)
 {

@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "stdlib.h"
-#include "validation.h"
+#include "cub3d.h"
 
 static void	set_player_data(t_file_content *content, t_data *data)
 {

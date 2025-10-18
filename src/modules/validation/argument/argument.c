@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "validation.h"
+#include "cub3d.h"
 
 void	ft_validate_arguments(int argc, char **argv)
 {

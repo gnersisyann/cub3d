@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "validation.h"
+#include "cub3d.h"
 
 void	ft_validate_map(char *map_path, t_data *data, t_file_content *content)
 {

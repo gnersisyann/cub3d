@@ -10,11 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "validation.h"
-#include <fcntl.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "cub3d.h"
 
 void	ft_check_file_exists(char *filename)
 {

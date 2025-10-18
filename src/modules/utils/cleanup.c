@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "utils.h"
-#include <mlx.h>
-#include <stdlib.h>
+#include "cub3d.h"
 
 void	ft_free_file_content(t_file_content *content)
 {
@@ -27,31 +24,11 @@ void	ft_free_file_content(t_file_content *content)
 	content->map_lines = NULL;
 }
 
-static void	set_null(t_data *data)
-{
-	data->north_texture = NULL;
-	data->south_texture = NULL;
-	data->west_texture = NULL;
-	data->east_texture = NULL;
-	data->map_path = NULL;
-	data->map = NULL;
-	data->mlx = NULL;
-	data->win = NULL;
-	data->img = NULL;
-}
-
 void	ft_cleanup_data(t_data *data)
 {
 	if (!data)
 		return ;
-	if (data->north_texture)
-		free(data->north_texture);
-	if (data->south_texture)
-		free(data->south_texture);
-	if (data->west_texture)
-		free(data->west_texture);
-	if (data->east_texture)
-		free(data->east_texture);
+	cleanup_texture_arrays(data);
 	if (data->map_path)
 		free(data->map_path);
 	if (data->map)
@@ -81,9 +58,6 @@ void	ft_cleanup_data_partial(t_data *data)
 {
 	if (!data)
 		return ;
-	check_partial(&data->north_texture);
-	check_partial(&data->south_texture);
-	check_partial(&data->west_texture);
-	check_partial(&data->east_texture);
+	cleanup_texture_arrays(data);
 	check_partial(&data->map_path);
 }

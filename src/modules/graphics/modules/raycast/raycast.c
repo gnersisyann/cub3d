@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "defines.h"
-#include "graphics.h"
 
 void	cast_single_ray(t_data *data, int x, double ray_dir_x, double ray_dir_y)
 {

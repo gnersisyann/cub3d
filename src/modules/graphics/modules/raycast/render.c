@@ -11,9 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "defines.h"
-#include "graphics.h"
-#include <math.h>
 
 void	render_floor_ceiling(t_data *data, int x, int draw_end)
 {
@@ -33,7 +30,9 @@ void	calculate_texture_coords(t_data *data, t_ray *ray, int *tex_x,
 	t_texture	*texture;
 	double		wall_x;
 
-	texture = &data->textures[ray->texture_num];
+	texture = get_current_texture_frame(data, ray->texture_num);
+	if (!texture)
+		return ;
 	if (ray->side == 0)
 		wall_x = data->player_y + ray->perp_wall_dist * ray->ray_dir_y;
 	else
@@ -48,18 +47,22 @@ void	calculate_texture_coords(t_data *data, t_ray *ray, int *tex_x,
 
 void	draw_texture_column(t_data *data, t_ray *ray, int x, int tex_x)
 {
-	double	step;
-	double	tex_pos;
-	int		y;
-	int		color;
+	double		step;
+	double		tex_pos;
+	int			y;
+	int			color;
+	t_texture	*texture;
 
-	step = 1.0 * data->textures[ray->texture_num].height / ray->line_height;
+	texture = get_current_texture_frame(data, ray->texture_num);
+	if (!texture)
+		return ;
+	step = 1.0 * texture->height / ray->line_height;
 	tex_pos = (ray->draw_start - HEIGHT / 2.0 + ray->line_height / 2.0) * step;
 	y = ray->draw_start;
 	while (y < ray->draw_end)
 	{
-		color = get_texture_pixel(&data->textures[ray->texture_num], tex_x,
-				(int)tex_pos & (data->textures[ray->texture_num].height - 1));
+		color = get_texture_pixel(texture, tex_x,
+				(int)tex_pos & (texture->height - 1));
 		if (ray->side == 1)
 			color = (color >> 1) & 0x7F7F7F;
 		my_mlx_pixel_put(data, x, y, color);

@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "defines.h"
-#include "events.h"
-#include "graphics.h"
+#include "cub3d.h"
 
 int	ft_key_press(int keycode, t_data *data)
 {

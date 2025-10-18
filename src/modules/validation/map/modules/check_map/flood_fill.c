@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "libft.h"
-#include "validation.h"
-#include <stdlib.h>
+#include "cub3d.h"
 
 char	get_map_char_safe(char **map_lines, int x, int y, int map_height)
 {

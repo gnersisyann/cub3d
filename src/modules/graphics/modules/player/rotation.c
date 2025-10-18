@@ -11,9 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "defines.h"
-#include "graphics.h"
-#include <math.h>
 
 void	rotate_right(t_data *data)
 {

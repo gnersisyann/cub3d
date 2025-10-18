@@ -10,12 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "libft.h"
-#include "validation.h"
-#include <fcntl.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "cub3d.h"
 
 static size_t	file_line_count(char *filename, t_data *data,
 		t_file_content *content)

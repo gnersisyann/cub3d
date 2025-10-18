@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "validation.h"
-#include <stdlib.h>
+#include "cub3d.h"
 
 static int	check_remaining_lines(t_continuity_context *ctx, int start_pos)
 {

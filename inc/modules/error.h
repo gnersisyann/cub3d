@@ -13,7 +13,7 @@
 #ifndef ERROR_H
 # define ERROR_H
 
-# include "cub3d.h"
+# include "../structs.h"
 
 struct	s_file_content;
 
