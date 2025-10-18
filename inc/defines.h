@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:11:12 by letto             #+#    #+#             */
-/*   Updated: 2025/10/04 18:00:07 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/10/18 14:07:21 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # define ROT_SPEED 0.04
 
 # define MOUSE_SENSITIVITY 0.0001
-# define M_PI 3.14159265359
 
 # define MOUSE_WRAP 40
 
