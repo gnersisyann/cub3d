@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:13:59 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/01 16:19:32 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 19:54:29 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,12 +118,12 @@ typedef struct s_norm
 
 typedef struct s_door
 {
-    int		map_x;
-    int		map_y;
-    double	open_offset;
-    int		is_opening;
-    int		is_closing;
-    int		is_open;
+	int		map_x;
+	int		map_y;
+	int		is_opening;
+	int		is_closing;
+	int		is_open;
+	double	open_offset;
 }			t_door;
 
 typedef struct s_data
@@ -166,11 +166,11 @@ typedef struct s_data
 	int					mouse_captured;
 	t_minimap			minimap;
 	char				**door_textures;
-    int					door_texture_count;
-    t_texture			door_texture;
-    t_animated_texture	animated_door_texture;
-    t_door				*doors;
-    int					door_count;
+	int					door_texture_count;
+	t_texture			door_texture;
+	t_animated_texture	animated_door_texture;
+	t_door				*doors;
+	int					door_count;
 }			t_data;
 
 typedef struct s_ray

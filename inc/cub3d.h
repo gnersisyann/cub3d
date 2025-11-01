@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:11:09 by letto             #+#    #+#             */
-/*   Updated: 2025/11/01 19:23:47 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 19:54:51 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "structs.h"
 # include "defines.h"
 # include "libft.h"
-#include "stdbool.h"
+# include "stdbool.h"
 
 # include "./modules/error.h"
 # include "./modules/events.h"

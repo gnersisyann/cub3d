@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:10:57 by letto             #+#    #+#             */
-/*   Updated: 2025/11/01 19:27:57 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 19:51:09 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void		perform_dda(t_data *data, t_ray *ray);
 void		calculate_wall_distance(t_ray *ray, t_data *data);
 
 // Textures
-void	update_door_animation(t_data *data, double delta_time);
+void		update_door_animation(t_data *data, double delta_time);
 int			load_textures(t_data *data);
 int			load_animated_texture(t_data *data, t_animated_texture *anim_tex,
 				char **texture_paths, int texture_count);
@@ -74,7 +74,7 @@ t_door		*get_door_at_position(t_data *data, int map_x, int map_y);
 void		check_door_proximity(t_data *data);
 void		update_doors(t_data *data, double delta_time);
 void		init_door(t_data *data, int door_index, int x, int y);
-void 		set_door_status(t_door *doors, bool is_open, int i);
+void		set_door_status(t_door *doors, bool is_open, int i);
 
 // Render
 void		render_wall_column(t_data *data, t_ray *ray, int x);

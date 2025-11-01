@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:11:07 by letto             #+#    #+#             */
-/*   Updated: 2025/11/01 19:13:13 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 19:52:02 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int		validate_texture_path(char *path);
 int		validate_color_component(char *component);
 int		validate_color_line(char *line);
 int		validate_all_configs(t_data *data);
-void	validate_door_texture_consistency(t_data *data, t_file_content *content);
+void	validate_door_texture_consistency(t_data *data,\
+	t_file_content *content);
 
 /* config_parsers.c */
 void	parse_texture_line(char *line, char **texture_path, t_data *data,
