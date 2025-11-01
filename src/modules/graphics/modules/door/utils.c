@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 19:20:50 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/01 19:27:24 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 19:33:46 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,18 @@ void	init_door(t_data *data, int door_index, int x, int y)
 	data->doors[door_index].is_open = 0;
 }
 
-void set_door_status(t_door *doors, bool is_open, int i)
+void	set_door_status(t_door *doors, bool is_open, int i)
 {
-    if (is_open)
+	if (is_open)
 	{
 		doors[i].open_offset = 1.0;
 		doors[i].is_opening = 0;
 		doors[i].is_open = 1;
 	}
-    else
-    {
-        doors[i].open_offset = 0.0;
-        doors[i].is_closing = 0;
-        doors[i].is_open = 0;
-    }
+	else
+	{
+		doors[i].open_offset = 0.0;
+		doors[i].is_closing = 0;
+		doors[i].is_open = 0;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 16:35:00 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/01 19:27:02 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 19:33:50 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	init_doors(t_data *data)
 		x = -1;
 		while (data->map[y][++x])
 			if (data->map[y][x] == 'D')
-				init_door(data,door_index++,x,y);
+				init_door(data, door_index++, x, y);
 	}
 }
 
@@ -115,13 +115,13 @@ void	update_doors(t_data *data, double delta_time)
 		{
 			data->doors[i].open_offset += DOOR_OPEN_SPEED * delta_time;
 			if (data->doors[i].open_offset >= 1.0)
-				set_door_status(data->doors, 1,i);
+				set_door_status(data->doors, 1, i);
 		}
 		else if (data->doors[i].is_closing)
 		{
 			data->doors[i].open_offset -= DOOR_OPEN_SPEED * delta_time;
 			if (data->doors[i].open_offset <= 0.0)
-				set_door_status(data->doors, 0,i);
+				set_door_status(data->doors, 0, i);
 		}
 		i++;
 	}
