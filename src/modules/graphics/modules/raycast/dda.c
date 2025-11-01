@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 17:41:42 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/01 16:44:37 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 17:05:40 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	determine_texture(t_ray *ray)
 {
 	if (ray->hit == 2)
-    {
-        ray->texture_num = 4;
-        return ;
-    }
+	{
+		ray->texture_num = 4;
+		return ;
+	}
 	if (ray->side == 0)
 	{
 		if (ray->ray_dir_x > 0)
@@ -37,6 +37,8 @@ void	determine_texture(t_ray *ray)
 
 void	perform_dda(t_data *data, t_ray *ray)
 {
+	t_door	*door;
+
 	ray->hit = 0;
 	while (ray->hit == 0)
 	{
@@ -55,7 +57,11 @@ void	perform_dda(t_data *data, t_ray *ray)
 		if (data->map[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
 		else if (data->map[ray->map_y][ray->map_x] == 'D')
-            ray->hit = 2;
+		{
+			door = get_door_at_position(data, ray->map_x, ray->map_y);
+			if (!door || door->open_offset < 0.99)
+				ray->hit = 2;
+		}
 	}
 	if (ray->side == 0)
 		ray->perp_wall_dist = (ray->map_x - data->player_x + (1 - ray->step_x)
