@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 16:53:00 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/01 16:53:51 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 17:10:48 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,17 @@ int	load_animated_texture(t_data *data, t_animated_texture *anim_tex,
 
 void	update_door_animation(t_data *data, double delta_time)
 {
-    if (data->animated_door_texture.frame_count > 1)
-    {
-        data->animated_door_texture.animation_timer += delta_time;
-        if (data->animated_door_texture.animation_timer
-            >= data->animated_door_texture.animation_speed)
-        {
-            data->animated_door_texture.current_frame++;
-            if (data->animated_door_texture.current_frame
-                >= data->animated_door_texture.frame_count)
-                data->animated_door_texture.current_frame = 0;
-            data->animated_door_texture.animation_timer = 0.0;
-        }
-    }
+	if (data->animated_door_texture.frame_count > 1)
+	{
+		data->animated_door_texture.animation_timer += delta_time;
+		if (data->animated_door_texture.animation_timer >= data->animated_door_texture.animation_speed)
+		{
+			data->animated_door_texture.current_frame++;
+			if (data->animated_door_texture.current_frame >= data->animated_door_texture.frame_count)
+				data->animated_door_texture.current_frame = 0;
+			data->animated_door_texture.animation_timer = 0.0;
+		}
+	}
 }
 
 void	update_texture_animations(t_data *data, double delta_time)
@@ -89,18 +87,6 @@ void	update_texture_animations(t_data *data, double delta_time)
 	}
 	update_door_animation(data, delta_time);
 }
-
-// t_texture	*get_current_texture_frame(t_data *data, int texture_num)
-// {
-// 	t_animated_texture	*anim_tex;
-
-// 	if (texture_num < 0 || texture_num > 3)
-// 		return (NULL);
-// 	anim_tex = &data->animated_textures[texture_num];
-// 	if (anim_tex->frame_count == 0)
-// 		return (NULL);
-// 	return (&anim_tex->frames[anim_tex->current_frame]);
-// }
 
 int	load_textures(t_data *data)
 {
@@ -129,21 +115,23 @@ int	load_textures(t_data *data)
 		return (0);
 	}
 	if (data->door_textures && data->door_texture_count > 0)
-    {
-        printf("DEBUG: Attempting to load %d door texture(s)\n", data->door_texture_count);
-        printf("DEBUG: First door texture path: '%s'\n", data->door_textures[0]);
-        
-        if (!load_animated_texture(data, &data->animated_door_texture,
-                data->door_textures, data->door_texture_count))
-        {
-            printf("Error: Failed to load door textures\n");
-            return (0);
-        }
-        printf("DEBUG: Door textures loaded successfully!\n");
-    }
+	{
+		printf("DEBUG: Attempting to load %d door texture(s)\n",
+			data->door_texture_count);
+		printf("DEBUG: First door texture path: '%s'\n",
+			data->door_textures[0]);
+		if (!load_animated_texture(data, &data->animated_door_texture,
+				data->door_textures, data->door_texture_count))
+		{
+			printf("Error: Failed to load door textures\n");
+			return (0);
+		}
+		printf("DEBUG: Door textures loaded successfully!\n");
+	}
 	else
-    {
-        printf("DEBUG: No door textures to load (count: %d)\n", data->door_texture_count);
-    }
-    return (1);
+	{
+		printf("DEBUG: No door textures to load (count: %d)\n",
+			data->door_texture_count);
+	}
+	return (1);
 }
