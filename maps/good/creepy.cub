@@ -2,6 +2,8 @@ NO textures/simonkraft/respawn_anchor_side0.xpm
 EA textures/simonkraft/respawn_anchor_side2.xpm
 SO textures/simonkraft/respawn_anchor_side4.xpm
 WE textures/simonkraft/respawn_anchor_side3.xpm
+DO textures/door/door_open.xpm
+
 
 C 35,19,73
 F 15,6,40
@@ -12,7 +14,7 @@ F 15,6,40
 1111000N0001111
 111000000000111
 110000000000011
-100001111100001
+10000111111D111
 110000111000011
 111000010000111
 111100000001111
