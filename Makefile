@@ -50,6 +50,7 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/graphics/modules/minimap/light.c \
       $(SRC_DIR)modules/graphics/modules/minimap/helper.c \
       $(SRC_DIR)modules/graphics/modules/door/door.c \
+      $(SRC_DIR)modules/graphics/modules/door/utils.c \
  \
       $(SRC_DIR)modules/events/keyboard.c \
       $(SRC_DIR)modules/events/mouse.c \

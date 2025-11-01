@@ -6,25 +6,11 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:52:33 by letto             #+#    #+#             */
-/*   Updated: 2025/11/01 16:21:34 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 19:13:14 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-char	get_map_char_safe(char **map_lines, int x, int y, int map_height)
-{
-	int	line_len;
-
-	if (y < 0 || y >= map_height || x < 0)
-		return ('1');
-	line_len = ft_strlen(map_lines[y]);
-	if (map_lines[y][line_len - 1] == '\n')
-		line_len--;
-	if (x >= line_len)
-		return ('1');
-	return (map_lines[y][x]);
-}
 
 static int	is_valid_walkable_char(char c)
 {
@@ -36,7 +22,7 @@ static int	is_blocking_char(char c)
 	return (c == '1' || c == 'D');
 }
 
-void	flood_fill_recursive(t_flood_context *ctx, int x, int y)
+void	flood_fill(t_flood_context *ctx, int x, int y)
 {
 	char	current;
 
@@ -52,10 +38,10 @@ void	flood_fill_recursive(t_flood_context *ctx, int x, int y)
 		return ;
 	ctx->visited[y][x] = 1;
 	check_boundary_conditions(ctx, x, y);
-	flood_fill_recursive(ctx, x + 1, y);
-	flood_fill_recursive(ctx, x - 1, y);
-	flood_fill_recursive(ctx, x, y + 1);
-	flood_fill_recursive(ctx, x, y - 1);
+	flood_fill(ctx, x + 1, y);
+	flood_fill(ctx, x - 1, y);
+	flood_fill(ctx, x, y + 1);
+	flood_fill(ctx, x, y - 1);
 }
 
 int	**allocate_visited_array(int map_width, int map_height, t_data *data,

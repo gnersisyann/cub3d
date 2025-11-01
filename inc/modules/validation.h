@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:11:07 by letto             #+#    #+#             */
-/*   Updated: 2025/10/18 15:03:50 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 19:13:13 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int		validate_texture_path(char *path);
 int		validate_color_component(char *component);
 int		validate_color_line(char *line);
 int		validate_all_configs(t_data *data);
+void	validate_door_texture_consistency(t_data *data, t_file_content *content);
 
 /* config_parsers.c */
 void	parse_texture_line(char *line, char **texture_path, t_data *data,
@@ -78,8 +79,8 @@ void	find_player_position(char **map_lines, int *player_count, int *player_x,
 			int *player_y);
 int		get_map_width(char **map_lines);
 int		get_map_height(char **map_lines);
+int		map_has_doors(char **map_lines);
 
-/* map_validators.c */
 /* map_validators.c */
 void	validate_player_count(char **map_lines, t_data *data,
 			t_file_content *content);
@@ -93,7 +94,7 @@ char	**ft_duplicate_map(char **map_lines, int height);
 char	get_map_char_safe(char **map_lines, int x, int y, int map_height);
 void	validate_map_closure(char **map_lines, t_data *data,
 			t_file_content *content);
-void	flood_fill_recursive(t_flood_context *ctx, int x, int y);
+void	flood_fill(t_flood_context *ctx, int x, int y);
 void	init_flood_context(t_flood_context *ctx, char **map_lines, t_data *data,
 			t_file_content *content);
 int		**allocate_visited_array(int map_width, int map_height, t_data *data,

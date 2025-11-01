@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:31:44 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/01 16:30:15 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 19:18:11 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,24 +70,24 @@ static void	cleanup_west_east_textures(t_data *data)
 
 static void	cleanup_door_textures(t_data *data)
 {
-    int	i;
+	int	i;
 
-    if (data->door_textures)
-    {
-        i = -1;
-        while (++i < data->door_texture_count)
-        {
-            if (data->door_textures[i])
-                free(data->door_textures[i]);
-        }
-        free(data->door_textures);
-        data->door_textures = NULL;
-    }
-    if (data->doors)
-    {
-        free(data->doors);
-        data->doors = NULL;
-    }
+	if (data->door_textures)
+	{
+		i = -1;
+		while (++i < data->door_texture_count)
+		{
+			if (data->door_textures[i])
+				free(data->door_textures[i]);
+		}
+		free(data->door_textures);
+		data->door_textures = NULL;
+	}
+	if (data->doors)
+	{
+		free(data->doors);
+		data->doors = NULL;
+	}
 }
 
 void	cleanup_texture_arrays(t_data *data)

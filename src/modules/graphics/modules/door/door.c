@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 16:35:00 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/01 17:10:40 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 19:27:02 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,8 @@ void	init_doors(t_data *data)
 	{
 		x = -1;
 		while (data->map[y][++x])
-		{
 			if (data->map[y][x] == 'D')
-			{
-				data->doors[door_index].map_x = x;
-				data->doors[door_index].map_y = y;
-				data->doors[door_index].open_offset = 0.0;
-				data->doors[door_index].is_opening = 0;
-				data->doors[door_index].is_closing = 0;
-				data->doors[door_index].is_open = 0;
-				door_index++;
-			}
-		}
+				init_door(data,door_index++,x,y);
 	}
 }
 
@@ -125,21 +115,13 @@ void	update_doors(t_data *data, double delta_time)
 		{
 			data->doors[i].open_offset += DOOR_OPEN_SPEED * delta_time;
 			if (data->doors[i].open_offset >= 1.0)
-			{
-				data->doors[i].open_offset = 1.0;
-				data->doors[i].is_opening = 0;
-				data->doors[i].is_open = 1;
-			}
+				set_door_status(data->doors, 1,i);
 		}
 		else if (data->doors[i].is_closing)
 		{
 			data->doors[i].open_offset -= DOOR_OPEN_SPEED * delta_time;
 			if (data->doors[i].open_offset <= 0.0)
-			{
-				data->doors[i].open_offset = 0.0;
-				data->doors[i].is_closing = 0;
-				data->doors[i].is_open = 0;
-			}
+				set_door_status(data->doors, 0,i);
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:11:57 by letto             #+#    #+#             */
-/*   Updated: 2025/11/01 16:34:05 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 18:50:51 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_game_loop(t_data *data)
 {
 	handle_movement(data);
 	check_door_proximity(data);
-    update_doors(data, 0.016);
+	update_doors(data, 0.016);
 	ft_render_next_frame(data);
 	return (0);
 }

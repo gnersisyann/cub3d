@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:10:57 by letto             #+#    #+#             */
-/*   Updated: 2025/11/01 16:46:48 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 19:27:57 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define GRAPHICS_H
 
 # include "../structs.h"
+# include "stdbool.h"
 
 // Render functions
 int			ft_render_next_frame(t_data *data);
@@ -72,6 +73,8 @@ void		init_doors(t_data *data);
 t_door		*get_door_at_position(t_data *data, int map_x, int map_y);
 void		check_door_proximity(t_data *data);
 void		update_doors(t_data *data, double delta_time);
+void		init_door(t_data *data, int door_index, int x, int y);
+void 		set_door_status(t_door *doors, bool is_open, int i);
 
 // Render
 void		render_wall_column(t_data *data, t_ray *ray, int x);

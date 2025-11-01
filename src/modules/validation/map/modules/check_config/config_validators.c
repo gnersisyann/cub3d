@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_validators.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:28:31 by letto             #+#    #+#             */
-/*   Updated: 2025/09/14 19:28:31 by letto            ###   ########.fr       */
+/*   Updated: 2025/11/01 19:17:31 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,24 @@ int	validate_color_line(char *line)
 		&& validate_color_component(components[2]);
 	ft_free_array(components);
 	return (result);
+}
+
+void	validate_door_texture_consistency(t_data *data, t_file_content *content)
+{
+	int	has_doors_on_map;
+	int	has_door_texture;
+
+	has_doors_on_map = map_has_doors(content->map_lines);
+	has_door_texture = (data->door_textures != NULL
+			&& data->door_texture_count > 0);
+	if (has_doors_on_map && !has_door_texture)
+		ft_error_exit_with_cleanup("Map contains doors (D)\
+ but no door texture (DO) is defined",
+			EXIT_FAILURE, data, content);
+	if (!has_doors_on_map && has_door_texture)
+		ft_error_exit_with_cleanup("Door texture (DO) is d\
+efined but no doors (D) found on map",
+			EXIT_FAILURE, data, content);
 }
 
 int	validate_all_configs(t_data *data)

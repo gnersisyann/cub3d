@@ -6,11 +6,25 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 18:06:58 by ganersis          #+#    #+#             */
-/*   Updated: 2025/09/27 18:06:58 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 19:13:13 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+char	get_map_char_safe(char **map_lines, int x, int y, int map_height)
+{
+	int	line_len;
+
+	if (y < 0 || y >= map_height || x < 0)
+		return ('1');
+	line_len = ft_strlen(map_lines[y]);
+	if (map_lines[y][line_len - 1] == '\n')
+		line_len--;
+	if (x >= line_len)
+		return ('1');
+	return (map_lines[y][x]);
+}
 
 void	check_boundary_conditions(t_flood_context *ctx, int x, int y)
 {
@@ -54,6 +68,6 @@ void	init_flood_context(t_flood_context *ctx, char **map_lines, t_data *data,
 	find_player_position(map_lines, &player_count, &player_x, &player_y);
 	ctx->visited = allocate_visited_array(ctx->map_width, ctx->map_height, data,
 			content);
-	flood_fill_recursive(ctx, player_x, player_y);
+	flood_fill(ctx, player_x, player_y);
 	cleanup_visited_array(ctx->visited, ctx->map_height);
 }
