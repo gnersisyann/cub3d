@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:43:23 by letto             #+#    #+#             */
-/*   Updated: 2025/11/01 16:16:21 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:24:49 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	is_config_identifier(char *line)
 		if ((line[i] == 'N' && line[i + 1] == 'O' && line[i + 2] == ' ')
 			|| (line[i] == 'S' && line[i + 1] == 'O' && line[i + 2] == ' ')
 			|| (line[i] == 'W' && line[i + 1] == 'E' && line[i + 2] == ' ')
-			|| (line[i] == 'E' && line[i + 1] == 'A' && line[i + 2] == ' '))
+			|| (line[i] == 'E' && line[i + 1] == 'A' && line[i + 2] == ' ')
+			|| (line[i] == 'D' && line[i + 1] == 'O' && line[i + 2] == ' '))
 			return (1);
 	}
 	if ((line[i] == 'F' || line[i] == 'C') && line[i + 1] == ' ')
