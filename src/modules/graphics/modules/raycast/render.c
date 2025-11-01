@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 17:41:36 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/01 17:07:44 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 17:09:23 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ void	render_door_column_layered(t_data *data, t_ray *ray, int x)
     double		step;
     t_ray		background_ray;
 
-    // Сначала пытаемся отрисовать фон (стену за дверью)
     door = get_door_at_position(data, ray->map_x, ray->map_y);
     calculate_texture_coords(data, ray, &tex_x, &step);
     
@@ -159,6 +158,10 @@ void	render_door_column_layered(t_data *data, t_ray *ray, int x)
         background_ray.draw_end = background_ray.line_height / 2 + HEIGHT / 2;
         if (background_ray.draw_end >= HEIGHT)
             background_ray.draw_end = HEIGHT - 1;
+        
+        // ✅ ДОБАВЛЕНО: рендерим пол и потолок для фоновой стены
+        render_floor_ceiling(data, x, background_ray.draw_end);
+        // ✅ КОНЕЦ ДОБАВЛЕНИЯ
         
         render_textured_wall(data, &background_ray, x);
     }
