@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 16:53:00 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/01 17:10:48 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 17:15:59 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,22 +116,13 @@ int	load_textures(t_data *data)
 	}
 	if (data->door_textures && data->door_texture_count > 0)
 	{
-		printf("DEBUG: Attempting to load %d door texture(s)\n",
-			data->door_texture_count);
-		printf("DEBUG: First door texture path: '%s'\n",
-			data->door_textures[0]);
+
 		if (!load_animated_texture(data, &data->animated_door_texture,
 				data->door_textures, data->door_texture_count))
 		{
 			printf("Error: Failed to load door textures\n");
 			return (0);
 		}
-		printf("DEBUG: Door textures loaded successfully!\n");
-	}
-	else
-	{
-		printf("DEBUG: No door textures to load (count: %d)\n",
-			data->door_texture_count);
 	}
 	return (1);
 }
