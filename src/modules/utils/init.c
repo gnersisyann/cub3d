@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:21:45 by letto             #+#    #+#             */
-/*   Updated: 2025/09/14 19:21:45 by letto            ###   ########.fr       */
+/*   Updated: 2025/11/01 16:33:54 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ static void	ft_init_data_helper(t_data *data)
 	data->dir_y = 0.0;
 	data->plane_x = 0.0;
 	data->plane_y = 0.0;
+	data->door_textures = NULL;
+    data->door_texture_count = 0;
+    data->doors = NULL;
+    data->door_count = 0;
 }
 
 static void	ft_init_data(t_data *data)

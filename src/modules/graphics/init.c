@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:12:12 by letto             #+#    #+#             */
-/*   Updated: 2025/10/04 17:53:01 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:35:20 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	ft_init_graphics(t_data *data)
 		ft_error_exit("Failed to load textures", EXIT_FAILURE);
 	init_mouse(data);
 	init_player_position(data);
+	init_doors(data);
 	init_minimap(data);
 	setup_hooks(data);
 }

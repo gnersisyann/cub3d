@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:11:12 by letto             #+#    #+#             */
-/*   Updated: 2025/10/18 14:33:39 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:33:18 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # define ROT_SPEED 0.04
 
 # define MOUSE_SENSITIVITY 0.0001
+
+# define DOOR_OPEN_DISTANCE 2.0
+# define DOOR_OPEN_SPEED 3.0
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846

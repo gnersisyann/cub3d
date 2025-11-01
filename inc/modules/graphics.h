@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:10:57 by letto             #+#    #+#             */
-/*   Updated: 2025/11/01 16:30:42 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:33:33 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,12 @@ int			get_texture_pixel(t_texture *texture, int x, int y);
 void		calculate_texture_coords(t_data *data, t_ray *ray, int *tex_x,
 				double *step);
 void		draw_texture_column(t_data *data, t_ray *ray, int x, int tex_x);
+
+// door
+void		init_doors(t_data *data);
+t_door		*get_door_at_position(t_data *data, int map_x, int map_y);
+void		check_door_proximity(t_data *data);
+void		update_doors(t_data *data, double delta_time);
 
 // Render
 void		render_wall_column(t_data *data, t_ray *ray, int x);
