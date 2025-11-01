@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:43:23 by letto             #+#    #+#             */
-/*   Updated: 2025/09/27 17:43:47 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:16:21 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	is_map_character(char c)
 {
 	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
-		|| c == ' ' || c == '\t' || c == '\n');
+		|| c == ' ' || c == '\t' || c == '\n' || c == 'D');
 }
 
 int	is_config_identifier(char *line)

@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:52:33 by letto             #+#    #+#             */
-/*   Updated: 2025/09/27 18:04:52 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:21:34 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ char	get_map_char_safe(char **map_lines, int x, int y, int map_height)
 	return (map_lines[y][x]);
 }
 
+static int	is_valid_walkable_char(char c)
+{
+	return (c == '0' || is_player_character(c));
+}
+
+static int	is_blocking_char(char c)
+{
+	return (c == '1' || c == 'D');
+}
+
 void	flood_fill_recursive(t_flood_context *ctx, int x, int y)
 {
 	char	current;
@@ -36,9 +46,9 @@ void	flood_fill_recursive(t_flood_context *ctx, int x, int y)
 	if (ctx->visited[y][x])
 		return ;
 	current = get_map_char_safe(ctx->map_lines, x, y, ctx->map_height);
-	if (current == '1')
+	if (is_blocking_char(current))
 		return ;
-	if (current != '0' && !is_player_character(current))
+	if (!is_valid_walkable_char(current))
 		return ;
 	ctx->visited[y][x] = 1;
 	check_boundary_conditions(ctx, x, y);
@@ -48,8 +58,8 @@ void	flood_fill_recursive(t_flood_context *ctx, int x, int y)
 	flood_fill_recursive(ctx, x, y - 1);
 }
 
-int	**allocate_visited_array(int map_width, int map_height,
-		t_data *data, t_file_content *content)
+int	**allocate_visited_array(int map_width, int map_height, t_data *data,
+		t_file_content *content)
 {
 	int	**visited;
 	int	i;
