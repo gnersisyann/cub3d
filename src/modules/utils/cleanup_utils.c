@@ -75,4 +75,5 @@ void	cleanup_wall_animations(t_data *data)
 		i++;
 	}
 	destroy_frame_images(data, &data->animated_door_texture);
+	destroy_frame_images(data, &data->animated_lamp_texture);
 }

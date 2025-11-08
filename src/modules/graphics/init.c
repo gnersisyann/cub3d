@@ -27,6 +27,7 @@ int	ft_init_mlx(t_data *data)
 	{
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
+		data->mlx = NULL;
 		return (0);
 	}
 	return (1);

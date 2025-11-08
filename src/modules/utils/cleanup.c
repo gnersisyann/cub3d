@@ -42,5 +42,17 @@ void	ft_cleanup_data_partial(t_data *data)
 		return ;
 	cleanup_texture_arrays(data);
 	cleanup_sprites(data);
+	cleanup_buffers(data);
 	cleanup_map(data);
+	if (data->mlx)
+	{
+		if (data->win)
+		{
+			mlx_destroy_window(data->mlx, data->win);
+			data->win = NULL;
+		}
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+		data->mlx = NULL;
+	}
 }

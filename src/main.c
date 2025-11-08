@@ -17,6 +17,8 @@ int	main(int argc, char **argv)
 	t_data			data;
 	t_file_content	content;
 
+	ft_memset(&data, 0, sizeof(t_data));
+	ft_memset(&content, 0, sizeof(t_file_content));
 	init_structures(&content, &data);
 	ft_validate(argc, argv, &data, &content);
 	ft_init_graphics(&data);

@@ -19,6 +19,9 @@ void	set_null(t_data *data)
 	data->mlx = NULL;
 	data->win = NULL;
 	data->img = NULL;
+	data->z_buffer = NULL;
+	data->sprites = NULL;
+	data->sprite_count = 0;
 	data->north_textures = NULL;
 	data->south_textures = NULL;
 	data->west_textures = NULL;

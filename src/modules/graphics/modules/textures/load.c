@@ -32,6 +32,14 @@ int	load_animated_texture(t_data *data, t_animated_texture *anim_tex,
 		if (!load_single_texture(data, &anim_tex->frames[i], texture_paths[i]))
 		{
 			printf("Error: Failed to load texture: %s\n", texture_paths[i]);
+			while (--i >= 0)
+			{
+				if (anim_tex->frames[i].img)
+					mlx_destroy_image(data->mlx, anim_tex->frames[i].img);
+			}
+			free(anim_tex->frames);
+			anim_tex->frames = NULL;
+			anim_tex->frame_count = 0;
 			return (0);
 		}
 	}
