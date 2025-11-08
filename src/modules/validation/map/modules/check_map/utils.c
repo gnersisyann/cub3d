@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 18:06:58 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/01 19:13:13 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 19:41:49 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,14 @@ void	check_boundary_conditions(t_flood_context *ctx, int x, int y)
 			EXIT_FAILURE, ctx->data, ctx->content);
 	current = get_map_char_safe(ctx->map_lines, x, y, ctx->map_height);
 	if (x == 0 || y == 0 || x >= ctx->map_width - 1 || y >= ctx->map_height - 1)
-		if (current == '0' || is_player_character(current))
+	{
+		if (current == '0' || is_player_character(current) || current == 'L')
 			ft_error_exit_with_cleanup("Map is not closed by walls",
 				EXIT_FAILURE, ctx->data, ctx->content);
+		if (current == 'D')
+			ft_error_exit_with_cleanup("Door on map boundary - map not closed",
+				EXIT_FAILURE, ctx->data, ctx->content);
+	}
 }
 
 void	cleanup_visited_array(int **visited, int map_height)

@@ -6,20 +6,24 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:52:33 by letto             #+#    #+#             */
-/*   Updated: 2025/11/01 19:13:14 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 19:51:07 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	is_valid_walkable_char(char c)
+static void	check_boundary_for_doors(t_flood_context *ctx, int x, int y,
+		char current)
 {
-	return (c == '0' || is_player_character(c));
-}
-
-static int	is_blocking_char(char c)
-{
-	return (c == '1' || c == 'D');
+	if (is_on_boundary(ctx, x, y))
+	{
+		if (current == 'D')
+			ft_error_exit_with_cleanup("Door on map boundary - map not closed",
+				EXIT_FAILURE, ctx->data, ctx->content);
+		if (current == '0' || is_player_character(current) || current == 'L')
+			ft_error_exit_with_cleanup("Map is not closed by walls",
+				EXIT_FAILURE, ctx->data, ctx->content);
+	}
 }
 
 void	flood_fill(t_flood_context *ctx, int x, int y)
@@ -34,10 +38,15 @@ void	flood_fill(t_flood_context *ctx, int x, int y)
 	current = get_map_char_safe(ctx->map_lines, x, y, ctx->map_height);
 	if (is_blocking_char(current))
 		return ;
+	if (current == 'D')
+	{
+		check_boundary_for_doors(ctx, x, y, current);
+		return ;
+	}
 	if (!is_valid_walkable_char(current))
 		return ;
+	check_boundary_for_doors(ctx, x, y, current);
 	ctx->visited[y][x] = 1;
-	check_boundary_conditions(ctx, x, y);
 	flood_fill(ctx, x + 1, y);
 	flood_fill(ctx, x - 1, y);
 	flood_fill(ctx, x, y + 1);

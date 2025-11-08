@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:11:07 by letto             #+#    #+#             */
-/*   Updated: 2025/11/08 18:47:36 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 19:52:42 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,8 @@ int		validate_color_line(char *line);
 int		validate_all_configs(t_data *data);
 void	validate_door_texture_consistency(t_data *data,\
 	t_file_content *content);
-void	validate_lamp_texture_consistency(t_data *data, \
+void	validate_lamp_texture_consistency(t_data *data,\
 	t_file_content *content);
-
 
 /* config_parsers.c */
 void	parse_texture_line(char *line, char **texture_path, t_data *data,
@@ -95,9 +94,10 @@ void	validate_map_characters(char **map_lines, t_data *data,
 void	validate_map_size(char **map_lines, t_data *data,
 			t_file_content *content);
 char	**ft_duplicate_map(char **map_lines, int height);
+void	validate_all_doors(char **map, t_data *data, t_file_content *content);
 
 /* sprite_parser.c */
-void		parse_sprites_from_map(t_data *data, t_file_content *content);
+void	parse_sprites_from_map(t_data *data, t_file_content *content);
 
 /* flood_fill.c */
 char	get_map_char_safe(char **map_lines, int x, int y, int map_height);
@@ -108,6 +108,9 @@ void	init_flood_context(t_flood_context *ctx, char **map_lines, t_data *data,
 			t_file_content *content);
 int		**allocate_visited_array(int map_width, int map_height, t_data *data,
 			t_file_content *content);
+int		is_on_boundary(t_flood_context *ctx, int x, int y);
+int		is_blocking_char(char c);
+int		is_valid_walkable_char(char c);
 
 /* utils */
 int		count_config_lines(char **lines, int map_start_index);
