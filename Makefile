@@ -38,17 +38,25 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/graphics/modules/player/player_init.c \
       $(SRC_DIR)modules/graphics/modules/player/movement.c \
       $(SRC_DIR)modules/graphics/modules/player/rotation.c \
-      $(SRC_DIR)modules/graphics/modules/raycast/raycast.c \
-      $(SRC_DIR)modules/graphics/modules/raycast/ray_init.c \
-      $(SRC_DIR)modules/graphics/modules/raycast/dda.c \
-      $(SRC_DIR)modules/graphics/modules/raycast/render.c \
+      $(SRC_DIR)modules/graphics/modules/render/raycast.c \
+      $(SRC_DIR)modules/graphics/modules/render/ray_init.c \
+      $(SRC_DIR)modules/graphics/modules/render/dda.c \
+      $(SRC_DIR)modules/graphics/modules/render/render.c \
+      $(SRC_DIR)modules/graphics/modules/render/render_door.c \
+      $(SRC_DIR)modules/graphics/modules/render/render_door_layer.c \
+      $(SRC_DIR)modules/graphics/modules/render/render_texture.c \
+      $(SRC_DIR)modules/graphics/modules/render/sprite_render.c \
+      $(SRC_DIR)modules/graphics/modules/render/sprite_render_utils.c \
       $(SRC_DIR)modules/graphics/modules/utils/utils.c \
       $(SRC_DIR)modules/graphics/modules/textures/get.c \
       $(SRC_DIR)modules/graphics/modules/textures/load.c \
+      $(SRC_DIR)modules/graphics/modules/textures/utils.c \
       $(SRC_DIR)modules/graphics/modules/minimap/minimap.c \
       $(SRC_DIR)modules/graphics/modules/minimap/miniutils.c \
       $(SRC_DIR)modules/graphics/modules/minimap/light.c \
       $(SRC_DIR)modules/graphics/modules/minimap/helper.c \
+      $(SRC_DIR)modules/graphics/modules/door/door.c \
+      $(SRC_DIR)modules/graphics/modules/door/utils.c \
  \
       $(SRC_DIR)modules/events/keyboard.c \
       $(SRC_DIR)modules/events/mouse.c \
@@ -73,15 +81,23 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/check_map.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/map_utils.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/map_validators.c \
+      $(SRC_DIR)modules/validation/map/modules/check_map/sprite_parser.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/flood_fill.c \
+      $(SRC_DIR)modules/validation/map/modules/check_map/flood_fill_utils.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/utils.c \
+      $(SRC_DIR)modules/validation/map/modules/check_map/door_validator.c \
       $(SRC_DIR)modules/utils/cleanup.c \
+      $(SRC_DIR)modules/utils/cleanup_utils.c \
+      $(SRC_DIR)modules/utils/cleanup_mlx.c \
       $(SRC_DIR)modules/utils/cleanup_textures.c \
       $(SRC_DIR)modules/utils/init.c \
+      $(SRC_DIR)modules/utils/init_utils.c \
       $(SRC_DIR)modules/validation/map/modules/check_config/check_config.c \
       $(SRC_DIR)modules/validation/map/modules/check_config/config_validators.c \
       $(SRC_DIR)modules/validation/map/modules/check_config/config_parsers.c \
       $(SRC_DIR)modules/validation/map/modules/check_config/animated_texture_parser.c \
+      $(SRC_DIR)modules/validation/map/modules/check_config/config_utils.c \
+      $(SRC_DIR)modules/validation/map/modules/check_config/utils.c \
       $(SRC_DIR)modules/mlx/mlx.c \
 
 OBJ_DIR = obj

@@ -1,0 +1,26 @@
+NO textures/simonkraft/respawn_anchor_side0.xpm
+EA textures/simonkraft/respawn_anchor_side2.xpm
+SO textures/simonkraft/respawn_anchor_side4.xpm
+WE textures/simonkraft/respawn_anchor_side3.xpm
+DO textures/door/door_open.xpm
+LA textures/lamp/lamp1.xpm textures/lamp/lamp2.xpm textures/lamp/lamp3.xpm textures/lamp/lamp4.xpm textures/lamp/lamp5.xpm
+
+F 30,20,10
+C 10,10,30
+
+1111111111111111111
+1000000000000000001
+1011111111111111101
+1010000000000000101
+1010111111111110101
+1010100000000010101
+1010101111111010101
+1010101L00001010101
+10101011D1111010101
+1010100000000010101
+101011111111D110101
+1010000000000000101
+11111111D1111111101
+10000000000000000011111111
+10000000N000000000       1
+11111111111111111111111111

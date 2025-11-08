@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 17:41:36 by ganersis          #+#    #+#             */
-/*   Updated: 2025/10/04 16:59:42 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:57:28 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,39 +45,16 @@ void	calculate_texture_coords(t_data *data, t_ray *ray, int *tex_x,
 	*step = 1.0 * texture->height / ray->line_height;
 }
 
-void	draw_texture_column(t_data *data, t_ray *ray, int x, int tex_x)
-{
-	double		step;
-	double		tex_pos;
-	int			y;
-	int			color;
-	t_texture	*texture;
-
-	texture = get_current_texture_frame(data, ray->texture_num);
-	if (!texture)
-		return ;
-	step = 1.0 * texture->height / ray->line_height;
-	tex_pos = (ray->draw_start - HEIGHT / 2.0 + ray->line_height / 2.0) * step;
-	y = ray->draw_start;
-	while (y < ray->draw_end)
-	{
-		color = get_texture_pixel(texture, tex_x,
-				(int)tex_pos & (texture->height - 1));
-		if (ray->side == 1)
-			color = (color >> 1) & 0x7F7F7F;
-		my_mlx_pixel_put(data, x, y, color);
-		tex_pos += step;
-		y++;
-	}
-}
-
 void	render_textured_wall(t_data *data, t_ray *ray, int x)
 {
 	int		tex_x;
 	double	step;
 
 	calculate_texture_coords(data, ray, &tex_x, &step);
-	draw_texture_column(data, ray, x, tex_x);
+	if (ray->texture_num == 4)
+		draw_door_column(data, ray, x, tex_x);
+	else
+		draw_texture_column(data, ray, x, tex_x);
 }
 
 void	render_wall_column(t_data *data, t_ray *ray, int x)
@@ -90,5 +67,8 @@ void	render_wall_column(t_data *data, t_ray *ray, int x)
 	if (ray->draw_end >= HEIGHT)
 		ray->draw_end = HEIGHT - 1;
 	render_floor_ceiling(data, x, ray->draw_end);
-	render_textured_wall(data, ray, x);
+	if (ray->hit == 2)
+		render_door_column_layered(data, ray, x);
+	else
+		render_textured_wall(data, ray, x);
 }

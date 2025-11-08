@@ -6,24 +6,11 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 16:53:00 by ganersis          #+#    #+#             */
-/*   Updated: 2025/10/04 16:53:01 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:31:26 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	load_single_texture(t_data *data, t_texture *texture, char *path)
-{
-	texture->img = mlx_xpm_file_to_image(data->mlx, path, &texture->width,
-			&texture->height);
-	if (!texture->img)
-		return (0);
-	texture->addr = mlx_get_data_addr(texture->img, &texture->bits_per_pixel,
-			&texture->line_length, &texture->endian);
-	if (!texture->addr)
-		return (0);
-	return (1);
-}
 
 int	load_animated_texture(t_data *data, t_animated_texture *anim_tex,
 		char **texture_paths, int texture_count)
@@ -51,6 +38,37 @@ int	load_animated_texture(t_data *data, t_animated_texture *anim_tex,
 	return (1);
 }
 
+void	update_door_animation(t_data *data, double delta_time)
+{
+	if (data->animated_door_texture.frame_count > 1)
+	{
+		data->animated_door_texture.animation_timer += delta_time;
+		if (data->animated_door_texture.animation_timer >= \
+data->animated_door_texture.animation_speed)
+		{
+			data->animated_door_texture.current_frame++;
+			if (data->animated_door_texture.current_frame >= \
+data->animated_door_texture.frame_count)
+				data->animated_door_texture.current_frame = 0;
+			data->animated_door_texture.animation_timer = 0.0;
+		}
+	}
+}
+
+void	update_lamp_animation(t_data *data, double delta_time)
+{
+	data->animated_lamp_texture.animation_timer += delta_time;
+	if (data->animated_lamp_texture.animation_timer >= \
+data->animated_lamp_texture.animation_speed)
+	{
+		data->animated_lamp_texture.animation_timer = 0.0;
+		data->animated_lamp_texture.current_frame++;
+		if (data->animated_lamp_texture.current_frame >= \
+data->animated_lamp_texture.frame_count)
+			data->animated_lamp_texture.current_frame = 0;
+	}
+}
+
 void	update_texture_animations(t_data *data, double delta_time)
 {
 	int	i;
@@ -61,56 +79,42 @@ void	update_texture_animations(t_data *data, double delta_time)
 		if (data->animated_textures[i].frame_count > 1)
 		{
 			data->animated_textures[i].animation_timer += delta_time;
-			if (data->animated_textures[i].animation_timer
-				>= data->animated_textures[i].animation_speed)
+			if (data->animated_textures[i].animation_timer >= \
+data->animated_textures[i].animation_speed)
 			{
 				data->animated_textures[i].current_frame++;
-				if (data->animated_textures[i].current_frame
-					>= data->animated_textures[i].frame_count)
+				if (data->animated_textures[i].current_frame >= \
+data->animated_textures[i].frame_count)
 					data->animated_textures[i].current_frame = 0;
 				data->animated_textures[i].animation_timer = 0.0;
 			}
 		}
 	}
-}
-
-t_texture	*get_current_texture_frame(t_data *data, int texture_num)
-{
-	t_animated_texture	*anim_tex;
-
-	if (texture_num < 0 || texture_num > 3)
-		return (NULL);
-	anim_tex = &data->animated_textures[texture_num];
-	if (anim_tex->frame_count == 0)
-		return (NULL);
-	return (&anim_tex->frames[anim_tex->current_frame]);
+	update_door_animation(data, delta_time);
+	update_lamp_animation(data, delta_time);
 }
 
 int	load_textures(t_data *data)
 {
 	if (!load_animated_texture(data, &data->animated_textures[0],
 			data->north_textures, data->north_texture_count))
-	{
-		printf("Error: Failed to load north textures\n");
-		return (0);
-	}
+		return (printf("Error: Failed to load north textures\n"), 0);
 	if (!load_animated_texture(data, &data->animated_textures[1],
 			data->south_textures, data->south_texture_count))
-	{
-		printf("Error: Failed to load south textures\n");
-		return (0);
-	}
+		return (printf("Error: Failed to load south textures\n"), 0);
 	if (!load_animated_texture(data, &data->animated_textures[2],
 			data->west_textures, data->west_texture_count))
-	{
-		printf("Error: Failed to load west textures\n");
-		return (0);
-	}
+		return (printf("Error: Failed to load west textures\n"), 0);
 	if (!load_animated_texture(data, &data->animated_textures[3],
 			data->east_textures, data->east_texture_count))
-	{
-		printf("Error: Failed to load east textures\n");
-		return (0);
-	}
+		return (printf("Error: Failed to load east textures\n"), 0);
+	if (data->door_textures && data->door_texture_count > 0)
+		if (!load_animated_texture(data, &data->animated_door_texture,
+				data->door_textures, data->door_texture_count))
+			return (printf("Error: Failed to load door textures\n"), 0);
+	if (data->lamp_textures && data->lamp_texture_count > 0)
+		if (!load_animated_texture(data, &data->animated_lamp_texture,
+				data->lamp_textures, data->lamp_texture_count))
+			return (printf("Error: Failed to load lamp textures\n"), 0);
 	return (1);
 }

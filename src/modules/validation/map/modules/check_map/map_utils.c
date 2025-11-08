@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:52:02 by letto             #+#    #+#             */
-/*   Updated: 2025/09/27 17:59:58 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/01 18:51:51 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,26 @@
 int	is_player_character(char c)
 {
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
+int	map_has_doors(char **map_lines)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map_lines[i])
+	{
+		j = 0;
+		while (map_lines[i][j])
+		{
+			if (map_lines[i][j] == 'D')
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
 
 void	find_player_position(char **map_lines, int *player_count, int *player_x,

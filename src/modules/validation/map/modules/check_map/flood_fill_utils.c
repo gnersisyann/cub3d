@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   flood_fill_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/14 19:11:26 by letto             #+#    #+#             */
-/*   Updated: 2025/11/08 18:04:39 by ganersis         ###   ########.fr       */
+/*   Created: 2025/11/08 19:48:24 by ganersis          #+#    #+#             */
+/*   Updated: 2025/11/08 19:48:33 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+int	is_valid_walkable_char(char c)
 {
-	t_data			data;
-	t_file_content	content;
+	return (c == '0' || is_player_character(c) || c == 'L');
+}
 
-	init_structures(&content, &data);
-	ft_validate(argc, argv, &data, &content);
-	ft_init_graphics(&data);
-	ft_mlx_loop(data.mlx);
-	ft_cleanup_data(&data);
-	ft_free_file_content(&content);
+int	is_blocking_char(char c)
+{
+	return (c == '1');
+}
+
+int	is_on_boundary(t_flood_context *ctx, int x, int y)
+{
+	return (x == 0 || y == 0 || x >= ctx->map_width - 1 || y >= ctx->map_height
+		- 1);
 }

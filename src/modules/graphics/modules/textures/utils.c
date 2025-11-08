@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/14 19:11:26 by letto             #+#    #+#             */
-/*   Updated: 2025/11/08 18:04:39 by ganersis         ###   ########.fr       */
+/*   Created: 2025/11/08 18:31:01 by ganersis          #+#    #+#             */
+/*   Updated: 2025/11/08 18:31:03 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+int	load_single_texture(t_data *data, t_texture *texture, char *path)
 {
-	t_data			data;
-	t_file_content	content;
-
-	init_structures(&content, &data);
-	ft_validate(argc, argv, &data, &content);
-	ft_init_graphics(&data);
-	ft_mlx_loop(data.mlx);
-	ft_cleanup_data(&data);
-	ft_free_file_content(&content);
+	texture->img = mlx_xpm_file_to_image(data->mlx, path, &texture->width,
+			&texture->height);
+	if (!texture->img)
+		return (0);
+	texture->addr = mlx_get_data_addr(texture->img, &texture->bits_per_pixel,
+			&texture->line_length, &texture->endian);
+	if (!texture->addr)
+		return (0);
+	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_config.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:28:49 by letto             #+#    #+#             */
-/*   Updated: 2025/09/14 19:29:24 by letto            ###   ########.fr       */
+/*   Updated: 2025/11/08 18:16:29 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,36 @@ static void	init_config_data(t_data *data)
 	data->east_texture_count = 0;
 	data->floor_color = -1;
 	data->ceiling_color = -1;
+	data->door_textures = NULL;
+	data->door_texture_count = 0;
+	data->doors = NULL;
+	data->door_count = 0;
+	data->lamp_textures = NULL;
+	data->lamp_texture_count = 0;
+	data->sprites = NULL;
+	data->sprite_count = 0;
+}
+
+static void	process_helper(char *trimmed_line, t_data *data,
+		t_file_content *content)
+{
+	t_texture_context	ctx;
+
+	ctx.data = data;
+	ctx.content = content;
+	if (ft_strncmp(trimmed_line, "F ", 2) == 0)
+		parse_color_line(trimmed_line, &data->floor_color, data, content);
+	else if (ft_strncmp(trimmed_line, "C ", 2) == 0)
+		parse_color_line(trimmed_line, &data->ceiling_color, data, content);
+	else if (ft_strncmp(trimmed_line, "DO ", 3) == 0)
+		parse_animated_texture_line(trimmed_line, &data->door_textures,
+			&data->door_texture_count, &ctx);
+	else if (ft_strncmp(trimmed_line, "LA ", 3) == 0)
+		parse_animated_texture_line(trimmed_line, &data->lamp_textures,
+			&data->lamp_texture_count, &ctx);
+	else
+		ft_error_exit_with_cleanup("Unknown configuration identifier",
+			EXIT_FAILURE, data, content);
 }
 
 static void	process_config_line(char *line, t_data *data,
@@ -47,13 +77,8 @@ static void	process_config_line(char *line, t_data *data,
 	else if (ft_strncmp(trimmed_line, "EA ", 3) == 0)
 		parse_animated_texture_line(trimmed_line, &data->east_textures,
 			&data->east_texture_count, &ctx);
-	else if (ft_strncmp(trimmed_line, "F ", 2) == 0)
-		parse_color_line(trimmed_line, &data->floor_color, data, content);
-	else if (ft_strncmp(trimmed_line, "C ", 2) == 0)
-		parse_color_line(trimmed_line, &data->ceiling_color, data, content);
 	else
-		ft_error_exit_with_cleanup("Unknown configuration identifier",
-			EXIT_FAILURE, data, content);
+		process_helper(trimmed_line, data, content);
 }
 
 static void	parse_all_config_lines(t_file_content *content, t_data *data)

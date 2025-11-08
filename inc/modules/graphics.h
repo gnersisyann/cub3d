@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:10:57 by letto             #+#    #+#             */
-/*   Updated: 2025/10/04 17:52:52 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 19:52:50 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define GRAPHICS_H
 
 # include "../structs.h"
+# include "stdbool.h"
 
 // Render functions
 int			ft_render_next_frame(t_data *data);
@@ -56,6 +57,8 @@ void		perform_dda(t_data *data, t_ray *ray);
 void		calculate_wall_distance(t_ray *ray, t_data *data);
 
 // Textures
+void		update_door_animation(t_data *data, double delta_time);
+void		update_lamp_animation(t_data *data, double delta_time);
 int			load_textures(t_data *data);
 int			load_animated_texture(t_data *data, t_animated_texture *anim_tex,
 				char **texture_paths, int texture_count);
@@ -66,11 +69,28 @@ void		calculate_texture_coords(t_data *data, t_ray *ray, int *tex_x,
 				double *step);
 void		draw_texture_column(t_data *data, t_ray *ray, int x, int tex_x);
 
+// door
+void		init_doors(t_data *data);
+t_door		*get_door_at_position(t_data *data, int map_x, int map_y);
+void		check_door_proximity(t_data *data);
+void		update_doors(t_data *data, double delta_time);
+void		init_door(t_data *data, int door_index, int x, int y);
+void		set_door_status(t_door *doors, bool is_open, int i);
+
 // Render
 void		render_wall_column(t_data *data, t_ray *ray, int x);
 void		render_textured_wall(t_data *data, t_ray *ray, int x);
 void		render_floor_ceiling(t_data *data, int x, int draw_end);
+void		draw_door_column(t_data *data, t_ray *ray, int x, int tex_x);
 void		determine_texture(t_ray *ray);
+void		render_sprites(t_data *data);
+int			load_single_texture(t_data *data, t_texture *texture, char *path);
+void		calculate_sprite_distances(t_data *data);
+void		sort_sprites(t_sprite *sprites, int count);
+void		init_sprite_transform(t_data *data, t_sprite *sprite,
+				t_sprite_transform *transform);
+void		render_door_column_layered(t_data *data, t_ray *ray, int x);
+int			ray_hits_door_texture(t_data *data, int tex_x, t_door *door);
 
 // Minimap
 void		init_minimap(t_data *data);
