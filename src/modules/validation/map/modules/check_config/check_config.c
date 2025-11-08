@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:28:49 by letto             #+#    #+#             */
-/*   Updated: 2025/11/08 17:16:12 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:16:29 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void	init_config_data(t_data *data)
 	data->doors = NULL;
 	data->door_count = 0;
 	data->lamp_textures = NULL;
-    data->lamp_texture_count = 0;
-    data->sprites = NULL;
-    data->sprite_count = 0;
+	data->lamp_texture_count = 0;
+	data->sprites = NULL;
+	data->sprite_count = 0;
 }
 
 static void	process_helper(char *trimmed_line, t_data *data,
@@ -49,8 +49,8 @@ static void	process_helper(char *trimmed_line, t_data *data,
 		parse_animated_texture_line(trimmed_line, &data->door_textures,
 			&data->door_texture_count, &ctx);
 	else if (ft_strncmp(trimmed_line, "LA ", 3) == 0)
-        parse_animated_texture_line(trimmed_line, &data->lamp_textures,
-            &data->lamp_texture_count, &ctx);
+		parse_animated_texture_line(trimmed_line, &data->lamp_textures,
+			&data->lamp_texture_count, &ctx);
 	else
 		ft_error_exit_with_cleanup("Unknown configuration identifier",
 			EXIT_FAILURE, data, content);

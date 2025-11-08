@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 16:53:00 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/08 17:25:13 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:25:10 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,16 @@ data->animated_door_texture.frame_count)
 
 void	update_lamp_animation(t_data *data, double delta_time)
 {
-    data->animated_lamp_texture.animation_timer += delta_time;
-    if (data->animated_lamp_texture.animation_timer
-        >= data->animated_lamp_texture.animation_speed)
-    {
-        data->animated_lamp_texture.animation_timer = 0.0;
-        data->animated_lamp_texture.current_frame++;
-        if (data->animated_lamp_texture.current_frame
-            >= data->animated_lamp_texture.frame_count)
-            data->animated_lamp_texture.current_frame = 0;
-    }
+	data->animated_lamp_texture.animation_timer += delta_time;
+	if (data->animated_lamp_texture.animation_timer >= data->\
+animated_lamp_texture.animation_speed)
+	{
+		data->animated_lamp_texture.animation_timer = 0.0;
+		data->animated_lamp_texture.current_frame++;
+		if (data->animated_lamp_texture.current_frame >= data->\
+animated_lamp_texture.frame_count)
+			data->animated_lamp_texture.current_frame = 0;
+	}
 }
 
 void	update_texture_animations(t_data *data, double delta_time)
@@ -131,13 +131,13 @@ int	load_textures(t_data *data)
 		}
 	}
 	if (data->lamp_textures && data->lamp_texture_count > 0)
-    {
-        if (!load_animated_texture(data, &data->animated_lamp_texture,
-                data->lamp_textures, data->lamp_texture_count))
-        {
-            printf("Error: Failed to load lamp textures\n");
-            return (0);
-        }
-    }
+	{
+		if (!load_animated_texture(data, &data->animated_lamp_texture,
+				data->lamp_textures, data->lamp_texture_count))
+		{
+			printf("Error: Failed to load lamp textures\n");
+			return (0);
+		}
+	}
 	return (1);
 }

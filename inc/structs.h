@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:13:59 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/08 17:52:12 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:18:46 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ typedef struct s_line_fill_context
 	int		start_index;
 	int		count;
 }	t_line_fill_context;
+
+typedef struct s_path_process
+{
+    char				***texture_paths;
+    int					*texture_count;
+    t_texture_context	*ctx;
+}	t_path_process;
 
 typedef struct s_flood_context
 {
