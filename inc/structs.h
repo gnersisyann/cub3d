@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:13:59 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/08 18:18:46 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:44:34 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,21 @@ typedef struct s_path_process
     int					*texture_count;
     t_texture_context	*ctx;
 }	t_path_process;
+
+typedef struct s_sprite_transform
+{
+	double	sprite_x;
+	double	sprite_y;
+	double	inv_det;
+	double	transform_x;
+	double	transform_y;
+	int		sprite_height;
+	int		sprite_width;
+	int		draw_start_y;
+	int		draw_end_y;
+	int		draw_start_x;
+	int		draw_end_x;
+}			t_sprite_transform;
 
 typedef struct s_flood_context
 {

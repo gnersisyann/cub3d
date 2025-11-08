@@ -81,8 +81,11 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/flood_fill.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/utils.c \
       $(SRC_DIR)modules/utils/cleanup.c \
+      $(SRC_DIR)modules/utils/cleanup_utils.c \
+      $(SRC_DIR)modules/utils/cleanup_mlx.c \
       $(SRC_DIR)modules/utils/cleanup_textures.c \
       $(SRC_DIR)modules/utils/init.c \
+      $(SRC_DIR)modules/utils/init_utils.c \
       $(SRC_DIR)modules/validation/map/modules/check_config/check_config.c \
       $(SRC_DIR)modules/validation/map/modules/check_config/config_validators.c \
       $(SRC_DIR)modules/validation/map/modules/check_config/config_parsers.c \

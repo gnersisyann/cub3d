@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 00:00:00 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/08 17:55:46 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:45:30 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,6 @@ static void	sort_sprites(t_sprite *sprites, int count)
 	}
 }
 
-typedef struct s_sprite_transform
-{
-	double	sprite_x;
-	double	sprite_y;
-	double	inv_det;
-	double	transform_x;
-	double	transform_y;
-	int		sprite_height;
-	int		sprite_width;
-	int		draw_start_y;
-	int		draw_end_y;
-	int		draw_start_x;
-	int		draw_end_x;
-}			t_sprite_transform;
-
 static void	init_sprite_transform(t_data *data, t_sprite *sprite,
 		t_sprite_transform *transform)
 {
@@ -78,7 +63,7 @@ static void	init_sprite_transform(t_data *data, t_sprite *sprite,
 			* transform->sprite_x - data->dir_x * transform->sprite_y);
 	transform->transform_y = transform->inv_det * (-data->plane_y
 			* transform->sprite_x + data->plane_x * transform->sprite_y);
-	transform->sprite_x = (int)((WIDTH / 2) * (1 + transform->transform_x
+	transform->sprite_x = (int)((WIDTH / 2.0) * (1 + transform->transform_x
 				/ transform->transform_y));
 }
 
@@ -92,11 +77,11 @@ static void	calculate_sprite_dimensions(t_sprite_transform *transform)
 	if (transform->draw_end_y >= HEIGHT)
 		transform->draw_end_y = HEIGHT - 1;
 	transform->sprite_width = abs((int)(HEIGHT / transform->transform_y));
-	transform->draw_start_x = -transform->sprite_width / 2
+	transform->draw_start_x = -transform->sprite_width / 2.0
 		+ transform->sprite_x;
 	if (transform->draw_start_x < 0)
 		transform->draw_start_x = 0;
-	transform->draw_end_x = transform->sprite_width / 2 + transform->sprite_x;
+	transform->draw_end_x = transform->sprite_width / 2.0 + transform->sprite_x;
 	if (transform->draw_end_x >= WIDTH)
 		transform->draw_end_x = WIDTH - 1;
 }
@@ -123,7 +108,7 @@ static void	draw_sprite_stripe(t_data *data, t_sprite_transform *transform,
 	int	color;
 	int	d;
 
-	tex_x = (int)(256 * (stripe - (-transform->sprite_width / 2
+	tex_x = (int)(256 * (stripe - (-transform->sprite_width / 2.0
 					+ transform->sprite_x)) * texture->width
 			/ transform->sprite_width) / 256;
 	if (transform->transform_y > 0 && stripe >= 0 && stripe < WIDTH
