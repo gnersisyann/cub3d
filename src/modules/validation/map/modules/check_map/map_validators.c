@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:52:18 by letto             #+#    #+#             */
-/*   Updated: 2025/11/01 18:51:32 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:19:23 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	validate_map_characters(char **map_lines, t_data *data,
 		{
 			c = map_lines[i][j];
 			if (c != '0' && c != '1' && !is_player_character(c) && c != '\n'
-				&& c != 'D')
+				&& c != 'D' && c != 'L')
 			{
 				ft_error_exit_with_cleanup("Invalid character in map",
 					EXIT_FAILURE, data, content);

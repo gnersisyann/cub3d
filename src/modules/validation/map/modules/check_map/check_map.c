@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:52:44 by letto             #+#    #+#             */
-/*   Updated: 2025/11/01 18:44:54 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:18:19 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	ft_validate_map_structure(t_file_content *content, t_data *data)
 	validate_player_count(content->map_lines, data, content);
 	validate_map_closure(content->map_lines, data, content);
 	validate_door_texture_consistency(data, content);
+	validate_lamp_texture_consistency(data, content);
 	set_player_data(content, data);
 	set_map_dimensions(content, data);
 	duplicate_map_data(content, data);

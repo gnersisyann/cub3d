@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:28:31 by letto             #+#    #+#             */
-/*   Updated: 2025/11/01 19:17:31 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:16:40 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,46 @@ int	validate_texture_path(char *path)
 		return (0);
 	close(fd);
 	return (1);
+}
+
+static int	map_has_lamps(char **map_lines)
+{
+    int	i;
+    int	j;
+
+    if (!map_lines)
+        return (0);
+    i = 0;
+    while (map_lines[i])
+    {
+        j = 0;
+        while (map_lines[i][j])
+        {
+            if (map_lines[i][j] == 'L')
+                return (1);
+            j++;
+        }
+        i++;
+    }
+    return (0);
+}
+
+void	validate_lamp_texture_consistency(t_data *data, t_file_content *content)
+{
+    int	has_lamps_on_map;
+    int	has_lamp_texture;
+
+    has_lamps_on_map = map_has_lamps(content->map_lines);
+    has_lamp_texture = (data->lamp_textures != NULL
+            && data->lamp_texture_count > 0);
+    if (has_lamps_on_map && !has_lamp_texture)
+        ft_error_exit_with_cleanup("Map contains lamps (L)\
+ but no lamp texture (LA) is defined",
+            EXIT_FAILURE, data, content);
+    if (!has_lamps_on_map && has_lamp_texture)
+        ft_error_exit_with_cleanup("Lamp texture (LA) is d\
+efined but no lamps (L) found on map",
+            EXIT_FAILURE, data, content);
 }
 
 int	validate_color_component(char *component)
