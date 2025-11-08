@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:10:57 by letto             #+#    #+#             */
-/*   Updated: 2025/11/08 17:22:11 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:24:34 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void		calculate_wall_distance(t_ray *ray, t_data *data);
 
 // Textures
 void		update_door_animation(t_data *data, double delta_time);
+void		update_lamp_animation(t_data *data, double delta_time);
 int			load_textures(t_data *data);
 int			load_animated_texture(t_data *data, t_animated_texture *anim_tex,
 				char **texture_paths, int texture_count);
