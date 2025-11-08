@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:11:07 by letto             #+#    #+#             */
-/*   Updated: 2025/11/08 17:40:25 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:47:36 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int		get_map_width(char **map_lines);
 int		get_map_height(char **map_lines);
 int		map_has_doors(char **map_lines);
 void	parse_sprites_from_map(t_data *data, t_file_content *content);
+char	**extract_all_paths_from_line(char *line, int *count);
 
 /* map_validators.c */
 void	validate_player_count(char **map_lines, t_data *data,

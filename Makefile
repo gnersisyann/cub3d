@@ -43,6 +43,7 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/graphics/modules/render/dda.c \
       $(SRC_DIR)modules/graphics/modules/render/render.c \
       $(SRC_DIR)modules/graphics/modules/render/sprite_render.c \
+      $(SRC_DIR)modules/graphics/modules/render/sprite_render_utils.c \
       $(SRC_DIR)modules/graphics/modules/utils/utils.c \
       $(SRC_DIR)modules/graphics/modules/textures/get.c \
       $(SRC_DIR)modules/graphics/modules/textures/load.c \
@@ -91,6 +92,7 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/validation/map/modules/check_config/config_parsers.c \
       $(SRC_DIR)modules/validation/map/modules/check_config/animated_texture_parser.c \
       $(SRC_DIR)modules/validation/map/modules/check_config/config_utils.c \
+      $(SRC_DIR)modules/validation/map/modules/check_config/utils.c \
       $(SRC_DIR)modules/mlx/mlx.c \
 
 OBJ_DIR = obj

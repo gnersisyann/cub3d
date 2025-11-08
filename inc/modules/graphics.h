@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:10:57 by letto             #+#    #+#             */
-/*   Updated: 2025/11/08 18:31:17 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:50:20 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,10 @@ void		draw_door_column(t_data *data, t_ray *ray, int x, int tex_x);
 void		determine_texture(t_ray *ray);
 void		render_sprites(t_data *data);
 int			load_single_texture(t_data *data, t_texture *texture, char *path);
+void		calculate_sprite_distances(t_data *data);
+void		sort_sprites(t_sprite *sprites, int count);
+void		init_sprite_transform(t_data *data, t_sprite *sprite,
+			t_sprite_transform *transform);
 
 // Minimap
 void		init_minimap(t_data *data);
