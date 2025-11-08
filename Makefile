@@ -38,10 +38,11 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/graphics/modules/player/player_init.c \
       $(SRC_DIR)modules/graphics/modules/player/movement.c \
       $(SRC_DIR)modules/graphics/modules/player/rotation.c \
-      $(SRC_DIR)modules/graphics/modules/raycast/raycast.c \
-      $(SRC_DIR)modules/graphics/modules/raycast/ray_init.c \
-      $(SRC_DIR)modules/graphics/modules/raycast/dda.c \
-      $(SRC_DIR)modules/graphics/modules/raycast/render.c \
+      $(SRC_DIR)modules/graphics/modules/render/raycast.c \
+      $(SRC_DIR)modules/graphics/modules/render/ray_init.c \
+      $(SRC_DIR)modules/graphics/modules/render/dda.c \
+      $(SRC_DIR)modules/graphics/modules/render/render.c \
+      $(SRC_DIR)modules/graphics/modules/render/sprite_render.c \
       $(SRC_DIR)modules/graphics/modules/utils/utils.c \
       $(SRC_DIR)modules/graphics/modules/textures/get.c \
       $(SRC_DIR)modules/graphics/modules/textures/load.c \

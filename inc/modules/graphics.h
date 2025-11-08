@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:10:57 by letto             #+#    #+#             */
-/*   Updated: 2025/11/08 17:24:34 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:29:56 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void		render_textured_wall(t_data *data, t_ray *ray, int x);
 void		render_floor_ceiling(t_data *data, int x, int draw_end);
 void		draw_door_column(t_data *data, t_ray *ray, int x, int tex_x);
 void		determine_texture(t_ray *ray);
+void		render_sprites(t_data *data);
 
 // Minimap
 void		init_minimap(t_data *data);
