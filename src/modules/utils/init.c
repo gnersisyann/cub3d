@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:21:45 by letto             #+#    #+#             */
-/*   Updated: 2025/11/08 18:43:16 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 20:03:17 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ static void	ft_init_data_helper_helper(t_data *data)
 	data->animated_door_texture.frame_count = 0;
 	data->animated_lamp_texture.frames = NULL;
 	data->animated_lamp_texture.frame_count = 0;
+	data->animated_lamp_texture.current_frame = 0;
+	data->animated_lamp_texture.animation_speed = 0.0;
+	data->animated_lamp_texture.animation_timer = 0.0;
 }
 
 static void	ft_init_data_helper(t_data *data)
