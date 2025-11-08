@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:30:58 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/08 17:55:50 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:16:01 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static char	**extract_all_paths_from_line(char *line, int *count)
 {
 	char	**paths;
 	char	*path_start;
+	char	*trimmed_line;
 
 	path_start = line;
 	while (*path_start && *path_start != ' ' && *path_start != '\t')
@@ -27,7 +28,16 @@ static char	**extract_all_paths_from_line(char *line, int *count)
 		*count = 0;
 		return (NULL);
 	}
-	paths = ft_split(path_start, ' ');
+	trimmed_line = ft_strtrim(path_start, " \t\n");
+	if (!trimmed_line || !*trimmed_line)
+	{
+		if (trimmed_line)
+			free(trimmed_line);
+		*count = 0;
+		return (NULL);
+	}
+	paths = ft_split(trimmed_line, ' ');
+	free(trimmed_line);
 	if (!paths)
 	{
 		*count = 0;
@@ -50,13 +60,18 @@ static void	process_all_paths(char **paths, int path_count,
 	i = 0;
 	while (i < path_count)
 	{
+		if (!paths[i] || !*paths[i])
+		{
+			i++;
+			continue ;
+		}
 		trimmed_path = ft_strtrim(paths[i], " \t\n");
 		if (!trimmed_path || !*trimmed_path)
 		{
-			free(trimmed_path);
-			ft_free_array(paths);
-			ft_error_exit_with_cleanup("Empty texture path", EXIT_FAILURE,
-				ctx->data, ctx->content);
+			if (trimmed_path)
+				free(trimmed_path);
+			i++;
+			continue ;
 		}
 		if (!validate_texture_path(trimmed_path))
 		{
@@ -91,8 +106,8 @@ static void	process_all_paths(char **paths, int path_count,
 void	parse_animated_texture_line(char *line, char ***texture_paths,
 		int *texture_count, t_texture_context *ctx)
 {
-	char **paths;
-	int path_count;
+	char	**paths;
+	int		path_count;
 
 	paths = extract_all_paths_from_line(line, &path_count);
 	if (!paths || path_count == 0)
@@ -102,7 +117,12 @@ void	parse_animated_texture_line(char *line, char ***texture_paths,
 		ft_error_exit_with_cleanup("Missing texture path", EXIT_FAILURE,
 			ctx->data, ctx->content);
 	}
-
 	process_all_paths(paths, path_count, texture_paths, texture_count, ctx);
+	if (*texture_count == 0)
+	{
+		ft_free_array(paths);
+		ft_error_exit_with_cleanup("No valid texture paths found", EXIT_FAILURE,
+			ctx->data, ctx->content);
+	}
 	ft_free_array(paths);
 }
