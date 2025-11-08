@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:11:07 by letto             #+#    #+#             */
-/*   Updated: 2025/11/08 17:25:46 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:40:25 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ int		validate_no_config_after_map(char **lines, int map_start_index,
 			t_data *data, t_file_content *content);
 void	cleanup_map_lines(char **map_lines, int j);
 void	check_boundary_conditions(t_flood_context *ctx, int x, int y);
+char	*extract_path_from_line(char *line);
 
 #endif

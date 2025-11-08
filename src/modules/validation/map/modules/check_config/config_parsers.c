@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   config_parsers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:28:40 by letto             #+#    #+#             */
-/*   Updated: 2025/09/14 19:29:28 by letto            ###   ########.fr       */
+/*   Updated: 2025/11/08 17:40:32 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static char	*extract_path_from_line(char *line)
-{
-	char	*path_start;
-	char	*texture_path;
-
-	path_start = line + 2;
-	while (*path_start && (*path_start == ' ' || *path_start == '\t'))
-		path_start++;
-	if (!*path_start)
-		return (NULL);
-	texture_path = ft_strtrim(path_start, " \t\n");
-	return (texture_path);
-}
 
 void	parse_texture_line(char *line, char **texture_path, t_data *data,
 		t_file_content *content)
