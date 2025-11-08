@@ -42,6 +42,9 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/graphics/modules/render/ray_init.c \
       $(SRC_DIR)modules/graphics/modules/render/dda.c \
       $(SRC_DIR)modules/graphics/modules/render/render.c \
+      $(SRC_DIR)modules/graphics/modules/render/render_door.c \
+      $(SRC_DIR)modules/graphics/modules/render/render_door_layer.c \
+      $(SRC_DIR)modules/graphics/modules/render/render_texture.c \
       $(SRC_DIR)modules/graphics/modules/render/sprite_render.c \
       $(SRC_DIR)modules/graphics/modules/render/sprite_render_utils.c \
       $(SRC_DIR)modules/graphics/modules/utils/utils.c \

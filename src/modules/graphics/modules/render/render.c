@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 17:41:36 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/01 19:38:44 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:57:28 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,139 +43,6 @@ void	calculate_texture_coords(t_data *data, t_ray *ray, int *tex_x,
 			&& ray->ray_dir_y < 0))
 		*tex_x = texture->width - *tex_x - 1;
 	*step = 1.0 * texture->height / ray->line_height;
-}
-
-void	draw_door_column(t_data *data, t_ray *ray, int x, int tex_x)
-{
-	double		step;
-	double		tex_pos;
-	int			y;
-	int			color;
-	t_texture	*texture;
-	t_door		*door;
-	int			adjusted_tex_x;
-
-	texture = get_current_texture_frame(data, 4);
-	if (!texture)
-		return ;
-	door = get_door_at_position(data, ray->map_x, ray->map_y);
-	if (!door)
-		return ;
-	adjusted_tex_x = tex_x - (int)(door->open_offset * texture->width);
-	if (adjusted_tex_x < 0 || adjusted_tex_x >= texture->width)
-		return ;
-	step = 1.0 * texture->height / ray->line_height;
-	tex_pos = (ray->draw_start - HEIGHT / 2.0 + ray->line_height / 2.0) * step;
-	y = ray->draw_start;
-	while (y < ray->draw_end)
-	{
-		color = get_texture_pixel(texture, adjusted_tex_x,
-				(int)tex_pos & (texture->height - 1));
-		if (ray->side == 1)
-			color = (color >> 1) & 0x7F7F7F;
-		my_mlx_pixel_put(data, x, y, color);
-		tex_pos += step;
-		y++;
-	}
-}
-
-static int	ray_hits_door_texture(t_data *data, int tex_x, t_door *door)
-{
-	t_texture	*texture;
-	int			adjusted_tex_x;
-
-	texture = get_current_texture_frame(data, 4);
-	if (!texture)
-		return (0);
-	adjusted_tex_x = tex_x - (int)(door->open_offset * texture->width);
-	if (adjusted_tex_x >= 0 && adjusted_tex_x < texture->width)
-		return (1);
-	return (0);
-}
-
-void	render_door_column_layered(t_data *data, t_ray *ray, int x)
-{
-	t_door	*door;
-	int		tex_x;
-	double	step;
-	t_ray	background_ray;
-
-	door = get_door_at_position(data, ray->map_x, ray->map_y);
-	calculate_texture_coords(data, ray, &tex_x, &step);
-	if (door && door->open_offset > 0.01 && !ray_hits_door_texture(data, tex_x,
-			door))
-	{
-		background_ray = *ray;
-		background_ray.hit = 0;
-		while (background_ray.hit == 0)
-		{
-			if (background_ray.side_dist_x < background_ray.side_dist_y)
-			{
-				background_ray.side_dist_x += background_ray.delta_dist_x;
-				background_ray.map_x += background_ray.step_x;
-				background_ray.side = 0;
-			}
-			else
-			{
-				background_ray.side_dist_y += background_ray.delta_dist_y;
-				background_ray.map_y += background_ray.step_y;
-				background_ray.side = 1;
-			}
-			if (data->map[background_ray.map_y][background_ray.map_x] == '1')
-				background_ray.hit = 1;
-		}
-		if (background_ray.side == 0)
-			background_ray.perp_wall_dist = (background_ray.map_x
-					- data->player_x + (1 - background_ray.step_x) / 2.0)
-				/ background_ray.ray_dir_x;
-		else
-			background_ray.perp_wall_dist = (background_ray.map_y
-					- data->player_y + (1 - background_ray.step_y) / 2.0)
-				/ background_ray.ray_dir_y;
-		determine_texture(&background_ray);
-		background_ray.line_height = (int)(HEIGHT
-				/ background_ray.perp_wall_dist);
-		background_ray.draw_start = -background_ray.line_height / 2 + HEIGHT
-			/ 2;
-		if (background_ray.draw_start < 0)
-			background_ray.draw_start = 0;
-		background_ray.draw_end = background_ray.line_height / 2 + HEIGHT / 2;
-		if (background_ray.draw_end >= HEIGHT)
-			background_ray.draw_end = HEIGHT - 1;
-		render_floor_ceiling(data, x, background_ray.draw_end);
-		render_textured_wall(data, &background_ray, x);
-	}
-	if (door && door->open_offset < 0.99 && ray_hits_door_texture(data, tex_x,
-			door))
-	{
-		draw_door_column(data, ray, x, tex_x);
-	}
-}
-
-void	draw_texture_column(t_data *data, t_ray *ray, int x, int tex_x)
-{
-	double		step;
-	double		tex_pos;
-	int			y;
-	int			color;
-	t_texture	*texture;
-
-	texture = get_current_texture_frame(data, ray->texture_num);
-	if (!texture)
-		return ;
-	step = 1.0 * texture->height / ray->line_height;
-	tex_pos = (ray->draw_start - HEIGHT / 2.0 + ray->line_height / 2.0) * step;
-	y = ray->draw_start;
-	while (y < ray->draw_end)
-	{
-		color = get_texture_pixel(texture, tex_x,
-				(int)tex_pos & (texture->height - 1));
-		if (ray->side == 1)
-			color = (color >> 1) & 0x7F7F7F;
-		my_mlx_pixel_put(data, x, y, color);
-		tex_pos += step;
-		y++;
-	}
 }
 
 void	render_textured_wall(t_data *data, t_ray *ray, int x)

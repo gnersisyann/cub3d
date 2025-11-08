@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:13:59 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/08 18:44:34 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:55:43 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,14 @@ typedef struct s_door
 	int		is_open;
 	double	open_offset;
 }			t_door;
+
+typedef struct s_door_render
+{
+    t_texture	*texture;
+    t_door		*door;
+    double		step;
+    double		tex_pos;
+}	t_door_render;
 
 typedef struct s_sprite
 {
