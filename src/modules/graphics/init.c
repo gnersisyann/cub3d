@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:12:12 by letto             #+#    #+#             */
-/*   Updated: 2025/11/01 16:35:20 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:52:46 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@ int	ft_init_mlx(t_data *data)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (0);
+	data->z_buffer = malloc(sizeof(double) * WIDTH);
+    if (!data->z_buffer)
+    {
+        mlx_destroy_display(data->mlx);
+        free(data->mlx);
+        return (0);
+    }
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:20:45 by letto             #+#    #+#             */
-/*   Updated: 2025/11/08 17:33:26 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:53:44 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ void	ft_cleanup_data(t_data *data)
 		return ;
 	cleanup_texture_arrays(data);
 	cleanup_sprites(data);
+	if (data->z_buffer)
+    {
+        free(data->z_buffer);
+        data->z_buffer = NULL;
+    }
 	if (data->map_path)
 		free(data->map_path);
 	if (data->map)

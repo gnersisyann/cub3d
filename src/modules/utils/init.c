@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:21:45 by letto             #+#    #+#             */
-/*   Updated: 2025/11/08 17:33:41 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:52:31 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static void	ft_init_data_helper(t_data *data)
     data->lamp_texture_count = 0;
     data->sprites = NULL;
     data->sprite_count = 0;
+	data->z_buffer = NULL;
 }
 
 static void	ft_init_data(t_data *data)

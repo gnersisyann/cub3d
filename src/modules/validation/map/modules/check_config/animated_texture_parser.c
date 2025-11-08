@@ -6,23 +6,20 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:30:58 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/08 17:49:07 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:55:50 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// ===== START: Extract all paths from line (for multi-frame textures) =====
 static char	**extract_all_paths_from_line(char *line, int *count)
 {
 	char	**paths;
 	char	*path_start;
 
-	// Skip identifier (DO or LA)
 	path_start = line;
 	while (*path_start && *path_start != ' ' && *path_start != '\t')
 		path_start++;
-	// Skip whitespace
 	while (*path_start && (*path_start == ' ' || *path_start == '\t'))
 		path_start++;
 	if (!*path_start)
@@ -30,22 +27,18 @@ static char	**extract_all_paths_from_line(char *line, int *count)
 		*count = 0;
 		return (NULL);
 	}
-	// Split by spaces to get all paths
 	paths = ft_split(path_start, ' ');
 	if (!paths)
 	{
 		*count = 0;
 		return (NULL);
 	}
-	// Count paths
 	*count = 0;
 	while (paths[*count])
 		(*count)++;
 	return (paths);
 }
-// ===== END: Extract all paths from line =====
 
-// ===== START: Process all paths from line =====
 static void	process_all_paths(char **paths, int path_count,
 		char ***texture_paths, int *texture_count, t_texture_context *ctx)
 {
@@ -72,7 +65,6 @@ static void	process_all_paths(char **paths, int path_count,
 			ft_error_exit_with_cleanup("Invalid texture path", EXIT_FAILURE,
 				ctx->data, ctx->content);
 		}
-		// Reallocate array
 		new_array = malloc(sizeof(char *) * (*texture_count + 1));
 		if (!new_array)
 		{
@@ -81,7 +73,6 @@ static void	process_all_paths(char **paths, int path_count,
 			ft_error_exit_with_cleanup("Memory allocation failed", EXIT_FAILURE,
 				ctx->data, ctx->content);
 		}
-		// Copy old paths
 		j = 0;
 		while (j < *texture_count)
 		{
@@ -96,7 +87,6 @@ static void	process_all_paths(char **paths, int path_count,
 		i++;
 	}
 }
-// ===== END: Process all paths =====
 
 void	parse_animated_texture_line(char *line, char ***texture_paths,
 		int *texture_count, t_texture_context *ctx)

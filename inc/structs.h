@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:13:59 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/08 17:13:20 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:52:12 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ typedef struct s_data
     t_animated_texture	animated_lamp_texture;
     t_sprite			*sprites;
     int					sprite_count;
+	double				*z_buffer;
 }			t_data;
 
 typedef struct s_ray

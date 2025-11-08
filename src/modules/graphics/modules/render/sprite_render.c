@@ -6,13 +6,12 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 00:00:00 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/08 17:29:17 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:55:46 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// ===== START: Calculate sprite distance =====
 static void	calculate_sprite_distances(t_data *data)
 {
 	int		i;
@@ -28,9 +27,7 @@ static void	calculate_sprite_distances(t_data *data)
 		i++;
 	}
 }
-// ===== END: Calculate sprite distance =====
 
-// ===== START: Sort sprites by distance (bubble sort) =====
 static void	sort_sprites(t_sprite *sprites, int count)
 {
 	int			i;
@@ -54,9 +51,7 @@ static void	sort_sprites(t_sprite *sprites, int count)
 		i++;
 	}
 }
-// ===== END: Sort sprites by distance =====
 
-// ===== START: Transform sprite to screen space =====
 typedef struct s_sprite_transform
 {
 	double	sprite_x;
@@ -86,9 +81,7 @@ static void	init_sprite_transform(t_data *data, t_sprite *sprite,
 	transform->sprite_x = (int)((WIDTH / 2) * (1 + transform->transform_x
 				/ transform->transform_y));
 }
-// ===== END: Transform sprite to screen space =====
 
-// ===== START: Calculate sprite dimensions =====
 static void	calculate_sprite_dimensions(t_sprite_transform *transform)
 {
 	transform->sprite_height = abs((int)(HEIGHT / transform->transform_y));
@@ -108,7 +101,19 @@ static void	calculate_sprite_dimensions(t_sprite_transform *transform)
 		transform->draw_end_x = WIDTH - 1;
 }
 
-// ===== START: Draw sprite column =====
+static int	get_sprite_pixel(t_texture *texture, int x, int y)
+{
+	char	*dst;
+	int		color;
+
+	if (x < 0 || x >= texture->width || y < 0 || y >= texture->height)
+		return (0xFF00FF);
+	dst = texture->addr + (y * texture->line_length + x
+			* (texture->bits_per_pixel / 8));
+	color = *(unsigned int *)dst;
+	return (color);
+}
+
 static void	draw_sprite_stripe(t_data *data, t_sprite_transform *transform,
 		t_texture *texture, int stripe)
 {
@@ -121,23 +126,22 @@ static void	draw_sprite_stripe(t_data *data, t_sprite_transform *transform,
 	tex_x = (int)(256 * (stripe - (-transform->sprite_width / 2
 					+ transform->sprite_x)) * texture->width
 			/ transform->sprite_width) / 256;
-	if (transform->transform_y > 0 && stripe > 0 && stripe < WIDTH)
+	if (transform->transform_y > 0 && stripe >= 0 && stripe < WIDTH
+		&& transform->transform_y < data->z_buffer[stripe])
 	{
 		y = transform->draw_start_y;
 		while (y < transform->draw_end_y)
 		{
 			d = (y)*256 - HEIGHT * 128 + transform->sprite_height * 128;
 			tex_y = ((d * texture->height) / transform->sprite_height) / 256;
-			color = get_texture_pixel(texture, tex_x, tex_y);
+			color = get_sprite_pixel(texture, tex_x, tex_y);
 			if ((color & 0x00FFFFFF) != 0x00FF00FF)
 				my_mlx_pixel_put(data, stripe, y, color);
 			y++;
 		}
 	}
 }
-// ===== END: Draw sprite column =====
 
-// ===== START: Render single sprite =====
 static void	render_sprite(t_data *data, t_sprite *sprite)
 {
 	t_sprite_transform	transform;
@@ -156,9 +160,7 @@ static void	render_sprite(t_data *data, t_sprite *sprite)
 		stripe++;
 	}
 }
-// ===== END: Render single sprite =====
 
-// ===== START: Main sprite rendering function =====
 void	render_sprites(t_data *data)
 {
 	int	i;
@@ -174,4 +176,3 @@ void	render_sprites(t_data *data)
 		i++;
 	}
 }
-// ===== END: Main sprite rendering function =====
