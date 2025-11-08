@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:20:45 by letto             #+#    #+#             */
-/*   Updated: 2025/09/14 19:20:45 by letto            ###   ########.fr       */
+/*   Updated: 2025/11/08 17:33:26 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,22 @@ void	ft_free_file_content(t_file_content *content)
 	content->map_lines = NULL;
 }
 
+static void	cleanup_sprites(t_data *data)
+{
+    if (data->sprites)
+    {
+        free(data->sprites);
+        data->sprites = NULL;
+        data->sprite_count = 0;
+    }
+}
+
 void	ft_cleanup_data(t_data *data)
 {
 	if (!data)
 		return ;
 	cleanup_texture_arrays(data);
+	cleanup_sprites(data);
 	if (data->map_path)
 		free(data->map_path);
 	if (data->map)

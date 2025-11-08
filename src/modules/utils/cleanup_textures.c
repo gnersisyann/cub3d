@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:31:44 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/01 19:18:11 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:33:09 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,41 @@ static void	cleanup_door_textures(t_data *data)
 	}
 }
 
+static void	cleanup_lamp_textures(t_data *data)
+{
+    int	i;
+
+    if (data->lamp_textures)
+    {
+        i = 0;
+        while (i < data->lamp_texture_count)
+        {
+            free(data->lamp_textures[i]);
+            i++;
+        }
+        free(data->lamp_textures);
+        data->lamp_textures = NULL;
+        data->lamp_texture_count = 0;
+    }
+    if (data->animated_lamp_texture.frames)
+    {
+        i = 0;
+        while (i < data->animated_lamp_texture.frame_count)
+        {
+            if (data->animated_lamp_texture.frames[i].img)
+                mlx_destroy_image(data->mlx,
+                    data->animated_lamp_texture.frames[i].img);
+            i++;
+        }
+        free(data->animated_lamp_texture.frames);
+        data->animated_lamp_texture.frames = NULL;
+    }
+}
+
 void	cleanup_texture_arrays(t_data *data)
 {
 	cleanup_north_south_textures(data);
 	cleanup_west_east_textures(data);
 	cleanup_door_textures(data);
+	cleanup_lamp_textures(data);
 }
