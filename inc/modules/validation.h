@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:11:07 by letto             #+#    #+#             */
-/*   Updated: 2025/11/08 17:18:54 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:22:36 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,9 @@ void	validate_map_characters(char **map_lines, t_data *data,
 void	validate_map_size(char **map_lines, t_data *data,
 			t_file_content *content);
 char	**ft_duplicate_map(char **map_lines, int height);
+
+/* sprite_parser.c */
+void		parse_sprites_from_map(t_data *data, t_file_content *content);
 
 /* flood_fill.c */
 char	get_map_char_safe(char **map_lines, int x, int y, int map_height);

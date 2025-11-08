@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:52:44 by letto             #+#    #+#             */
-/*   Updated: 2025/11/08 17:18:19 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:21:35 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,5 @@ void	ft_validate_map_structure(t_file_content *content, t_data *data)
 	set_player_data(content, data);
 	set_map_dimensions(content, data);
 	duplicate_map_data(content, data);
+	parse_sprites_from_map(data, content);
 }

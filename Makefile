@@ -75,6 +75,7 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/check_map.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/map_utils.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/map_validators.c \
+      $(SRC_DIR)modules/validation/map/modules/check_map/sprite_parser.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/flood_fill.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/utils.c \
       $(SRC_DIR)modules/utils/cleanup.c \
