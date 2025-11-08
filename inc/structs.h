@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:13:59 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/01 19:54:29 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:13:20 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,14 @@ typedef struct s_door
 	double	open_offset;
 }			t_door;
 
+typedef struct s_sprite
+{
+    double				x;
+    double				y;
+    double				distance;
+    t_animated_texture	*texture;
+}			t_sprite;
+
 typedef struct s_data
 {
 	void				*mlx;
@@ -171,6 +179,11 @@ typedef struct s_data
 	t_animated_texture	animated_door_texture;
 	t_door				*doors;
 	int					door_count;
+	char				**lamp_textures;
+    int					lamp_texture_count;
+    t_animated_texture	animated_lamp_texture;
+    t_sprite			*sprites;
+    int					sprite_count;
 }			t_data;
 
 typedef struct s_ray
