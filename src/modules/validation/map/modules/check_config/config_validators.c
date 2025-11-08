@@ -6,25 +6,11 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:28:31 by letto             #+#    #+#             */
-/*   Updated: 2025/11/08 18:25:23 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:28:08 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	validate_texture_path(char *path)
-{
-	int	fd;
-
-	if (!path)
-		return (0);
-	ft_check_file_extension(path, ".xpm", 0);
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
-		return (0);
-	close(fd);
-	return (1);
-}
 
 static int	map_has_lamps(char **map_lines)
 {
@@ -57,39 +43,11 @@ void	validate_lamp_texture_consistency(t_data *data, t_file_content *content)
 	has_lamp_texture = (data->lamp_textures != NULL
 			&& data->lamp_texture_count > 0);
 	if (has_lamps_on_map && !has_lamp_texture)
-		ft_error_exit_with_cleanup("Map contains lamps (L)\
- but no lamp texture (LA) is defined",
-									EXIT_FAILURE,
-									data,
-									content);
+		ft_error_exit_with_cleanup("Map contains lamps (L) but no lamp \
+texture (LA) is defined", EXIT_FAILURE, data, content);
 	if (!has_lamps_on_map && has_lamp_texture)
 		ft_error_exit_with_cleanup("Lamp texture (LA) is d\
-efined but no lamps (L) found on map",
-									EXIT_FAILURE,
-									data,
-									content);
-}
-
-int	validate_color_component(char *component)
-{
-	int		value;
-	int		i;
-	char	*trimmed;
-
-	if (!component)
-		return (0);
-	trimmed = ft_trim_whitespace(component);
-	if (!trimmed || !*trimmed)
-		return (0);
-	i = 0;
-	while (trimmed[i])
-	{
-		if (!ft_isdigit(trimmed[i]))
-			return (0);
-		i++;
-	}
-	value = ft_atoi(trimmed);
-	return (value >= 0 && value <= 255);
+efined but no lamps (L) found on map", EXIT_FAILURE, data, content);
 }
 
 int	validate_color_line(char *line)
@@ -122,16 +80,10 @@ void	validate_door_texture_consistency(t_data *data, t_file_content *content)
 			&& data->door_texture_count > 0);
 	if (has_doors_on_map && !has_door_texture)
 		ft_error_exit_with_cleanup("Map contains doors (D)\
- but no door texture (DO) is defined",
-									EXIT_FAILURE,
-									data,
-									content);
+ but no door texture (DO) is defined", EXIT_FAILURE, data, content);
 	if (!has_doors_on_map && has_door_texture)
 		ft_error_exit_with_cleanup("Door texture (DO) is d\
-efined but no doors (D) found on map",
-									EXIT_FAILURE,
-									data,
-									content);
+efined but no doors (D) found on map", EXIT_FAILURE, data, content);
 }
 
 int	validate_all_configs(t_data *data)

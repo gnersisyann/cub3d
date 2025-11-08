@@ -46,6 +46,7 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/graphics/modules/utils/utils.c \
       $(SRC_DIR)modules/graphics/modules/textures/get.c \
       $(SRC_DIR)modules/graphics/modules/textures/load.c \
+      $(SRC_DIR)modules/graphics/modules/textures/utils.c \
       $(SRC_DIR)modules/graphics/modules/minimap/minimap.c \
       $(SRC_DIR)modules/graphics/modules/minimap/miniutils.c \
       $(SRC_DIR)modules/graphics/modules/minimap/light.c \
