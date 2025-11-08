@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:12:12 by letto             #+#    #+#             */
-/*   Updated: 2025/11/08 17:52:46 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:10:19 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 int	ft_init_mlx(t_data *data)
 {
+	if (!data || !data->map)
+    {
+        printf("Error\nInvalid data structure\n");
+        return (0);
+    }
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (0);
@@ -47,23 +52,44 @@ void	setup_hooks(t_data *data)
 
 void	ft_init_graphics(t_data *data)
 {
-	ft_memset(data->keys, 0, sizeof(data->keys));
-	if (!ft_init_mlx(data))
-		ft_error_exit("MLX initialization failed", EXIT_FAILURE);
-	if (!ft_create_window(data, WIDTH, HEIGHT, "cub3D"))
-		ft_error_exit("Window creation failed", EXIT_FAILURE);
-	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	if (!data->img)
-		ft_error_exit("Image creation failed", EXIT_FAILURE);
-	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
-			&data->line_length, &data->endian);
-	if (!data->addr)
-		ft_error_exit("Failed to get image address", EXIT_FAILURE);
-	if (!load_textures(data))
-		ft_error_exit("Failed to load textures", EXIT_FAILURE);
-	init_mouse(data);
-	init_player_position(data);
-	init_doors(data);
-	init_minimap(data);
-	setup_hooks(data);
+    ft_memset(data->keys, 0, sizeof(data->keys));
+    
+    if (!ft_init_mlx(data))
+    {
+        ft_cleanup_data_partial(data);
+        ft_error_exit("MLX initialization failed", EXIT_FAILURE);
+    }
+    
+    if (!ft_create_window(data, WIDTH, HEIGHT, "cub3D"))
+    {
+        ft_cleanup_data(data);
+        ft_error_exit("Window creation failed", EXIT_FAILURE);
+    }
+    
+    data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+    if (!data->img)
+    {
+        ft_cleanup_data(data);
+        ft_error_exit("Image creation failed", EXIT_FAILURE);
+    }
+    
+    data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
+            &data->line_length, &data->endian);
+    if (!data->addr)
+    {
+        ft_cleanup_data(data);
+        ft_error_exit("Failed to get image address", EXIT_FAILURE);
+    }
+    
+    if (!load_textures(data))
+    {
+        ft_cleanup_data(data);
+        ft_error_exit("Failed to load textures", EXIT_FAILURE);
+    }
+    
+    init_mouse(data);
+    init_player_position(data);
+    init_doors(data);
+    init_minimap(data);
+    setup_hooks(data);
 }

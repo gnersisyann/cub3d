@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:21:45 by letto             #+#    #+#             */
-/*   Updated: 2025/11/08 17:52:31 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:10:00 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	set_null(t_data *data)
 
 static void	ft_init_data_helper(t_data *data)
 {
+	int	i;
+
 	data->floor_color = 0;
 	data->ceiling_color = 0;
 	data->player_x = 0.0;
@@ -44,10 +46,24 @@ static void	ft_init_data_helper(t_data *data)
 	data->doors = NULL;
 	data->door_count = 0;
 	data->lamp_textures = NULL;
-    data->lamp_texture_count = 0;
-    data->sprites = NULL;
-    data->sprite_count = 0;
+	data->lamp_texture_count = 0;
+	data->sprites = NULL;
+	data->sprite_count = 0;
 	data->z_buffer = NULL;
+	i = 0;
+	while (i < 4)
+	{
+		data->animated_textures[i].frames = NULL;
+		data->animated_textures[i].frame_count = 0;
+		data->animated_textures[i].current_frame = 0;
+		data->animated_textures[i].animation_speed = 0.1;
+		data->animated_textures[i].animation_timer = 0.0;
+		i++;
+	}
+	data->animated_door_texture.frames = NULL;
+	data->animated_door_texture.frame_count = 0;
+	data->animated_lamp_texture.frames = NULL;
+	data->animated_lamp_texture.frame_count = 0;
 }
 
 static void	ft_init_data(t_data *data)

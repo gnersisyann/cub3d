@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:31:44 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/08 17:33:09 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:12:05 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,33 +92,38 @@ static void	cleanup_door_textures(t_data *data)
 
 static void	cleanup_lamp_textures(t_data *data)
 {
-    int	i;
+	int	i;
 
-    if (data->lamp_textures)
-    {
-        i = 0;
-        while (i < data->lamp_texture_count)
-        {
-            free(data->lamp_textures[i]);
-            i++;
-        }
-        free(data->lamp_textures);
-        data->lamp_textures = NULL;
-        data->lamp_texture_count = 0;
-    }
-    if (data->animated_lamp_texture.frames)
-    {
-        i = 0;
-        while (i < data->animated_lamp_texture.frame_count)
-        {
-            if (data->animated_lamp_texture.frames[i].img)
-                mlx_destroy_image(data->mlx,
-                    data->animated_lamp_texture.frames[i].img);
-            i++;
-        }
-        free(data->animated_lamp_texture.frames);
-        data->animated_lamp_texture.frames = NULL;
-    }
+	if (data->lamp_textures)
+	{
+		i = 0;
+		while (i < data->lamp_texture_count)
+		{
+			if (data->lamp_textures[i])
+				free(data->lamp_textures[i]);
+			i++;
+		}
+		free(data->lamp_textures);
+		data->lamp_textures = NULL;
+		data->lamp_texture_count = 0;
+	}
+	if (data->animated_lamp_texture.frames)
+	{
+		if (data->mlx)
+		{
+			i = 0;
+			while (i < data->animated_lamp_texture.frame_count)
+			{
+				if (data->animated_lamp_texture.frames[i].img)
+					mlx_destroy_image(data->mlx,
+						data->animated_lamp_texture.frames[i].img);
+				i++;
+			}
+		}
+		free(data->animated_lamp_texture.frames);
+		data->animated_lamp_texture.frames = NULL;
+	}
+	data->animated_lamp_texture.frame_count = 0;
 }
 
 void	cleanup_texture_arrays(t_data *data)
