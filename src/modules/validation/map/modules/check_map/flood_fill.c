@@ -12,6 +12,11 @@
 
 #include "cub3d.h"
 
+static void	check_door_validation(t_flood_context *ctx, int x, int y);
+static void	check_line_end_validation(t_flood_context *ctx, int x, int y);
+static int	count_consecutive_zeros(t_flood_context *ctx, int x, int y);
+static void	validate_door_line_end(t_flood_context *ctx, int line_len, int y);
+
 static void	check_boundary_for_doors(t_flood_context *ctx, int x, int y,
 		char current)
 {
@@ -40,11 +45,12 @@ void	flood_fill(t_flood_context *ctx, int x, int y)
 		return ;
 	if (current == 'D')
 	{
-		check_boundary_for_doors(ctx, x, y, current);
+		check_door_validation(ctx, x, y);
 		return ;
 	}
 	if (!is_valid_walkable_char(current))
 		return ;
+	check_line_end_validation(ctx, x, y);
 	check_boundary_for_doors(ctx, x, y, current);
 	ctx->visited[y][x] = 1;
 	flood_fill(ctx, x + 1, y);
@@ -86,4 +92,73 @@ void	validate_map_closure(char **map_lines, t_data *data,
 	t_flood_context	ctx;
 
 	init_flood_context(&ctx, map_lines, data, content);
+}
+
+static void	check_door_validation(t_flood_context *ctx, int x, int y)
+{
+	int		line_len;
+	int		consecutive_zeros;
+
+	check_boundary_for_doors(ctx, x, y, 'D');
+	line_len = ft_strlen(ctx->map_lines[y]);
+	if (ctx->map_lines[y][line_len - 1] == '\n')
+		line_len--;
+	consecutive_zeros = count_consecutive_zeros(ctx, x, y);
+	if (consecutive_zeros >= 3)
+		validate_door_line_end(ctx, line_len, y);
+}
+
+static int	count_consecutive_zeros(t_flood_context *ctx, int x, int y)
+{
+	int	consecutive_zeros;
+	int	check_x;
+	int	line_len;
+
+	consecutive_zeros = 0;
+	check_x = x + 1;
+	line_len = ft_strlen(ctx->map_lines[y]);
+	if (ctx->map_lines[y][line_len - 1] == '\n')
+		line_len--;
+	while (check_x < line_len && get_map_char_safe(ctx->map_lines,
+			check_x, y, ctx->map_height) == '0')
+	{
+		consecutive_zeros++;
+		check_x++;
+	}
+	return (consecutive_zeros);
+}
+
+static void	validate_door_line_end(t_flood_context *ctx, int line_len, int y)
+{
+	char	last_char;
+
+	last_char = get_map_char_safe(ctx->map_lines, line_len - 1,
+			y, ctx->map_height);
+	if (last_char != '1')
+	{
+		ft_error_exit_with_cleanup("Invalid map: door followed by "
+			"walkable areas extending to line end without proper "
+			"wall closure", EXIT_FAILURE, ctx->data, ctx->content);
+	}
+}
+
+static void	check_line_end_validation(t_flood_context *ctx, int x, int y)
+{
+	int		line_len;
+	char	last_char;
+
+	line_len = ft_strlen(ctx->map_lines[y]);
+	if (ctx->map_lines[y][line_len - 1] == '\n')
+		line_len--;
+	if (x >= line_len - 2)
+	{
+		last_char = get_map_char_safe(ctx->map_lines, line_len - 1,
+				y, ctx->map_height);
+		if (last_char != '1')
+		{
+			ft_error_exit_with_cleanup("Invalid map: walkable area extends "
+				"to line end without wall closure", EXIT_FAILURE,
+				ctx->data, ctx->content);
+		}
+	}
 }

@@ -28,6 +28,12 @@ static void	perform_background_dda(t_data *data, t_ray *bg_ray)
 			bg_ray->map_y += bg_ray->step_y;
 			bg_ray->side = 1;
 		}
+		if (bg_ray->map_y < 0 || bg_ray->map_y >= data->map_height ||
+		    bg_ray->map_x < 0 || bg_ray->map_x >= data->map_width)
+		{
+			bg_ray->hit = 1;
+			break;
+		}
 		if (data->map[bg_ray->map_y][bg_ray->map_x] == '1')
 			bg_ray->hit = 1;
 	}

@@ -59,6 +59,12 @@ void	perform_dda(t_data *data, t_ray *ray)
 	while (ray->hit == 0)
 	{
 		dda_helper(ray);
+		if (ray->map_y < 0 || ray->map_y >= data->map_height ||
+		    ray->map_x < 0 || ray->map_x >= data->map_width)
+		{
+			ray->hit = 1;
+			break;
+		}
 		if (data->map[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
 		else if (data->map[ray->map_y][ray->map_x] == 'D')
