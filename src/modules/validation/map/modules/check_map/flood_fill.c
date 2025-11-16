@@ -6,7 +6,7 @@
 /*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:52:33 by letto             #+#    #+#             */
-/*   Updated: 2025/11/17 01:02:24 by letto            ###   ########.fr       */
+/*   Updated: 2025/11/17 01:05:22 by letto            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,24 +38,8 @@ void	flood_fill(t_flood_context *ctx, int x, int y)
 {
 	char	current;
 
-	if (x < 0 || y < 0 || x >= ctx->map_width || y >= ctx->map_height)
-	{
-		cleanup_visited_array(ctx->visited, ctx->map_height);
-		cleanup_normalized_map(ctx->normalized_map, ctx->map_height);
-		ft_error_exit_with_cleanup("Player can escape from map boundaries",
-			EXIT_FAILURE, ctx->data, ctx->content);
-	}
-	if (ctx->visited[y][x])
-		return ;
 	current = get_map_char_safe(ctx->map_lines, x, y, ctx->map_height);
-	if (is_boundary_violation(current))
-	{
-		cleanup_visited_array(ctx->visited, ctx->map_height);
-		cleanup_normalized_map(ctx->normalized_map, ctx->map_height);
-		ft_error_exit_with_cleanup("Map is not closed by walls\
-- found hole in boundary", EXIT_FAILURE, ctx->data, ctx->content);
-	}
-	if (is_blocking_char(current))
+	if (!validate_flood_position(ctx, x, y, current))
 		return ;
 	if (current == 'D')
 	{

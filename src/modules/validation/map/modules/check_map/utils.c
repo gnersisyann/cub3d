@@ -6,7 +6,7 @@
 /*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 18:06:58 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/17 00:33:39 by letto            ###   ########.fr       */
+/*   Updated: 2025/11/17 01:06:31 by letto            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,6 @@ void	init_flood_context(t_flood_context *ctx, char **map_lines, t_data *data,
 			content);
 	flood_fill(ctx, player_x, player_y);
 	cleanup_visited_array(ctx->visited, ctx->map_height);
-}
-
-void	cleanup_flood_context(t_flood_context *ctx)
-{
-	if (ctx->visited)
-		cleanup_visited_array(ctx->visited, ctx->map_height);
-	if (ctx->normalized_map)
-		cleanup_normalized_map(ctx->normalized_map, ctx->map_height);
 }
 
 void	normalize_map_line(char *source_line, char *dest_line, int map_width)

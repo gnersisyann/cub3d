@@ -6,7 +6,7 @@
 /*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:11:07 by letto             #+#    #+#             */
-/*   Updated: 2025/11/17 00:59:07 by letto            ###   ########.fr       */
+/*   Updated: 2025/11/17 01:04:49 by letto            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ int		is_on_boundary(t_flood_context *ctx, int x, int y);
 int		is_blocking_char(char c);
 int		is_valid_walkable_char(char c);
 int		is_boundary_violation(char c);
+int		validate_flood_position(t_flood_context *ctx, int x, int y,
+			char current);
 
 /* utils */
 int		count_config_lines(char **lines, int map_start_index);

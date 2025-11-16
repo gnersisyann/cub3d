@@ -6,7 +6,7 @@
 /*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:20:45 by letto             #+#    #+#             */
-/*   Updated: 2025/11/17 00:58:13 by letto            ###   ########.fr       */
+/*   Updated: 2025/11/17 01:06:23 by letto            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,12 @@ void	ft_cleanup_data_partial(t_data *data)
 	cleanup_sprites(data);
 	cleanup_map(data);
 	cleanup_map_data(data);
+}
+
+void	cleanup_flood_context(t_flood_context *ctx)
+{
+	if (ctx->visited)
+		cleanup_visited_array(ctx->visited, ctx->map_height);
+	if (ctx->normalized_map)
+		cleanup_normalized_map(ctx->normalized_map, ctx->map_height);
 }
