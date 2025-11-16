@@ -6,7 +6,7 @@
 /*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:52:33 by letto             #+#    #+#             */
-/*   Updated: 2025/11/17 00:41:23 by letto            ###   ########.fr       */
+/*   Updated: 2025/11/17 01:02:24 by letto            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,7 @@ void	flood_fill(t_flood_context *ctx, int x, int y)
 		cleanup_visited_array(ctx->visited, ctx->map_height);
 		cleanup_normalized_map(ctx->normalized_map, ctx->map_height);
 		ft_error_exit_with_cleanup("Map is not closed by walls\
-- found hole in boundary",
-									EXIT_FAILURE,
-									ctx->data,
-									ctx->content);
+- found hole in boundary", EXIT_FAILURE, ctx->data, ctx->content);
 	}
 	if (is_blocking_char(current))
 		return ;

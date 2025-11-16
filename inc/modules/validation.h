@@ -6,7 +6,7 @@
 /*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:11:07 by letto             #+#    #+#             */
-/*   Updated: 2025/11/17 00:34:30 by letto            ###   ########.fr       */
+/*   Updated: 2025/11/17 00:59:07 by letto            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,5 +128,6 @@ void	normalize_map_line(char *source_line, char *dest_line, int map_width);
 void	cleanup_visited_array(int **visited, int map_height);
 void	cleanup_flood_context(t_flood_context *ctx);
 void	cleanup_normalized_map(char **normalized_map, int map_height);
+void	cleanup_map_data(t_data *data);
 
 #endif

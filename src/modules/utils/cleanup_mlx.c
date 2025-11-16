@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup_mlx.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 00:00:00 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/08 18:40:42 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/17 01:01:12 by letto            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,29 @@
 static void	destroy_images(t_data *data)
 {
 	if (data->img)
+	{
 		mlx_destroy_image(data->mlx, data->img);
+		data->img = NULL;
+	}
 	if (data->minimap.img)
+	{
 		mlx_destroy_image(data->mlx, data->minimap.img);
+		data->minimap.img = NULL;
+	}
 	if (data->minimap.view_img)
+	{
 		mlx_destroy_image(data->mlx, data->minimap.view_img);
+		data->minimap.view_img = NULL;
+	}
 }
 
 static void	destroy_window(t_data *data)
 {
 	if (data->win)
+	{
 		mlx_destroy_window(data->mlx, data->win);
+		data->win = NULL;
+	}
 }
 
 static void	destroy_display(t_data *data)
