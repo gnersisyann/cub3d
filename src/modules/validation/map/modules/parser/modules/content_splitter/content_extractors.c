@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   content_extractors.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 17:48:58 by ganersis          #+#    #+#             */
-/*   Updated: 2025/09/27 17:56:39 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/17 00:23:26 by letto            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**extract_config_lines(t_extraction_context *ctx)
 	return (config_lines);
 }
 
-static char	*normalize_map_line(char *line)
+static char	*normalize_map_linee(char *line)
 {
 	char	*normalized;
 	int		i;
@@ -83,7 +83,7 @@ static void	fill_map_lines(t_line_fill_context *ctx,
 	while (ctx->lines[i] && is_potential_map_line(ctx->lines[i])
 		&& j < ctx->count)
 	{
-		normalized_line = normalize_map_line(ctx->lines[i]);
+		normalized_line = normalize_map_linee(ctx->lines[i]);
 		if (!normalized_line)
 		{
 			cleanup_map_lines(ctx->target_lines, j);
