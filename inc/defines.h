@@ -13,8 +13,8 @@
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define WIDTH 1440
-# define HEIGHT 900
+# define WIDTH 800
+# define HEIGHT 600
 # define MOVE_SPEED 0.05
 # define ROT_SPEED 0.04
 

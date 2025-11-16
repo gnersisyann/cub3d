@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:11:07 by letto             #+#    #+#             */
-/*   Updated: 2025/11/08 19:52:42 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/17 00:11:25 by letto            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 void	ft_validate(int argc, char **argv, t_data *data,
 			t_file_content *content);
 
-void	ft_validate_map(char *map_path, t_data *data,
-			t_file_content *content);
+void	ft_validate_map(char *map_path, t_data *data, t_file_content *content);
 
 // Argument validation
 void	ft_validate_arguments(int argc, char **argv);
@@ -48,10 +47,10 @@ int		validate_texture_path(char *path);
 int		validate_color_component(char *component);
 int		validate_color_line(char *line);
 int		validate_all_configs(t_data *data);
-void	validate_door_texture_consistency(t_data *data,\
-	t_file_content *content);
-void	validate_lamp_texture_consistency(t_data *data,\
-	t_file_content *content);
+void	validate_door_texture_consistency(t_data *data,
+			t_file_content *content);
+void	validate_lamp_texture_consistency(t_data *data,
+			t_file_content *content);
 
 /* config_parsers.c */
 void	parse_texture_line(char *line, char **texture_path, t_data *data,
@@ -111,6 +110,7 @@ int		**allocate_visited_array(int map_width, int map_height, t_data *data,
 int		is_on_boundary(t_flood_context *ctx, int x, int y);
 int		is_blocking_char(char c);
 int		is_valid_walkable_char(char c);
+int		is_boundary_violation(char c);
 
 /* utils */
 int		count_config_lines(char **lines, int map_start_index);
@@ -122,5 +122,6 @@ int		validate_no_config_after_map(char **lines, int map_start_index,
 void	cleanup_map_lines(char **map_lines, int j);
 void	check_boundary_conditions(t_flood_context *ctx, int x, int y);
 char	*extract_path_from_line(char *line);
-
+char	**normalize_map_with_boundaries(char **map_lines, int map_width,
+			int map_height);
 #endif

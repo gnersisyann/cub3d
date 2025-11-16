@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 18:06:58 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/08 19:41:49 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/17 00:08:29 by letto            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 char	get_map_char_safe(char **map_lines, int x, int y, int map_height)
 {
-	int	line_len;
+    int	line_len;
 
-	if (y < 0 || y >= map_height || x < 0)
-		return ('1');
-	line_len = ft_strlen(map_lines[y]);
-	if (map_lines[y][line_len - 1] == '\n')
-		line_len--;
-	if (x >= line_len)
-		return ('1');
-	return (map_lines[y][x]);
+    if (y < 0 || y >= map_height || x < 0)
+        return ('1');
+    line_len = ft_strlen(map_lines[y]);
+    if (x >= line_len)
+        return ('1');
+    return (map_lines[y][x]);
 }
 
 void	check_boundary_conditions(t_flood_context *ctx, int x, int y)
