@@ -6,7 +6,7 @@
 /*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 18:06:58 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/17 00:08:29 by letto            ###   ########.fr       */
+/*   Updated: 2025/11/17 00:20:04 by letto            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 char	get_map_char_safe(char **map_lines, int x, int y, int map_height)
 {
-    int	line_len;
+	int	line_len;
 
-    if (y < 0 || y >= map_height || x < 0)
-        return ('1');
-    line_len = ft_strlen(map_lines[y]);
-    if (x >= line_len)
-        return ('1');
-    return (map_lines[y][x]);
+	if (y < 0 || y >= map_height || x < 0)
+		return ('1');
+	line_len = ft_strlen(map_lines[y]);
+	if (x >= line_len)
+		return ('1');
+	return (map_lines[y][x]);
 }
 
 void	check_boundary_conditions(t_flood_context *ctx, int x, int y)
@@ -73,4 +73,29 @@ void	init_flood_context(t_flood_context *ctx, char **map_lines, t_data *data,
 			content);
 	flood_fill(ctx, player_x, player_y);
 	cleanup_visited_array(ctx->visited, ctx->map_height);
+}
+
+void	normalize_map_line(char *source_line, char *dest_line, int map_width)
+{
+	int	line_len;
+	int	j;
+
+	line_len = ft_strlen(source_line);
+	if (line_len > 0 && source_line[line_len - 1] == '\n')
+		line_len--;
+	j = 0;
+	while (j < line_len)
+	{
+		if (source_line[j] == ' ')
+			dest_line[j] = '2';
+		else
+			dest_line[j] = source_line[j];
+		j++;
+	}
+	while (j < map_width)
+	{
+		dest_line[j] = '2';
+		j++;
+	}
+	dest_line[map_width] = '\0';
 }
