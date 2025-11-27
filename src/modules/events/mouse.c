@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:15:59 by ganersis          #+#    #+#             */
-/*   Updated: 2025/10/18 14:16:03 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/27 11:48:34 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,13 @@ static int	wrap_mouse_position(t_data *data, int *x, int *y)
 	return (warped);
 }
 
-static void	rotate_step(t_data *data, int dir)
+static void	rotate_with_angle(t_data *data, double angle)
 {
 	double	old_dir_x;
 	double	old_plane_x;
-	double	angle;
 
-	if (dir == 0)
+	if (angle == 0.0)
 		return ;
-	if (dir < 0)
-		angle = -ROT_SPEED;
-	else
-		angle = ROT_SPEED;
 	old_dir_x = data->dir_x;
 	old_plane_x = data->plane_x;
 	data->dir_x = data->dir_x * cos(angle) - data->dir_y * sin(angle);
@@ -62,7 +57,9 @@ static void	rotate_step(t_data *data, int dir)
 
 int	mouse_move(int x, int y, t_data *data)
 {
-	int	warped;
+	int		warped;
+	int		delta_x;
+	double	angle;
 
 	(void)y;
 	if (!data->mouse_captured)
@@ -78,12 +75,13 @@ int	mouse_move(int x, int y, t_data *data)
 		data->last_mouse_x = x;
 		return (0);
 	}
-	if (x < data->last_mouse_x)
-		rotate_step(data, -1);
-	else if (x > data->last_mouse_x)
-		rotate_step(data, 1);
-	data->last_mouse_x = x;
-	return (0);
+	delta_x = x - data->last_mouse_x;
+	if (delta_x != 0)
+	{
+		angle = delta_x * MOUSE_SENSITIVITY;
+		rotate_with_angle(data, angle);
+	}
+	return (data->last_mouse_x = x, 0);
 }
 
 void	toggle_mouse_capture(t_data *data)
