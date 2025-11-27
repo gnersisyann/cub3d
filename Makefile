@@ -6,6 +6,39 @@ RM = rm -f
 
 MAKEFILE = Makefile
 
+RESET = \033[0m
+BOLD = \033[1m
+RED = \033[31m
+GREEN = \033[32m
+YELLOW = \033[33m
+BLUE = \033[34m
+MAGENTA = \033[35m
+CYAN = \033[36m
+
+define RUN_WITH_SPINNER
+	@printf "$(BOLD)$(CYAN)%s$(RESET)\n" "$(1)"; \
+	{ \
+		set -e; \
+		( $(2) ) & pid=$$!; \
+		frames='| / - \\'; \
+		while kill -0 $$pid 2>/dev/null; do \
+			for frame in $$frames; do \
+				if ! kill -0 $$pid 2>/dev/null; then \
+					break; \
+				fi; \
+				printf "\r$(YELLOW)%s [%s]$(RESET)" "$(1)" "$$frame"; \
+				sleep 0.1; \
+			done; \
+		done; \
+		wait $$pid; status=$$?; \
+		if [ $$status -ne 0 ]; then \
+			printf "\r$(RED)%s [x]$(RESET)\n" "$(1)"; \
+			exit $$status; \
+		fi; \
+		printf "\r$(GREEN)%s [OK]$(RESET)\n" "$(1)"; \
+	}
+endef
+
 SRC_DIR = src/
 INC_DIR = inc/
 INC_FLAGS = -Iinc/ -Iinc/modules/
@@ -106,27 +139,27 @@ OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(MLX) $(OBJ) $(HEADERS) $(MAKEFILE)
-	$(CC) $(CFLAGS) $(OBJ) $(LDFLAGS) -o $@
+	$(call RUN_WITH_SPINNER,Linking $(NAME),$(CC) $(CFLAGS) $(OBJ) $(LDFLAGS) -o $@)
 
 $(OBJ_DIR)/%.o: %.c $(HEADERS)
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(call RUN_WITH_SPINNER,Compiling $(notdir $@),$(CC) $(CFLAGS) -c $< -o $@)
 
 $(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+	$(call RUN_WITH_SPINNER,Building libft,$(MAKE) -C $(LIBFT_DIR))
 
 $(MLX):
-	$(MAKE) -C $(MLX_DIR)
+	$(call RUN_WITH_SPINNER,Building minilibx,$(MAKE) -C $(MLX_DIR))
 
 clean:
-	$(MAKE) -C $(LIBFT_DIR) clean
-	$(MAKE) -C $(MLX_DIR) clean
-	rm -rf $(OBJ_DIR)
+	$(call RUN_WITH_SPINNER,Cleaning libft,$(MAKE) -C $(LIBFT_DIR) clean)
+	$(call RUN_WITH_SPINNER,Cleaning minilibx,$(MAKE) -C $(MLX_DIR) clean)
+	$(call RUN_WITH_SPINNER,Removing objects,rm -rf $(OBJ_DIR))
 
 fclean: clean
-	$(MAKE) -C $(LIBFT_DIR) fclean
-	$(MAKE) -C $(MLX_DIR) clean
-	$(RM) $(NAME)
+	$(call RUN_WITH_SPINNER,Purging libft,$(MAKE) -C $(LIBFT_DIR) fclean)
+	$(call RUN_WITH_SPINNER,Purging minilibx,$(MAKE) -C $(MLX_DIR) clean)
+	$(call RUN_WITH_SPINNER,Removing $(NAME),$(RM) $(NAME))
 
 re: fclean all
 
