@@ -16,7 +16,7 @@ LIBFT = $(LIBFT_DIR)libft.a
 MLX_DIR = lib/minilibx-linux/
 MLX = $(MLX_DIR)libmlx.a
 
-CFLAGS = -g $(INC_FLAGS) -I$(LIBFT_DIR) -I$(MLX_DIR) #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g $(INC_FLAGS) -I$(LIBFT_DIR) -I$(MLX_DIR)
 
 LDFLAGS = -L$(LIBFT_DIR) -L$(MLX_DIR) -lft -lm -lmlx -lXext -lX11
 
@@ -130,4 +130,6 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+bonus: $(NAME)
+
+.PHONY: all clean fclean re bonus

@@ -24,7 +24,7 @@ typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}				t_list;
+}	t_list;
 
 char	*get_next_line(int fd);
 void	*ft_memset(void *dest, int c, size_t n);

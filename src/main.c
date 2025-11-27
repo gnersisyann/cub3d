@@ -23,4 +23,5 @@ int	main(int argc, char **argv)
 	ft_init_graphics(&data);
 	ft_mlx_loop(data.mlx);
 	ft_cleanup_data(&data);
+	return (0);
 }
