@@ -6,24 +6,24 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 16:42:55 by luminous          #+#    #+#             */
-/*   Updated: 2025/09/27 18:07:49 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/27 11:50:52 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
-#define LIBFT_H
+# define LIBFT_H
 
-#include <stdlib.h>
-#include <unistd.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-#ifndef BUFFER_SIZE
-#define BUFFER_SIZE 4096
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 4096
+# endif
 
 typedef struct s_list
 {
-	void	*content;
-	struct	s_list *next;
+	void			*content;
+	struct s_list	*next;
 }	t_list;
 
 char	*get_next_line(int fd);

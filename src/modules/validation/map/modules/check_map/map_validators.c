@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validators.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:52:18 by letto             #+#    #+#             */
-/*   Updated: 2025/11/08 17:19:23 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/17 00:21:07 by letto            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,33 @@ void	validate_player_count(char **map_lines, t_data *data,
 			EXIT_FAILURE, data, content);
 }
 
+char	**normalize_map_with_boundaries(char **map_lines, int map_width,
+		int map_height)
+{
+	char	**normalized_map;
+	int		i;
+
+	normalized_map = (char **)malloc(sizeof(char *) * (map_height + 1));
+	if (!normalized_map)
+		return (NULL);
+	i = 0;
+	while (i < map_height)
+	{
+		normalized_map[i] = (char *)malloc(sizeof(char) * (map_width + 1));
+		if (!normalized_map[i])
+		{
+			while (i > 0)
+				free(normalized_map[--i]);
+			free(normalized_map);
+			return (NULL);
+		}
+		normalize_map_line(map_lines[i], normalized_map[i], map_width);
+		i++;
+	}
+	normalized_map[map_height] = NULL;
+	return (normalized_map);
+}
+
 void	validate_map_characters(char **map_lines, t_data *data,
 		t_file_content *content)
 {
@@ -43,7 +70,7 @@ void	validate_map_characters(char **map_lines, t_data *data,
 		{
 			c = map_lines[i][j];
 			if (c != '0' && c != '1' && !is_player_character(c) && c != '\n'
-				&& c != 'D' && c != 'L')
+				&& c != 'D' && c != 'L' && c != ' ')
 			{
 				ft_error_exit_with_cleanup("Invalid character in map",
 					EXIT_FAILURE, data, content);

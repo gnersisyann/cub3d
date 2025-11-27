@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:13:59 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/08 19:58:23 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/17 00:29:16 by letto            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,43 +17,43 @@ typedef struct s_file_content
 {
 	char				**config_lines;
 	char				**map_lines;
-}	t_file_content;
+}						t_file_content;
 
 typedef struct s_texture_context
 {
-	struct s_data			*data;
-	t_file_content			*content;
-}	t_texture_context;
+	struct s_data		*data;
+	t_file_content		*content;
+}						t_texture_context;
 
 typedef struct s_continuity_context
 {
-	char			**lines;
-	struct s_data	*data;
-	t_file_content	*content;
-}	t_continuity_context;
+	char				**lines;
+	struct s_data		*data;
+	t_file_content		*content;
+}						t_continuity_context;
 
 typedef struct s_extraction_context
 {
-	char			**lines;
-	int				map_start_index;
-	struct s_data	*data;
-	t_file_content	*content;
-}	t_extraction_context;
+	char				**lines;
+	int					map_start_index;
+	struct s_data		*data;
+	t_file_content		*content;
+}						t_extraction_context;
 
 typedef struct s_line_fill_context
 {
-	char	**lines;
-	char	**target_lines;
-	int		start_index;
-	int		count;
-}	t_line_fill_context;
+	char				**lines;
+	char				**target_lines;
+	int					start_index;
+	int					count;
+}						t_line_fill_context;
 
 typedef struct s_path_process
 {
 	char				***texture_paths;
 	int					*texture_count;
 	t_texture_context	*ctx;
-}	t_path_process;
+}						t_path_process;
 
 typedef struct s_sprite_transform
 {
@@ -68,17 +68,18 @@ typedef struct s_sprite_transform
 	int					draw_end_y;
 	int					draw_start_x;
 	int					draw_end_x;
-}			t_sprite_transform;
+}						t_sprite_transform;
 
 typedef struct s_flood_context
 {
-	char			**map_lines;
-	int				map_width;
-	int				map_height;
-	int				**visited;
-	struct s_data	*data;
-	t_file_content	*content;
-}	t_flood_context;
+	char				**map_lines;
+	char				**normalized_map;
+	int					map_width;
+	int					map_height;
+	int					**visited;
+	struct s_data		*data;
+	t_file_content		*content;
+}						t_flood_context;
 
 typedef struct s_texture
 {
@@ -89,7 +90,7 @@ typedef struct s_texture
 	int					endian;
 	int					width;
 	int					height;
-}			t_texture;
+}						t_texture;
 
 typedef struct s_animated_texture
 {
@@ -98,7 +99,7 @@ typedef struct s_animated_texture
 	int					current_frame;
 	double				animation_speed;
 	double				animation_timer;
-}			t_animated_texture;
+}						t_animated_texture;
 
 typedef struct s_minimap
 {
@@ -117,7 +118,7 @@ typedef struct s_minimap
 	int					view_h;
 	int					x;
 	int					y;
-}			t_minimap;
+}						t_minimap;
 
 typedef struct s_pixel
 {
@@ -128,7 +129,7 @@ typedef struct s_pixel
 	int					y;
 	int					color;
 	int					angle;
-}			t_pixel;
+}						t_pixel;
 
 typedef struct s_norm
 {
@@ -136,7 +137,7 @@ typedef struct s_norm
 	int					start_py;
 	int					dst_off_x;
 	int					dst_off_y;
-}			t_norm;
+}						t_norm;
 
 typedef struct s_door
 {
@@ -146,7 +147,7 @@ typedef struct s_door
 	int					is_closing;
 	int					is_open;
 	double				open_offset;
-}			t_door;
+}						t_door;
 
 typedef struct s_door_render
 {
@@ -154,7 +155,7 @@ typedef struct s_door_render
 	t_door				*door;
 	double				step;
 	double				tex_pos;
-}	t_door_render;
+}						t_door_render;
 
 typedef struct s_sprite
 {
@@ -162,7 +163,7 @@ typedef struct s_sprite
 	double				y;
 	double				distance;
 	t_animated_texture	*texture;
-}			t_sprite;
+}						t_sprite;
 
 typedef struct s_data
 {
@@ -215,14 +216,14 @@ typedef struct s_data
 	t_sprite			*sprites;
 	int					sprite_count;
 	double				*z_buffer;
-}			t_data;
+}						t_data;
 
 typedef struct s_door_val_ctx
 {
 	int					map_height;
 	t_data				*data;
 	t_file_content		*content;
-}	t_door_val_ctx;
+}						t_door_val_ctx;
 
 typedef struct s_ray
 {
@@ -243,7 +244,7 @@ typedef struct s_ray
 	int					draw_start;
 	int					draw_end;
 	int					texture_num;
-}			t_ray;
+}						t_ray;
 
 typedef struct s_coords
 {
@@ -256,13 +257,13 @@ typedef struct s_coords
 	char				*src;
 	int					color;
 	t_pixel				pixel;
-}	t_coords;
+}						t_coords;
 
 typedef struct s_dup_ctx
 {
 	char				**config_lines;
 	t_data				*data;
 	t_file_content		*content;
-}					t_dup_ctx;
+}						t_dup_ctx;
 
 #endif

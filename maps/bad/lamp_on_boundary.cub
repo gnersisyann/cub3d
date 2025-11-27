@@ -1,0 +1,12 @@
+NO textures/test/north.xpm
+SO textures/test/south.xpm
+WE textures/test/west.xpm
+EA textures/test/east.xpm
+LA textures/lamp/lamp1.xpm textures/lamp/lamp2.xpm textures/lamp/lamp3.xpm textures/lamp/lamp4.xpm textures/lamp/lamp5.xpm
+
+F 30,30,30
+C 210,210,210
+
+11111
+1S00L
+11111

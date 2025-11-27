@@ -17,9 +17,14 @@
 
 int		ft_exit(t_data *data);
 
+int		ft_game_loop(t_data *data);
+void	handle_movement(t_data *data);
+
 int		ft_key_press(int keycode, t_data *data);
 int		ft_key_release(int keycode, t_data *data);
-void	handle_movement(t_data *data);
-int		ft_game_loop(t_data *data);
+
+void	init_mouse(t_data *data);
+int		mouse_move(int x, int y, t_data *data);
+void	toggle_mouse_capture(t_data *data);
 
 #endif

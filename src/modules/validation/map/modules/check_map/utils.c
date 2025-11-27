@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: letto <letto@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 18:06:58 by ganersis          #+#    #+#             */
-/*   Updated: 2025/11/08 19:41:49 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/11/17 01:06:31 by letto            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ char	get_map_char_safe(char **map_lines, int x, int y, int map_height)
 	if (y < 0 || y >= map_height || x < 0)
 		return ('1');
 	line_len = ft_strlen(map_lines[y]);
-	if (map_lines[y][line_len - 1] == '\n')
-		line_len--;
 	if (x >= line_len)
 		return ('1');
 	return (map_lines[y][x]);
@@ -66,6 +64,7 @@ void	init_flood_context(t_flood_context *ctx, char **map_lines, t_data *data,
 	int	player_y;
 
 	ctx->map_lines = map_lines;
+	ctx->normalized_map = map_lines;
 	ctx->map_width = get_map_width(map_lines);
 	ctx->map_height = get_map_height(map_lines);
 	ctx->data = data;
@@ -75,4 +74,29 @@ void	init_flood_context(t_flood_context *ctx, char **map_lines, t_data *data,
 			content);
 	flood_fill(ctx, player_x, player_y);
 	cleanup_visited_array(ctx->visited, ctx->map_height);
+}
+
+void	normalize_map_line(char *source_line, char *dest_line, int map_width)
+{
+	int	line_len;
+	int	j;
+
+	line_len = ft_strlen(source_line);
+	if (line_len > 0 && source_line[line_len - 1] == '\n')
+		line_len--;
+	j = 0;
+	while (j < line_len)
+	{
+		if (source_line[j] == ' ')
+			dest_line[j] = '2';
+		else
+			dest_line[j] = source_line[j];
+		j++;
+	}
+	while (j < map_width)
+	{
+		dest_line[j] = '2';
+		j++;
+	}
+	dest_line[map_width] = '\0';
 }
