@@ -49,7 +49,7 @@ LIBFT = $(LIBFT_DIR)libft.a
 MLX_DIR = lib/minilibx-linux/
 MLX = $(MLX_DIR)libmlx.a
 
-CFLAGS = -Wall -Wextra -Werror -g $(INC_FLAGS) -I$(LIBFT_DIR) -I$(MLX_DIR)
+CFLAGS = -Wall -Wextra -Werror $(INC_FLAGS) -I$(LIBFT_DIR) -I$(MLX_DIR) #-g3
 
 LDFLAGS = -L$(LIBFT_DIR) -L$(MLX_DIR) -lft -lm -lmlx -lXext -lX11
 
