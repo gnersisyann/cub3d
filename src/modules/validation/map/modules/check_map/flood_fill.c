@@ -41,11 +41,6 @@ void	flood_fill(t_flood_context *ctx, int x, int y)
 	current = get_map_char_safe(ctx->map_lines, x, y, ctx->map_height);
 	if (!validate_flood_position(ctx, x, y, current))
 		return ;
-	if (current == 'D')
-	{
-		check_boundary_for_doors(ctx, x, y, current);
-		return ;
-	}
 	if (!is_valid_walkable_char(current))
 		return ;
 	check_boundary_for_doors(ctx, x, y, current);

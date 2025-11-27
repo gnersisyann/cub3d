@@ -1,0 +1,15 @@
+NO textures/test/north.xpm
+SO textures/test/south.xpm
+WE textures/test/west.xpm
+EA textures/test/east.xpm
+DO textures/test/door.xpm
+
+F 30,30,30
+C 180,180,180
+
+11111111111
+1S000000001
+11101111101
+1D000000001
+1  0000001
+11111111111

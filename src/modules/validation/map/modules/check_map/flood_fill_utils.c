@@ -14,7 +14,7 @@
 
 int	is_valid_walkable_char(char c)
 {
-	return (c == '0' || is_player_character(c) || c == 'L');
+	return (c == '0' || is_player_character(c) || c == 'L' || c == 'D');
 }
 
 int	is_blocking_char(char c)

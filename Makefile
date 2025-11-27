@@ -119,6 +119,7 @@ SRC = $(SRC_DIR)main.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/flood_fill_utils.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/utils.c \
       $(SRC_DIR)modules/validation/map/modules/check_map/door_validator.c \
+      $(SRC_DIR)modules/validation/map/modules/check_map/door_validator_utils.c \
       $(SRC_DIR)modules/utils/cleanup.c \
       $(SRC_DIR)modules/utils/cleanup_utils.c \
       $(SRC_DIR)modules/utils/cleanup_mlx.c \

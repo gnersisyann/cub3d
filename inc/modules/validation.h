@@ -96,6 +96,13 @@ void	validate_player_count(char **map_lines, t_data *data,
 			t_file_content *content);
 char	**ft_duplicate_map(char **map_lines, int height);
 
+/* Door validator utils */
+int		is_wall(char c);
+int		is_walkable_space(char c);
+char	get_door_char(char **map, int x, int y, int height);
+int		check_horizontal_walls(char **map, int x, int y, int height);
+int		check_vertical_walls(char **map, int x, int y, int height);
+
 /* Sprite parsing */
 void	parse_sprites_from_map(t_data *data, t_file_content *content);
 
