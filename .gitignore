@@ -6,6 +6,8 @@
 !lib/minilibx-linux/**
 !lib/minilibx-macos/
 !lib/minilibx-macos/**
+!assets/
+!assets/**
 
 !*.c
 !*.h
