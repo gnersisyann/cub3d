@@ -25,7 +25,9 @@ int	ft_init_mlx(t_data *data)
 	data->z_buffer = malloc(sizeof(double) * WIDTH);
 	if (!data->z_buffer)
 	{
+# ifndef __APPLE__
 		mlx_destroy_display(data->mlx);
+# endif
 		free(data->mlx);
 		return (0);
 	}

@@ -32,7 +32,11 @@ static void	destroy_window(t_data *data)
 {
 	if (data->win)
 	{
+# ifdef __APPLE__
+		mlx_mouse_show();
+# else
 		mlx_mouse_show(data->mlx, data->win);
+# endif
 		mlx_destroy_window(data->mlx, data->win);
 	}
 }
@@ -41,7 +45,9 @@ static void	destroy_display(t_data *data)
 {
 	if (!data->mlx)
 		return ;
+# ifndef __APPLE__
 	mlx_destroy_display(data->mlx);
+# endif
 	free(data->mlx);
 }
 

@@ -29,14 +29,26 @@
 
 # define MOUSE_WRAP 40
 
-# define ESC 65307
-# define W 119
-# define A 97
-# define S 115
-# define D 100
-# define UARROW 65362
-# define LARROW 65361
-# define DARROW 65364
-# define RARROW 65363
+# ifdef __APPLE__
+#  define ESC 53
+#  define W 13
+#  define A 0
+#  define S 1
+#  define D 2
+#  define UARROW 126
+#  define LARROW 123
+#  define DARROW 125
+#  define RARROW 124
+# else
+#  define ESC 65307
+#  define W 119
+#  define A 97
+#  define S 115
+#  define D 100
+#  define UARROW 65362
+#  define LARROW 65361
+#  define DARROW 65364
+#  define RARROW 65363
+# endif
 
 #endif

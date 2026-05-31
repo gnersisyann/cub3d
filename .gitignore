@@ -4,9 +4,12 @@
 !lib/
 !lib/minilibx-linux/
 !lib/minilibx-linux/**
+!lib/minilibx-macos/
+!lib/minilibx-macos/**
 
 !*.c
 !*.h
+!*.md
 !Makefile
 !*.cub
 !*.xpm

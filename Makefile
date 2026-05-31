@@ -46,12 +46,19 @@ INC_FLAGS = -Iinc/ -Iinc/modules/
 LIBFT_DIR = lib/libft/
 LIBFT = $(LIBFT_DIR)libft.a
 
-MLX_DIR = lib/minilibx-linux/
-MLX = $(MLX_DIR)libmlx.a
+UNAME = $(shell uname -s)
+
+ifeq ($(UNAME), Darwin)
+  MLX_DIR = lib/minilibx-macos/
+  MLX = $(MLX_DIR)libmlx.a
+  LDFLAGS = -L$(LIBFT_DIR) -L$(MLX_DIR) -lft -lmlx -framework OpenGL -framework AppKit
+else
+  MLX_DIR = lib/minilibx-linux/
+  MLX = $(MLX_DIR)libmlx.a
+  LDFLAGS = -L$(LIBFT_DIR) -L$(MLX_DIR) -lft -lm -lmlx -lXext -lX11
+endif
 
 CFLAGS = -Wall -Wextra -Werror $(INC_FLAGS) -I$(LIBFT_DIR) -I$(MLX_DIR) #-g3
-
-LDFLAGS = -L$(LIBFT_DIR) -L$(MLX_DIR) -lft -lm -lmlx -lXext -lX11
 
 HEADERS = $(INC_DIR)cub3d.h \
           $(INC_DIR)defines.h \

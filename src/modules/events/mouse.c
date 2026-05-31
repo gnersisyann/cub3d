@@ -28,13 +28,21 @@ static int	wrap_mouse_position(t_data *data, int *x, int *y)
 	if (*x > WIDTH - MOUSE_WRAP)
 	{
 		*x = MOUSE_WRAP;
+# ifdef __APPLE__
+		mlx_mouse_move(data->win, *x, *y);
+# else
 		mlx_mouse_move(data->mlx, data->win, *x, *y);
+# endif
 		warped = 1;
 	}
 	else if (*x < MOUSE_WRAP)
 	{
 		*x = WIDTH - MOUSE_WRAP;
+# ifdef __APPLE__
+		mlx_mouse_move(data->win, *x, *y);
+# else
 		mlx_mouse_move(data->mlx, data->win, *x, *y);
+# endif
 		warped = 1;
 	}
 	return (warped);
@@ -86,7 +94,11 @@ int	mouse_move(int x, int y, t_data *data)
 
 void	toggle_mouse_capture(t_data *data)
 {
+# ifdef __APPLE__
+	mlx_mouse_move(data->win, WIDTH / 2, HEIGHT / 2);
+# else
 	mlx_mouse_move(data->mlx, data->win, WIDTH / 2, HEIGHT / 2);
+# endif
 	data->last_mouse_x = WIDTH / 2;
 	data->last_mouse_y = HEIGHT / 2;
 }
